@@ -29,4 +29,5 @@
 <Header />
 <ValdoDisplay>
   <Valdo slot="svg-display" />
+  <Valdo height="100" />
 </ValdoDisplay>

@@ -7,12 +7,22 @@
 
   export let height = 500;
   export let width = (height * 5) / 6;
+  export let skinColor = 'black';
+  export let rightHandPoint = {
+    x: midPoint.x + 2 * headDiameter,
+    y: hipPoint.y,
+  };
+  export let leftHandPoint = {
+    x: midPoint.x - 2 * headDiameter,
+    y: hipPoint.y,
+  };
+  export let rightFootPoint = { x: midPoint.x + 2 * headDiameter, y: height };
+  export let leftFootPoint = { x: midPoint.x - 2 * headDiameter, y: height };
 
   let midPoint = { x: width / 2, y: height / 2 };
   let headDiameter = height / 7;
   let strokeWidth = 2;
-  let limbThickness = 6;
-  let skinColor = 'black';
+  let limbThickness = height / 50;
   let torsoThickness = limbThickness;
   let maxArmLength = headDiameter * 3;
   let maxLegLength = headDiameter * 3;
@@ -20,10 +30,6 @@
   let neckPoint = { x: midPoint.x, y: 2 + headDiameter };
   let shoulderPoint = { x: midPoint.x, y: 2 + 1.5 * headDiameter };
   let hipPoint = { x: midPoint.x, y: 4 * headDiameter };
-  let rightHandPoint = { x: midPoint.x + 2 * headDiameter, y: hipPoint.y };
-  let leftHandPoint = { x: midPoint.x - 2 * headDiameter, y: hipPoint.y };
-  let rightFootPoint = { x: midPoint.x + 2 * headDiameter, y: height };
-  let leftFootPoint = { x: midPoint.x - 2 * headDiameter, y: height };
 </script>
 
 <svg {width} {height}>
