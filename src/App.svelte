@@ -2,6 +2,11 @@
   import Header from './Header.svelte';
   import Valdo from './Valdo.svelte';
   import ValdoDisplay from './ValdoDisplay.svelte';
+
+  let valdoData1 = {
+    height: 100,
+    skinColor: 'red',
+  };
 </script>
 
 <style>
@@ -29,5 +34,5 @@
 <Header />
 <ValdoDisplay>
   <Valdo slot="svg-display" />
-  <Valdo height="100" />
+  <Valdo valdoData={valdoData1} />
 </ValdoDisplay>

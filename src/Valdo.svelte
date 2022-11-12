@@ -5,31 +5,33 @@
   import ValdoNeck from './ValdoNeck.svelte';
   import ValdoTorso from './ValdoTorso.svelte';
 
-  export let height = 500;
-  export let width = (height * 5) / 6;
-  export let skinColor = 'black';
-  export let rightHandPoint = {
-    x: midPoint.x + 2 * headDiameter,
-    y: hipPoint.y,
-  };
-  export let leftHandPoint = {
-    x: midPoint.x - 2 * headDiameter,
-    y: hipPoint.y,
-  };
-  export let rightFootPoint = { x: midPoint.x + 2 * headDiameter, y: height };
-  export let leftFootPoint = { x: midPoint.x - 2 * headDiameter, y: height };
-
-  let midPoint = { x: width / 2, y: height / 2 };
-  let headDiameter = height / 7;
-  let strokeWidth = 2;
-  let limbThickness = height / 50;
-  let torsoThickness = limbThickness;
-  let maxArmLength = headDiameter * 3;
-  let maxLegLength = headDiameter * 3;
-  let headPoint = { x: midPoint.x, y: strokeWidth + headDiameter / 2 };
-  let neckPoint = { x: midPoint.x, y: 2 + headDiameter };
-  let shoulderPoint = { x: midPoint.x, y: 2 + 1.5 * headDiameter };
-  let hipPoint = { x: midPoint.x, y: 4 * headDiameter };
+  export let valdoData = {};
+  let {
+    height = 500,
+    width = (height * 5) / 6,
+    strokeWidth = 2,
+    skinColor = 'black',
+    midPoint = { x: width / 2, y: height / 2 },
+    headDiameter = height / 7,
+    headPoint = { x: midPoint.x, y: strokeWidth + headDiameter / 2 },
+    neckPoint = { x: midPoint.x, y: 2 + headDiameter },
+    shoulderPoint = { x: midPoint.x, y: 2 + 1.5 * headDiameter },
+    hipPoint = { x: midPoint.x, y: 4 * headDiameter },
+    rightHandPoint = {
+      x: midPoint.x + 2 * headDiameter,
+      y: hipPoint.y,
+    },
+    leftHandPoint = {
+      x: midPoint.x - 2 * headDiameter,
+      y: hipPoint.y,
+    },
+    rightFootPoint = { x: midPoint.x + 2 * headDiameter, y: height },
+    leftFootPoint = { x: midPoint.x - 2 * headDiameter, y: height },
+    limbThickness = height / 50,
+    torsoThickness = limbThickness,
+    maxArmLength = headDiameter * 3,
+    maxLegLength = headDiameter * 3,
+  } = valdoData;
 </script>
 
 <svg {width} {height}>
