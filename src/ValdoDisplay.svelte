@@ -1,10 +1,10 @@
-<div>
-   <slot name="svg-display" />;
-   <slot />;
-</div>
-
 <style>
-   div {
-      display: flex;
-   }
+  div {
+    display: flex;
+  }
 </style>
+
+<div>
+  <slot name="svg-display" />
+  <slot />
+</div>

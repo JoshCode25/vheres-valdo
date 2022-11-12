@@ -1,16 +1,11 @@
 <script>
-   import Header from "./Header.svelte";
-   import Valdo from "./Valdo.svelte";
-   import ValdoDisplay from "./ValdoDisplay.svelte";
+  import Header from './Header.svelte';
+  import Valdo from './Valdo.svelte';
+  import ValdoDisplay from './ValdoDisplay.svelte';
 </script>
 
-<Header />
-<ValdoDisplay>
-   <Valdo slot="svg-display" />
-</ValdoDisplay>
-
 <style>
-   /* main {
+  /* main {
       text-align: center;
       padding: 1em;
       max-width: 240px;
@@ -30,3 +25,8 @@
       }
    } */
 </style>
+
+<Header />
+<ValdoDisplay>
+  <Valdo slot="svg-display" />
+</ValdoDisplay>
