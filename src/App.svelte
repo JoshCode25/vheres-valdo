@@ -12,10 +12,10 @@
     'rgb(255, 219, 172)',
   ];
   let valdoList = [
-    { height: 100, skinColor: skinPalette[0] },
-    { height: 75, skinColor: skinPalette[1] },
-    { height: 115, skinColor: skinPalette[2] },
-    { height: 35, skinColor: skinPalette[3] },
+    { height: 100, skinTone: skinPalette[0] },
+    { height: 75, skinTone: skinPalette[1] },
+    { height: 115, skinTone: skinPalette[2] },
+    { height: 35, skinTone: skinPalette[3] },
   ];
 </script>
 

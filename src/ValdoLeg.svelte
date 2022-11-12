@@ -2,7 +2,7 @@
   export let hipPoint = {};
   export let footPoint = {};
   export let limbThickness = 4;
-  export let skinColor = 'black';
+  export let skinTone = 'black';
 </script>
 
 <line
@@ -10,6 +10,6 @@
   y1={hipPoint.y}
   x2={footPoint.x}
   y2={footPoint.y}
-  stroke={skinColor}
+  stroke={skinTone}
   stroke-width={limbThickness}
 />

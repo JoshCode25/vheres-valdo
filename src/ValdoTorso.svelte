@@ -2,7 +2,7 @@
   export let shoulderPoint = {};
   export let hipPoint = {};
   export let torsoThickness = 4;
-  export let skinColor = 'black';
+  export let skinTone = 'black';
 </script>
 
 <line
@@ -10,6 +10,6 @@
   y1={shoulderPoint.y}
   x2={hipPoint.x}
   y2={hipPoint.y}
-  stroke={skinColor}
+  stroke={skinTone}
   stroke-width={torsoThickness}
 />

@@ -12,7 +12,7 @@
     height = 250,
     width = (height * 5) / 6,
     strokeWidth = 2,
-    skinColor = 'black',
+    skinTone = 'black',
     midPoint = { x: width / 2, y: height / 2 },
     headDiameter = height / 7,
     headPoint = { x: midPoint.x, y: strokeWidth + headDiameter / 2 },
@@ -38,29 +38,29 @@
 
 <svg {width} {height}>
   <!-- Head -->
-  <ValdoHead {headPoint} {headDiameter} {strokeWidth} {skinColor} />
+  <ValdoHead {headPoint} {headDiameter} {strokeWidth} {skinTone} />
   <!-- Neck -->
-  <ValdoNeck {neckPoint} {shoulderPoint} {limbThickness} {skinColor} />
+  <ValdoNeck {neckPoint} {shoulderPoint} {limbThickness} {skinTone} />
   <!-- Torso -->
-  <ValdoTorso {shoulderPoint} {hipPoint} {torsoThickness} {skinColor} />
+  <ValdoTorso {shoulderPoint} {hipPoint} {torsoThickness} {skinTone} />
   <!-- Right Arm -->
   <ValdoArm
     {shoulderPoint}
     handPoint={rightHandPoint}
     {limbThickness}
-    {skinColor}
+    {skinTone}
   />
   <!-- Left Arm -->
   <ValdoArm
     {shoulderPoint}
     handPoint={leftHandPoint}
     {limbThickness}
-    {skinColor}
+    {skinTone}
   />
   <!-- Right Leg -->
-  <ValdoLeg {hipPoint} footPoint={rightFootPoint} {limbThickness} {skinColor} />
+  <ValdoLeg {hipPoint} footPoint={rightFootPoint} {limbThickness} {skinTone} />
   <!-- Left Leg -->
-  <ValdoLeg {hipPoint} footPoint={leftFootPoint} {limbThickness} {skinColor} />
+  <ValdoLeg {hipPoint} footPoint={leftFootPoint} {limbThickness} {skinTone} />
 </svg>
 
 <p>
