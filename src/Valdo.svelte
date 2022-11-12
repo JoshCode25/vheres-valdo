@@ -7,7 +7,9 @@
 
   export let valdoData = {};
   let {
-    height = 500,
+    nameFirst = 'Jeshua',
+    nameLast = 'Granstand',
+    height = 250,
     width = (height * 5) / 6,
     strokeWidth = 2,
     skinColor = 'black',
@@ -61,4 +63,8 @@
   <ValdoLeg {hipPoint} footPoint={leftFootPoint} {limbThickness} {skinColor} />
 </svg>
 
-<p>Midpoint x = {midPoint.x} y = {midPoint.y}</p>
+<p>
+  Midpoint x = {Math.round(midPoint.x * 1000) / 1000} y = {Math.round(
+    midPoint.y * 1000
+  ) / 1000}
+</p>
