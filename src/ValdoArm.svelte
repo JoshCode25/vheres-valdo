@@ -48,6 +48,7 @@
   }
 
   console.log(shoulderPoint, elbowPoint, handPoint);
+  // USE PATH INSTEAD OF LINE FOR RELATIVE PATH COMMANDS. DEFINE d in Script and pass to line as a single variable
 </script>
 
 {#if straightLine}
