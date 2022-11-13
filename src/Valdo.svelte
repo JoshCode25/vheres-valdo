@@ -31,8 +31,6 @@
     leftFootPoint = { x: midPoint.x - 2 * headDiameter, y: height },
     limbThickness = height / 50,
     torsoThickness = limbThickness,
-    maxArmLength = headDiameter * 3,
-    maxLegLength = headDiameter * 3,
   } = valdoData;
 </script>
 
@@ -46,6 +44,7 @@
   <!-- Right Arm -->
   <ValdoArm
     {shoulderPoint}
+    {headDiameter}
     handPoint={rightHandPoint}
     {limbThickness}
     {skinTone}
@@ -53,14 +52,27 @@
   <!-- Left Arm -->
   <ValdoArm
     {shoulderPoint}
+    {headDiameter}
     handPoint={leftHandPoint}
     {limbThickness}
     {skinTone}
   />
   <!-- Right Leg -->
-  <ValdoLeg {hipPoint} footPoint={rightFootPoint} {limbThickness} {skinTone} />
+  <ValdoLeg
+    {hipPoint}
+    {headDiameter}
+    footPoint={rightFootPoint}
+    {limbThickness}
+    {skinTone}
+  />
   <!-- Left Leg -->
-  <ValdoLeg {hipPoint} footPoint={leftFootPoint} {limbThickness} {skinTone} />
+  <ValdoLeg
+    {hipPoint}
+    {headDiameter}
+    footPoint={leftFootPoint}
+    {limbThickness}
+    {skinTone}
+  />
 </svg>
 
 <p>
