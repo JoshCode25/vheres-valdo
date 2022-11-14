@@ -46,12 +46,18 @@
       };
     }
   }
-
+  let armPath = `M ${shoulderPoint.x} ${shoulderPoint.y} `;
   console.log(shoulderPoint, elbowPoint, handPoint);
   // USE PATH INSTEAD OF LINE FOR RELATIVE PATH COMMANDS. DEFINE d in Script and pass to line as a single variable
 </script>
 
 {#if straightLine}
+  <path
+    id="rightArm"
+    d={armPath}
+    stroke={skinTone}
+    stroke-width={limbThickness}
+  />
   <line
     x1={shoulderPoint.x}
     y1={shoulderPoint.y}
