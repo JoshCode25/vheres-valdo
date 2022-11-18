@@ -48,6 +48,17 @@
   }
 </script>
 
+<header>
+  <h3>Current Score: {score}</h3>
+  <h4>Current Valdo: {valdoName}</h4>
+  <button on:click={toggleTimer}>Time Setting: {maxTime}s</button>
+  <h3>Remaining Time: {remainingTime} {timePercent}%</h3>
+  <h3>High Score: {highScore}</h3>
+</header>
+<div class="timerBarWrapper" style={timerBarStyle}>
+  <div class="timerBar" />
+</div>
+
 <style>
   header {
     position: relative;
@@ -79,14 +90,3 @@
     flex-grow: 3;
   }
 </style>
-
-<header>
-  <h3>Current Score: {score}</h3>
-  <h4>Current Valdo: {valdoName}</h4>
-  <button on:click={toggleTimer}>Time Setting: {maxTime}s</button>
-  <h3>Remaining Time: {remainingTime} {timePercent}%</h3>
-  <h3>High Score: {highScore}</h3>
-</header>
-<div class="timerBarWrapper" style={timerBarStyle}>
-  <div class="timerBar" />
-</div>
