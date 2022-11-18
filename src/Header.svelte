@@ -35,7 +35,6 @@
   }
   function checkTimer(id) {
     timerActive = true;
-
     if (remainingTime > 0) {
       remainingTime = roundToTenth(remainingTime - 0.1);
     } else if (remainingTime === 0) {

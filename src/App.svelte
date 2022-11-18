@@ -20,7 +20,7 @@
 </script>
 
 <style>
-  body {
+  :global(body) {
     text-align: center;
     padding: 1em;
     max-width: 240px;
@@ -28,8 +28,8 @@
   }
 
   @media (min-width: 640px) {
-    body {
-      max-width: none;
+    :global(body) {
+      max-width: 1000px;
     }
   }
 </style>
