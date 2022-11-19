@@ -1,6 +1,6 @@
 <script>
   import Header from './Header.svelte';
-  import Valdo from './Valdo.svelte';
+  import Valdo from './Valdo/Valdo.svelte';
   import ValdoDisplay from './ValdoDisplay.svelte';
 
   const skinPalette = [
@@ -12,12 +12,20 @@
     'rgb(255, 219, 172)',
   ];
   let valdoList = [
-    { height: 70, skinTone: skinPalette[0] },
+    { height: 70, nameFirst: 'Jenathon', nameLast: 'Hatmoore' },
+    { height: 70, nameFirst: 'Brinkle', nameLast: 'Sinkle' },
     //  { height: 75, skinTone: skinPalette[1] },
     //  { height: 115, skinTone: skinPalette[2] },
     //  { height: 35, skinTone: skinPalette[3] },
   ];
 </script>
+
+<Header />
+<ValdoDisplay>
+  {#each valdoList as valdoData, i}
+    <Valdo {valdoData} skinTone={skinPalette[i % 5]} />
+  {/each}
+</ValdoDisplay>
 
 <style>
   :global(body) {
@@ -33,10 +41,3 @@
     }
   }
 </style>
-
-<Header />
-<ValdoDisplay>
-  {#each valdoList as valdoData}
-    <Valdo {valdoData} />
-  {/each}
-</ValdoDisplay>

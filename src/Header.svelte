@@ -1,18 +1,22 @@
 <script>
   import TimerBar from './TimerBar.svelte';
+  import { gameTimer } from './store.js';
 
   export let score = 0;
   export let valdoName = 'Terry';
-  export let maxTime = 90;
-  export let remainingTime = maxTime;
   export let highScore = 5;
 </script>
 
 <header>
   <h3>Current Score: {score}</h3>
   <h4>Current Valdo: {valdoName}</h4>
-  <button on:click={toggleTimer}>Time Setting: {maxTime}s</button>
-  <h3>Remaining Time: {remainingTime} {timePercent}%</h3>
+  <button>
+    Time Setting: {$gameTimer.initialTime}s
+  </button>
+  <h3>
+    Remaining Time: {$gameTimer.remainingTime}s
+    {$gameTimer.remainingPercent}%
+  </h3>
   <h3>High Score: {highScore}</h3>
 </header>
 <TimerBar />
