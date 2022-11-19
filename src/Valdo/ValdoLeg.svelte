@@ -2,7 +2,12 @@
   export let hipPoint = {};
   export let footPoint = {};
   export let limbThickness = 4;
+  export let headDiameter = 2;
+  export let maxLegLength = 3 * headDiameter;
   export let skinTone = 'black';
+
+  if (maxLegLength < 1) {
+  }
 </script>
 
 <line

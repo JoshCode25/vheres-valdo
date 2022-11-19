@@ -21,19 +21,19 @@
     let angleToHoriz = Math.atan(deltaY / deltaX);
 
     if (shoulderHandDist > maxArmLength) {
-      console.log(
-        'shoulderhand>maxArm',
-        shoulderHandDist,
-        maxArmLength,
-        handPoint
-      );
+      // console.log(
+      //   'shoulderhand>maxArm',
+      //   shoulderHandDist,
+      //   maxArmLength,
+      //   handPoint
+      // );
       handPoint = {
         x: maxArmLength * Math.cos(angleToHoriz),
         y: maxArmLength * Math.sin(angleToHoriz),
       };
-      console.log(handPoint);
+      // console.log(handPoint);
     } else if (shoulderHandDist < maxArmLength) {
-      console.log('shoulderhand<maxArm', shoulderHandDist, maxArmLength);
+      // console.log('shoulderhand<maxArm', shoulderHandDist, maxArmLength);
       let isoscelesAngleInner = Math.acos(
         shoulderHandDist / (2 * shoulderElbowDist)
       );
@@ -47,7 +47,7 @@
     }
   }
   let armPath = `M ${shoulderPoint.x} ${shoulderPoint.y} `;
-  console.log(shoulderPoint, elbowPoint, handPoint);
+  // console.log(shoulderPoint, elbowPoint, handPoint);
   // USE PATH INSTEAD OF LINE FOR RELATIVE PATH COMMANDS. DEFINE d in Script and pass to line as a single variable
 </script>
 

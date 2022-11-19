@@ -6,13 +6,13 @@
   import ValdoTorso from './ValdoTorso.svelte';
 
   export let valdoData = {};
+  export let skinTone = 'black';
   let {
     nameFirst = 'Jeshua',
     nameLast = 'Granstand',
     height = 250,
     width = (height * 5) / 6,
     strokeWidth = 2,
-    skinTone = 'black',
     midPoint = { x: width / 2, y: height / 2 },
     headDiameter = height / 7,
     headPoint = { x: midPoint.x, y: strokeWidth + headDiameter / 2 },
@@ -32,6 +32,8 @@
     limbThickness = height / 50,
     torsoThickness = limbThickness,
   } = valdoData;
+
+  console.log(valdoData, skinTone);
 </script>
 
 <svg {width} {height}>
