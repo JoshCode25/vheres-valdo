@@ -1,4 +1,6 @@
 <script>
+  import { getPointDist, getPointDeltaAngle } from './mathUtilities.js';
+
   export let shoulderPoint = { x: 10, y: 10 };
   export let headDiameter = 5;
   export let maxArmLength = 3 * headDiameter;
@@ -9,16 +11,11 @@
 
   //RIGHT ARM NEEDS TO HAVE MIDPOINT ADDED TO X VALUES
   let straightLine = true;
-  let shoulderHandDist = Math.sqrt(
-    Math.pow(handPoint.x - shoulderPoint.x, 2) +
-      Math.pow(handPoint.y - shoulderPoint.y, 2)
-  );
+  let shoulderHandDist = getPointDist(shoulderPoint, handPoint);
   let shoulderElbowDist = maxArmLength / 2;
 
   if (shoulderHandDist !== maxArmLength) {
-    let deltaX = handPoint.x - shoulderPoint.x;
-    let deltaY = handPoint.y - shoulderPoint.y;
-    let angleToHoriz = Math.atan(deltaY / deltaX);
+    let { angleToHoriz } = getPointDeltaAngle(shoulderPoint, handPoint);
 
     if (shoulderHandDist > maxArmLength) {
       // console.log(
