@@ -1,8 +1,3 @@
-export default valdoList = [
-    {firstName: 'Jenathon', lastName: 'Hatmoore', greeting: 'Wa-heya!', correct:'Dasa\' me!', incorrect:'Nosa\' me!' },
-    {firstName: 'Brinkle', lastName: 'Sinkle', greeting: 'Ye bop', correct:'whoya', incorrect:'boo-yo' },
-]
-
 const firstNames = [
     'Anibrev',
     'Bakinaw',
@@ -14,9 +9,8 @@ const firstNames = [
     'Hanifred',
     'Indigo',
     'Jerepass',
-    'Keliah',
-    'Lilu',
     'Kekanumatonadoe',
+    'Lilu',
     'Mavito',
     'Neen',
     'Oi',
@@ -26,6 +20,7 @@ const firstNames = [
     'Sariphone',
     'Tavisha',
     'Umpturmass',
+    'Variphore',
     'Wiltmoore',
     'Xythe',
     'Yershig',
@@ -54,6 +49,7 @@ const firstNames = [
     'Valdo',
     'Workwillmingtonham',
     'Xyther',
+    'Yassy',
     'Zeriford'
 ]
 
@@ -106,6 +102,8 @@ const lastNames = [
     'Wringrij',
     'XL',
     'Xerximars',
+    'Yashrima',
+    'Yupe',
     'Zawkimoh',
     'Zcrievklmas'
 ]
@@ -128,3 +126,95 @@ const greetings = [
     'Hio',
     'Wowa'
 ]
+
+const correctResponses = [
+    'You got me!',
+    'Here I am!',
+    'What a find!',
+    'I thought I was gonna get you on that one',
+    'How\'d you know it was me?',
+    'No hiding the wool over your eyes',
+    'That hiding spot usually works',
+    'Good eye!',
+    'Looks like you can still see the trees in the forest',
+    'Are you sure I\'m the one? ... Yeah it\'s me',
+    'Do you have time to find another?',
+    'I knew I should\'ve picked a different spot!',
+    'Aww Rat-paste! You win!',
+    'I think I\'ll use my invisibility cloak next time',
+    'Wait, you got me already?',
+    'It takes two to tango but just you to find me',
+    'Okay, I\'m the one',
+    'Yep, it\'s me!',
+    'Uh-huh, pat yourself on the back',
+    'Correct, but don\'t get too full of yourself',
+    'The next one will be more difficult!'
+]
+
+const incorrectResponses = [
+    'Not today',
+    'You best be tryin\' again',
+    'I don\'t look anything like them!',
+    'Negative, nope, nada!',
+    'I\'m trying to read over here!',
+    'I\'d ask you to help find my phone, but I think I need someone a little bit more skilled in the finding arena',
+    'Haha, nope!',
+    'Try again friend!',
+    'Was that your final answer?',
+    'Maybe next time',
+    'Don\'t quit your day job - or night if you\'ve got that shift',
+    'I\'m flattered you confused me with the real Valdo',
+    'You fell for my clever disguise! Try again!',
+    'You\'re still it!',
+    'Keep trying',
+    'Pick another',
+    'Have you seen my wallet?',
+    'Are you the one who took my ice cream?',
+    'The longer I look at the sun, the darker everything gets',
+    'Sorry, I was day dreaming - try again',
+    'I think they got it wrong, try me again!',
+    'Ewww! When was the last time you washed your hands?',
+    'Here\'s some more points - wait, nevermind',
+    'The timer\'s gonna keep ticking!',
+    'That tickled! No points for you!',
+    'Nope',
+    'Zilch',
+    'Nada',
+    'Nuh-uh',
+    'No no no no',
+    'Not me!',
+    'Nopers',
+    'Negatory',
+    'Sorry, wrong one!',
+    'I hate to disappoint you, but I\'m not who you\'re looking for',
+    'Noooooooope!',
+    'Nah no Nah Nah!',
+    'Um... no',
+    'What day is it?',
+    'Are you allergic to incorrect answers?',
+    'Not a perfect score for you, but you can try again'
+]
+
+function getrandomList() {
+    firstNames.sort(() => Math.random() - 0.5);
+    lastNames.sort(() => Math.random() - 0.5);
+    greetings.sort(() => Math.random() - 0.5);
+    correctResponses.sort(() => Math.random() - 0.5);
+    incorrectResponses.sort(() => Math.random() - 0.5);
+
+    let randomList = firstNames.map((name, i) => {
+        let valdo = {
+            firstName: name,
+            lastName: lastNames[i],
+            greeting: greetings[i%greetings.length],
+            correctResponse: correctResponses[i%correctResponses.length],
+            incorrectResponse: incorrectResponses[i%incorrectResponses.length]
+        }
+    
+        return valdo;
+    });
+
+    return randomList;
+}
+
+export default valdoList = getrandomList();
