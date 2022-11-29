@@ -2,6 +2,7 @@
   import Header from './Header.svelte';
   import Valdo from './Valdo/Valdo.svelte';
   import ValdoDisplay from './ValdoDisplay.svelte';
+  import { valdoStore } from './Stores/valdoStore.js';
 
   const skinPalette = [
     //from https://huebliss.com/skin-color-code/
@@ -11,13 +12,8 @@
     'rgb(241, 194, 125)',
     'rgb(255, 219, 172)',
   ];
-  let valdoList = [
-    { height: 70, nameFirst: 'Jenathon', nameLast: 'Hatmoore' },
-    { height: 70, nameFirst: 'Brinkle', nameLast: 'Sinkle' },
-    //  { height: 75, skinTone: skinPalette[1] },
-    //  { height: 115, skinTone: skinPalette[2] },
-    //  { height: 35, skinTone: skinPalette[3] },
-  ];
+
+  console.log(valdoStore);
 </script>
 
 <Header />
