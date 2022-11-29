@@ -1,6 +1,6 @@
 <script>
   import TimerBar from './TimerBar.svelte';
-  import { gameTimer } from './store.js';
+  import { gameTimer } from './Stores/timerStore.js';
 
   export let score = 0;
   export let valdoName = 'Terry';

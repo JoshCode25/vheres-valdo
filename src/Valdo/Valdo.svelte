@@ -32,8 +32,6 @@
     limbThickness = height / 50,
     torsoThickness = limbThickness,
   } = valdoData;
-
-  console.log(valdoData, skinTone);
 </script>
 
 <svg {width} {height}>

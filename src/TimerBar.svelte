@@ -1,5 +1,5 @@
 <script>
-  import { gameTimer } from './store.js';
+  import { gameTimer } from './Stores/timerStore.js';
 
   let timerId;
   let timerBarColorList = ['green', 'orange', 'red'];
