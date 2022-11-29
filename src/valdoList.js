@@ -218,4 +218,4 @@ function getrandomList() {
     return randomList;
 }
 
-export default valdoList = getrandomList();
+export const valdoList = getrandomList();

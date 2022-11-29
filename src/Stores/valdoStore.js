@@ -1,5 +1,5 @@
 import { writable } from "svelte/store";
-import valdoList from "../valdoList";
+import {valdoList} from "../valdoList";
 
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -18,7 +18,30 @@ function createValdoStore() {
         netValdoList: valdoList,
         activeValdo: {},
         displayedValdos: [],
-        foundValdos: []
+        foundValdos: [],
+        shuffleNetValdoList() {
+            let shuffledNetValdoList = shuffleArray(this.netValdoList.slice());
+            this.netValdoList = shuffledNetValdoList;
+        },
+        setActiveValdo() {
+            //pick a random Valdo from the displayed to be the active/searched for Valdo
+            this.activeValdo = this.displayedValdos[Math.floor(Math.random()*this.displayedValdos.length)];
+        },
+        setDisplayedValdos() {
+            //shuffle netValdoList and reset the displayed and active Valdos
+            this.shuffleNetValdoList();
+            this.displayedValdos = this.netValdoList.slice(0, 2*(this.foundValdos.length + 1));
+            this.setActiveValdo();
+        },
+        addFoundValdo() {
+            //find and remove found Valdo from netList to prevent duplicates
+            let activeIndex = this.netValdoList.findIndex(valdo => {
+                valdo.name === this.activeValdo.name;
+            })
+            let foundValdo = this.netValdoList.splice(activeIndex, 1);
+            this.foundValdos.push(foundValdo);
+            this.setDisplayedValdos();
+        },
     })
 
     return {
@@ -31,33 +54,6 @@ function createValdoStore() {
             o.addFoundValdo();
             return o;
         }),
-        addFoundValdo: () => valdoStore.update(o => {
-            //find and remove found Valdo from netList to prevent duplicates
-            let activeIndex = o.netValdoList.findIndex(valdo => {
-                valdo.name === o.activeValdo.name;
-            })
-            let foundValdo = o.netValdoList.splice(activeIndex, 1);
-            o.foundValdos.push(foundValdo);
-            o.setDisplayedValdos();
-            return o;
-        }),
-        setDisplayedValdos: () => valdoStore.update(o => {
-            //shuffle netValdoList and reset the displayed and active Valdos
-            o.shuffleNetValdoList();
-            o.displayedValdos = o.netValdoList.slice(0, 2*(o.foundValdos.length + 1));
-            o.setActiveValdo();
-            return o;
-        }),
-        setActiveValdo: () => valdoStore.update(o => {
-            //pick a random Valdo from the displayed to be the active/searched for Valdo
-            o.activeValdo = o.displayedValdos[Math.floor(Math.random()*o.displayedValdos.length)];
-            return o;
-        }),
-        shuffleNetValdoList: () => valdoStore.update(o => {
-            let shuffledNetValdoList = shuffleArray(o.netValdoList.slice());
-            o = {...o, netValdoList: shuffledNetValdoList}
-            return o;
-        })
 
     }
 }

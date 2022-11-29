@@ -12,13 +12,13 @@
     'rgb(241, 194, 125)',
     'rgb(255, 219, 172)',
   ];
-
-  console.log(valdoStore);
+  valdoStore.startNewGame();
+  console.log($valdoStore);
 </script>
 
 <Header />
 <ValdoDisplay>
-  {#each valdoList as valdoData, i}
+  {#each $valdoStore.displayedValdos as valdoData, i}
     <Valdo {valdoData} skinTone={skinPalette[i % 5]} />
   {/each}
 </ValdoDisplay>
