@@ -1,4 +1,7 @@
 <script>
+  import { createEventDispatcher } from 'svelte';
+  import { fade } from 'svelte/transition';
+
   import ValdoArm from './ValdoArm.svelte';
   import ValdoHead from './ValdoHead.svelte';
   import ValdoLeg from './ValdoLeg.svelte';
@@ -7,9 +10,13 @@
 
   export let valdoData = {};
   export let skinTone = 'black';
+  export let displaySVG = true;
   let {
-    nameFirst = 'Jeshua',
-    nameLast = 'Granstand',
+    firstName = 'Jeshua',
+    lastName = 'Granstand',
+    greeting = 'hello',
+    correctResponse = 'yes',
+    incorrectResponse = 'no',
     height = 250,
     width = (height * 5) / 6,
     strokeWidth = 2,
@@ -32,51 +39,75 @@
     limbThickness = height / 50,
     torsoThickness = limbThickness,
   } = valdoData;
+
+  const dispatch = createEventDispatcher();
+
+  function handleclick() {
+    dispatch('tag', {
+      fullName: firstName + lastName,
+      greeting: greeting,
+      correctResponse: correctResponse,
+      incorrectResponse: incorrectResponse,
+    });
+  }
 </script>
 
-<svg {width} {height}>
-  <!-- Head -->
-  <ValdoHead {headPoint} {headDiameter} {strokeWidth} {skinTone} />
-  <!-- Neck -->
-  <ValdoNeck {neckPoint} {shoulderPoint} {limbThickness} {skinTone} />
-  <!-- Torso -->
-  <ValdoTorso {shoulderPoint} {hipPoint} {torsoThickness} {skinTone} />
-  <!-- Right Arm -->
-  <ValdoArm
-    {shoulderPoint}
-    {headDiameter}
-    handPoint={rightHandPoint}
-    {limbThickness}
-    {skinTone}
-  />
-  <!-- Left Arm -->
-  <ValdoArm
-    {shoulderPoint}
-    {headDiameter}
-    handPoint={leftHandPoint}
-    {limbThickness}
-    {skinTone}
-  />
-  <!-- Right Leg -->
-  <ValdoLeg
-    {hipPoint}
-    {headDiameter}
-    footPoint={rightFootPoint}
-    {limbThickness}
-    {skinTone}
-  />
-  <!-- Left Leg -->
-  <ValdoLeg
-    {hipPoint}
-    {headDiameter}
-    footPoint={leftFootPoint}
-    {limbThickness}
-    {skinTone}
-  />
-</svg>
+<!-- svelte-ignore a11y-click-events-have-key-events -->
+<div on:click={handleclick} transition:fade>
+  {#if displaySVG}
+    <svg {width} {height}>
+      <!-- Head -->
+      <ValdoHead {headPoint} {headDiameter} {strokeWidth} {skinTone} />
+      <!-- Neck -->
+      <ValdoNeck {neckPoint} {shoulderPoint} {limbThickness} {skinTone} />
+      <!-- Torso -->
+      <ValdoTorso {shoulderPoint} {hipPoint} {torsoThickness} {skinTone} />
+      <!-- Right Arm -->
+      <ValdoArm
+        {shoulderPoint}
+        {headDiameter}
+        handPoint={rightHandPoint}
+        {limbThickness}
+        {skinTone}
+      />
+      <!-- Left Arm -->
+      <ValdoArm
+        {shoulderPoint}
+        {headDiameter}
+        handPoint={leftHandPoint}
+        {limbThickness}
+        {skinTone}
+      />
+      <!-- Right Leg -->
+      <ValdoLeg
+        {hipPoint}
+        {headDiameter}
+        footPoint={rightFootPoint}
+        {limbThickness}
+        {skinTone}
+      />
+      <!-- Left Leg -->
+      <ValdoLeg
+        {hipPoint}
+        {headDiameter}
+        footPoint={leftFootPoint}
+        {limbThickness}
+        {skinTone}
+      />
+    </svg>
+  {:else}
+    <h3>{firstName} {lastName}</h3>
+  {/if}
+</div>
 
-<p>
+<!-- <p>
   Midpoint x = {Math.round(midPoint.x * 1000) / 1000} y = {Math.round(
     midPoint.y * 1000
   ) / 1000}
-</p>
+</p> -->
+<style>
+  h3 {
+    margin: 5px;
+    border: 2px solid black;
+  }
+</style>

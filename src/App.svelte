@@ -4,6 +4,7 @@
   import ValdoDisplay from './ValdoDisplay.svelte';
   import { valdoStore } from './Stores/valdoStore.js';
 
+  const displaySVG = false;
   const skinPalette = [
     //from https://huebliss.com/skin-color-code/
     'rgb(141, 85, 36)',
@@ -12,14 +13,36 @@
     'rgb(241, 194, 125)',
     'rgb(255, 219, 172)',
   ];
+
   valdoStore.startNewGame();
   console.log($valdoStore);
+
+  function handleTag(event) {
+    let activeFullName =
+      $valdoStore.activeValdo.firstName + $valdoStore.activeValdo.lastName;
+    if (event.detail.fullName === activeFullName) {
+      console.log(event.detail.correctResponse);
+      valdoStore.startNewRound();
+      console.log($valdoStore.displayedValdos);
+    } else {
+      console.log(event.detail.incorrectResponse);
+    }
+  }
 </script>
 
-<Header />
+<Header
+  valdoName={$valdoStore.activeValdo.firstName +
+    ' ' +
+    $valdoStore.activeValdo.lastName}
+/>
 <ValdoDisplay>
   {#each $valdoStore.displayedValdos as valdoData, i}
-    <Valdo {valdoData} skinTone={skinPalette[i % 5]} />
+    <Valdo
+      on:tag={handleTag}
+      {valdoData}
+      {displaySVG}
+      skinTone={skinPalette[i % 5]}
+    />
   {/each}
 </ValdoDisplay>
 
