@@ -196,19 +196,20 @@ const incorrectResponses = [
 ]
 
 function getrandomList() {
-    firstNames.sort(() => Math.random() - 0.5);
-    lastNames.sort(() => Math.random() - 0.5);
-    greetings.sort(() => Math.random() - 0.5);
-    correctResponses.sort(() => Math.random() - 0.5);
-    incorrectResponses.sort(() => Math.random() - 0.5);
+    //loosely randomizes names, greetings, and responses
+    let shuffledFirstNames = firstNames.slice().sort(() => Math.random() - 0.5);
+    let shuffledLastNames = lastNames.slice().sort(() => Math.random() - 0.5);
+    let shuffledGreetings = greetings.slice().sort(() => Math.random() - 0.5);
+    let shuffledCorrectResponses = correctResponses.slice().sort(() => Math.random() - 0.5);
+    let shuffledIncorrectResponses = incorrectResponses.slice().sort(() => Math.random() - 0.5);
 
-    let randomList = firstNames.map((name, i) => {
+    let randomList = shuffledFirstNames.map((name, i) => {
         let valdo = {
             firstName: name,
-            lastName: lastNames[i],
-            greeting: greetings[i%greetings.length],
-            correctResponse: correctResponses[i%correctResponses.length],
-            incorrectResponse: incorrectResponses[i%incorrectResponses.length]
+            lastName: shuffledLastNames[i],
+            greeting: shuffledGreetings[i%shuffledGreetings.length],
+            correctResponse: shuffledCorrectResponses[i%shuffledCorrectResponses.length],
+            incorrectResponse: shuffledIncorrectResponses[i%shuffledIncorrectResponses.length]
         }
     
         return valdo;
