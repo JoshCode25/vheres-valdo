@@ -208,6 +208,7 @@ function getrandomList() {
             firstName: name,
             lastName: shuffledLastNames[i],
             greeting: shuffledGreetings[i%shuffledGreetings.length],
+            fullName: `${name} ${shuffledLastNames[i]}`,
             correctResponse: shuffledCorrectResponses[i%shuffledCorrectResponses.length],
             incorrectResponse: shuffledIncorrectResponses[i%shuffledIncorrectResponses.length]
         }
