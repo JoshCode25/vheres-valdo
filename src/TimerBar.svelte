@@ -1,7 +1,6 @@
 <script>
   import { gameTimer } from './Stores/timerStore.js';
 
-  let timerId;
   let timerBarColorList = ['green', 'orange', 'red'];
   let timerBarColor = timerBarColorList[0];
 
@@ -19,30 +18,6 @@
     console.log($gameTimer.remainingPercent, timerBarColor);
   }
   $: timerBarStyle = `--width: ${$gameTimer.remainingPercent}%; --background-color: ${timerBarColor}`;
-
-  function toggleTimer() {
-    if ($gameTimer.timerActive) {
-      gameTimer.setTimerInactive;
-      stopTimer(timerId);
-    } else {
-      gameTimer.setTimerActive();
-      timerId = setInterval(() => checkTimer(timerId), 1000);
-    }
-  }
-  function checkTimer(id) {
-    if ($gameTimer.remainingTime > 0) {
-      gameTimer.decrement(1);
-    } else if ($gameTimer.remainingTime === 0) {
-      stopTimer(id);
-    }
-  }
-
-  function stopTimer(id) {
-    clearInterval(id);
-    gameTimer.setTimerInactive();
-  }
-
-  toggleTimer();
 </script>
 
 <div class="timerBarWrapper" style={timerBarStyle}>

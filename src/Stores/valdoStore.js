@@ -19,6 +19,7 @@ function createValdoStore() {
         activeValdo: {},
         displayedValdos: [],
         foundValdos: [],
+        activatedGame: false,
         shuffleNetValdoList() {
             let shuffledNetValdoList = shuffleArray(this.netValdoList.slice());
             this.netValdoList = shuffledNetValdoList;
@@ -47,6 +48,7 @@ function createValdoStore() {
     return {
         subscribe: valdoStore.subscribe,
         startNewGame: () => valdoStore.update(o => {
+            o.activatedGame = true;
             o.setDisplayedValdos();
             return o;
         }),

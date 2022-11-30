@@ -19,9 +19,6 @@
   let incorrectTagPenalty = 5;
   let valdoTagBonus = 5;
 
-  valdoStore.startNewGame();
-  console.log($valdoStore);
-
   function handleTag(event) {
     if ($gameTimer.timerActive) {
       let activeFullName =
@@ -32,12 +29,12 @@
         if (/valdo/i.test(event.detail.fullName)) {
           gameTimer.increment(valdoTagBonus);
         } else {
-          gameTimer.increment(2);
+          gameTimer.increment(correctTagReward);
         }
         valdoStore.startNewRound();
         console.log($valdoStore);
       } else {
-        gameTimer.decrement(5);
+        gameTimer.decrement(incorrectTagPenalty);
         console.log(event.detail.incorrectResponse);
       }
     }
