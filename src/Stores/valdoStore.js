@@ -36,11 +36,15 @@ function createValdoStore() {
         },
         addFoundValdo() {
             //find and remove found Valdo from netList to prevent duplicates
+            let activeFullName = `${this.activeValdo.firstName} ${this.activeValdo.lastName}`;
             let activeIndex = this.netValdoList.findIndex(valdo => {
-                valdo.name === this.activeValdo.name;
+                let netFullName = `${valdo.firstName} ${valdo.lastName}`;
+                let foundMatch = netFullName === activeFullName;
+                return foundMatch;
             })
             let foundValdo = this.netValdoList.splice(activeIndex, 1);
             this.foundValdos = [...this.foundValdos, foundValdo];
+            console.log(activeIndex, foundValdo, this.foundValdos);
             this.setDisplayedValdos();
         },
     })

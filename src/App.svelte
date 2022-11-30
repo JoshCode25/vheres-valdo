@@ -15,21 +15,31 @@
     'rgb(255, 219, 172)',
   ];
   let score = 0;
+  let correctTagReward = 2;
+  let incorrectTagPenalty = 5;
+  let valdoTagBonus = 5;
 
   valdoStore.startNewGame();
   console.log($valdoStore);
 
   function handleTag(event) {
-    let activeFullName =
-      $valdoStore.activeValdo.firstName + $valdoStore.activeValdo.lastName;
-    if (event.detail.fullName === activeFullName) {
-      console.log(event.detail.correctResponse);
-      score = score + 1;
-      gameTimer.increment(2);
-      valdoStore.startNewRound();
-    } else {
-      gameTimer.decrement(5);
-      console.log(event.detail.incorrectResponse);
+    if ($gameTimer.timerActive) {
+      let activeFullName =
+        $valdoStore.activeValdo.firstName + $valdoStore.activeValdo.lastName;
+      if (event.detail.fullName === activeFullName) {
+        console.log(event.detail.correctResponse);
+        score = score + 1;
+        if (/valdo/i.test(event.detail.fullName)) {
+          gameTimer.increment(valdoTagBonus);
+        } else {
+          gameTimer.increment(2);
+        }
+        valdoStore.startNewRound();
+        console.log($valdoStore);
+      } else {
+        gameTimer.decrement(5);
+        console.log(event.detail.incorrectResponse);
+      }
     }
   }
 </script>
