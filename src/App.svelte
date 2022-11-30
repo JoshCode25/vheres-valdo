@@ -3,6 +3,7 @@
   import Valdo from './Valdo/Valdo.svelte';
   import ValdoDisplay from './ValdoDisplay.svelte';
   import { valdoStore } from './Stores/valdoStore.js';
+  import { gameTimer } from './Stores/timerStore';
 
   const displaySVG = false;
   const skinPalette = [
@@ -13,6 +14,7 @@
     'rgb(241, 194, 125)',
     'rgb(255, 219, 172)',
   ];
+  let score = 0;
 
   valdoStore.startNewGame();
   console.log($valdoStore);
@@ -22,9 +24,11 @@
       $valdoStore.activeValdo.firstName + $valdoStore.activeValdo.lastName;
     if (event.detail.fullName === activeFullName) {
       console.log(event.detail.correctResponse);
+      score = score + 1;
+      gameTimer.increment(2);
       valdoStore.startNewRound();
-      console.log($valdoStore.displayedValdos);
     } else {
+      gameTimer.decrement(5);
       console.log(event.detail.incorrectResponse);
     }
   }
@@ -34,9 +38,10 @@
   valdoName={$valdoStore.activeValdo.firstName +
     ' ' +
     $valdoStore.activeValdo.lastName}
+  {score}
 />
 <ValdoDisplay>
-  {#each $valdoStore.displayedValdos as valdoData, i}
+  {#each $valdoStore.displayedValdos as valdoData, i (valdoData.firstName)}
     <Valdo
       on:tag={handleTag}
       {valdoData}

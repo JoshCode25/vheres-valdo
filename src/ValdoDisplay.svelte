@@ -1,9 +1,10 @@
-<style>
-  div {
-    display: flex;
-  }
-</style>
-
 <div>
   <slot />
 </div>
+
+<style>
+  div {
+    display: flex;
+    flex-wrap: wrap;
+  }
+</style>

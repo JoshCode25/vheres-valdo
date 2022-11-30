@@ -30,7 +30,8 @@ function createValdoStore() {
         setDisplayedValdos() {
             //shuffle netValdoList and reset the displayed and active Valdos
             this.shuffleNetValdoList();
-            this.displayedValdos = this.netValdoList.slice(0, 2*(this.foundValdos.length + 1));
+            let newDisplayedValdos = this.netValdoList.slice(0, 2*(this.foundValdos.length + 1));
+            this.displayedValdos = newDisplayedValdos;
             this.setActiveValdo();
         },
         addFoundValdo() {
@@ -39,7 +40,7 @@ function createValdoStore() {
                 valdo.name === this.activeValdo.name;
             })
             let foundValdo = this.netValdoList.splice(activeIndex, 1);
-            this.foundValdos.push(foundValdo);
+            this.foundValdos = [...this.foundValdos, foundValdo];
             this.setDisplayedValdos();
         },
     })
