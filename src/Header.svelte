@@ -44,7 +44,6 @@
   </button>
   <h3>
     Remaining Time: {$gameTimer.remainingTime}s
-    {$gameTimer.remainingPercent}%
   </h3>
   <h3>High Score: {highScore}</h3>
 </header>

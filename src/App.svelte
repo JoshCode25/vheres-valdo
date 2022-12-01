@@ -21,9 +21,7 @@
 
   function handleTag(event) {
     if ($gameTimer.timerActive) {
-      let activeFullName =
-        $valdoStore.activeValdo.firstName + $valdoStore.activeValdo.lastName;
-      if (event.detail.fullName === activeFullName) {
+      if (event.detail.fullName === $valdoStore.activeValdo.fullName) {
         console.log(event.detail.correctResponse);
         score = score + 1;
         if (/valdo/i.test(event.detail.fullName)) {
@@ -41,12 +39,7 @@
   }
 </script>
 
-<Header
-  valdoName={$valdoStore.activeValdo.firstName +
-    ' ' +
-    $valdoStore.activeValdo.lastName}
-  {score}
-/>
+<Header valdoName={$valdoStore.activeValdo.fullName} {score} />
 <ValdoDisplay>
   {#each $valdoStore.displayedValdos as valdoData, i (valdoData.firstName)}
     <Valdo

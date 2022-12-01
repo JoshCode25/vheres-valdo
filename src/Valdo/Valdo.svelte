@@ -14,6 +14,7 @@
   let {
     firstName = 'Jeshua',
     lastName = 'Granstand',
+    fullName = `${firstName} ${lastName}`,
     greeting = 'hello',
     correctResponse = 'yes',
     incorrectResponse = 'no',
@@ -44,7 +45,7 @@
 
   function handleclick() {
     dispatch('tag', {
-      fullName: firstName + lastName,
+      fullName: fullName,
       greeting: greeting,
       correctResponse: correctResponse,
       incorrectResponse: incorrectResponse,
