@@ -53,6 +53,7 @@ function createValdoStore() {
         subscribe: valdoStore.subscribe,
         startNewGame: () => valdoStore.update(o => {
             o.activatedGame = true;
+            o.foundValdos.length = 0;
             o.setDisplayedValdos();
             return o;
         }),
@@ -60,6 +61,11 @@ function createValdoStore() {
             o.addFoundValdo();
             return o;
         }),
+        finishRound: () => valdoStore.update(o => {
+            o.activatedGame = false;
+            o.netValdoList = [...o.totalValdoList];
+            return o;
+        })
 
     }
 }

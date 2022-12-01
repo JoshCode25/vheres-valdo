@@ -4,6 +4,8 @@ function createTimer() {
 
     const timer = writable({
         initialTime: 30,
+        score: 0,
+        highScore: 15,
         remainingTime: 30,
         remainingPercent: 100,
         timerHasBeenSet: false,
@@ -28,19 +30,27 @@ function createTimer() {
             o.remainingTime = initialTime;
             return o;
         }),
-		increment: (delta) => timer.update(o => {
+		incrementTime: (delta) => timer.update(o => {
             o.remainingTime = o.remainingTime + delta;
             o.updateRemainingPercent();
             return o;
         }),
-        decrement: (delta) => timer.update(o => {
+        decrementTime: (delta) => timer.update(o => {
             o.remainingTime = o.remainingTime - delta;
             o.updateRemainingPercent();
             return o;
         }),
-		reset: () => timer.set(o => {
+		resetTime: () => timer.set(o => {
             o.remainingTime = initialTime
             o.updateRemainingPercent();
+            return o;
+        }),
+        increaseScore: (delta) => timer.update(o => {
+            o.score = o.score + delta;
+            return o;
+        }),
+        setHighscore: (score) => timer.update(o => {
+            o.highScore = score;
             return o;
         })
 	};

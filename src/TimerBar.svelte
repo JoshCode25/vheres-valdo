@@ -1,6 +1,6 @@
 <script>
   import { gameTimer } from './Stores/timerStore.js';
-
+  //NEED TO RESET BAR ON GAME RESTART
   let timerBarColorList = ['green', 'orange', 'red'];
   let timerBarColor = timerBarColorList[0];
 

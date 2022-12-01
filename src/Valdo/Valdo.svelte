@@ -97,7 +97,7 @@
       />
     </svg>
   {:else}
-    <h3>{firstName} {lastName}</h3>
+    <h3>{fullName}</h3>
   {/if}
 </div>
 

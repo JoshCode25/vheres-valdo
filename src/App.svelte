@@ -14,32 +14,32 @@
     'rgb(241, 194, 125)',
     'rgb(255, 219, 172)',
   ];
-  let score = 0;
   let correctTagReward = 2;
   let incorrectTagPenalty = 5;
   let valdoTagBonus = 5;
+  let tagPointReward = 1;
 
   function handleTag(event) {
     if ($gameTimer.timerActive) {
       if (event.detail.fullName === $valdoStore.activeValdo.fullName) {
         console.log(event.detail.correctResponse);
-        score = score + 1;
+        gameTimer.increaseScore(tagPointReward);
         if (/valdo/i.test(event.detail.fullName)) {
-          gameTimer.increment(valdoTagBonus);
+          gameTimer.incrementTime(valdoTagBonus);
         } else {
-          gameTimer.increment(correctTagReward);
+          gameTimer.incrementTime(correctTagReward);
         }
         valdoStore.startNewRound();
         console.log($valdoStore);
       } else {
-        gameTimer.decrement(incorrectTagPenalty);
+        gameTimer.decrementTime(incorrectTagPenalty);
         console.log(event.detail.incorrectResponse);
       }
     }
   }
 </script>
 
-<Header valdoName={$valdoStore.activeValdo.fullName} {score} />
+<Header valdoName={$valdoStore.activeValdo.fullName} />
 <ValdoDisplay>
   {#each $valdoStore.displayedValdos as valdoData, i (valdoData.firstName)}
     <Valdo

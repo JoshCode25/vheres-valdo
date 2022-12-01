@@ -3,11 +3,10 @@
   import { gameTimer } from './Stores/timerStore.js';
   import { valdoStore } from './Stores/valdoStore';
 
-  export let score = 0;
   export let valdoName = 'Terry';
-  export let highScore = 5;
 
   let timerId;
+  let completedGame = false;
 
   function toggleTimer() {
     if (!$valdoStore.activatedGame) {
@@ -24,7 +23,7 @@
 
   function checkTimer(id) {
     if ($gameTimer.remainingTime > 0) {
-      gameTimer.decrement(1);
+      gameTimer.decrementTime(1);
     } else if ($gameTimer.remainingTime === 0) {
       stopTimer(id);
     }
@@ -33,19 +32,25 @@
   function stopTimer(id) {
     clearInterval(id);
     gameTimer.setTimerInactive();
+    if ($gameTimer.score > $gameTimer.highScore) {
+      gameTimer.setHighscore($gameTimer.score);
+    }
+    valdoStore.finishRound();
   }
 </script>
 
 <header>
-  <h3>Current Score: {score}</h3>
+  <h3>Current Score: {$gameTimer.score}</h3>
   <h4>Current Valdo: {valdoName}</h4>
-  <button on:click={toggleTimer}>
-    Starting Time: {$gameTimer.initialTime}s
-  </button>
+  {#if !completedGame}
+    <button on:click={toggleTimer}>Click to Start</button>
+  {:else if completedGame}
+    <button on:click={toggleTimer}>Play Again?</button>
+  {/if}
   <h3>
     Remaining Time: {$gameTimer.remainingTime}s
   </h3>
-  <h3>High Score: {highScore}</h3>
+  <h3>High Score: {$gameTimer.highScore}</h3>
 </header>
 <TimerBar />
 
@@ -64,6 +69,10 @@
   h3,
   button {
     flex-grow: 1;
+  }
+
+  button:hover {
+    cursor: pointer;
   }
 
   h4 {
