@@ -111,4 +111,8 @@
     margin: 5px;
     border: 2px solid black;
   }
+
+  div:hover {
+    cursor: pointer;
+  }
 </style>

@@ -195,7 +195,7 @@ const incorrectResponses = [
     'Not a perfect score for you, but you can try again'
 ]
 
-function getrandomList() {
+export default function getRandomValdoList() {
     //loosely randomizes names, greetings, and responses
     let shuffledFirstNames = firstNames.slice().sort(() => Math.random() - 0.5);
     let shuffledLastNames = lastNames.slice().sort(() => Math.random() - 0.5);
@@ -218,5 +218,3 @@ function getrandomList() {
 
     return randomList;
 }
-
-export const valdoList = getrandomList();

@@ -1,5 +1,7 @@
 import { writable } from "svelte/store";
-import {valdoList} from "../valdoList";
+import getRandomValdoList from "../valdoList";
+
+let valdoList = getRandomValdoList();
 
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -18,6 +20,7 @@ function createValdoStore() {
         netValdoList: valdoList,
         activeValdo: {},
         displayedValdos: [],
+        minDisplayedValdoNumber: 4,
         foundValdos: [],
         activatedGame: false,
         shuffleNetValdoList() {
@@ -31,7 +34,7 @@ function createValdoStore() {
         setDisplayedValdos() {
             //shuffle netValdoList and reset the displayed and active Valdos
             this.shuffleNetValdoList();
-            let newDisplayedValdos = this.netValdoList.slice(0, 2*(this.foundValdos.length + 1));
+            let newDisplayedValdos = this.netValdoList.slice(0, 2*this.foundValdos.length + this.minDisplayedValdoNumber);
             this.displayedValdos = newDisplayedValdos;
             this.setActiveValdo();
         },
@@ -41,7 +44,6 @@ function createValdoStore() {
             if (activeIndex !== -1) {
                 let foundValdo = this.netValdoList.splice(activeIndex, 1);
                 this.foundValdos = [...this.foundValdos, foundValdo];
-                console.log(activeIndex, foundValdo, this.foundValdos);
                 this.setDisplayedValdos();
                 return
             }
@@ -55,15 +57,17 @@ function createValdoStore() {
             o.activatedGame = true;
             o.foundValdos.length = 0;
             o.setDisplayedValdos();
+            console.log(o);
             return o;
         }),
         startNewRound: () => valdoStore.update(o => {
             o.addFoundValdo();
             return o;
         }),
-        finishRound: () => valdoStore.update(o => {
+        finishGame: () => valdoStore.update(o => {
             o.activatedGame = false;
-            o.netValdoList = [...o.totalValdoList];
+            o.totalValdoList = getRandomValdoList();
+            o.netValdoList = o.totalValdoList;
             return o;
         })
 

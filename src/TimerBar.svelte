@@ -3,19 +3,24 @@
   //NEED TO RESET BAR ON GAME RESTART
   let timerBarColorList = ['green', 'orange', 'red'];
   let timerBarColor = timerBarColorList[0];
+  let greenPercentage = 50;
+  let orangePercentage = 10;
 
   $: if (
-    $gameTimer.remainingPercent < 50 &&
-    timerBarColor === timerBarColorList[0]
+    $gameTimer.remainingPercent >= greenPercentage &&
+    timerBarColor !== timerBarColorList[0]
+  ) {
+    timerBarColor = timerBarColorList[0];
+  } else if (
+    $gameTimer.remainingPercent < greenPercentage &&
+    timerBarColor !== timerBarColorList[1]
   ) {
     timerBarColor = timerBarColorList[1];
-    console.log($gameTimer.remainingPercent, timerBarColor);
   } else if (
-    $gameTimer.remainingPercent < 10 &&
-    timerBarColor === timerBarColorList[1]
+    $gameTimer.remainingPercent < orangePercentage &&
+    timerBarColor !== timerBarColorList[2]
   ) {
     timerBarColor = timerBarColorList[2];
-    console.log($gameTimer.remainingPercent, timerBarColor);
   }
   $: timerBarStyle = `--width: ${$gameTimer.remainingPercent}%; --background-color: ${timerBarColor}`;
 </script>

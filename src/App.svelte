@@ -22,7 +22,6 @@
   function handleTag(event) {
     if ($gameTimer.timerActive) {
       if (event.detail.fullName === $valdoStore.activeValdo.fullName) {
-        console.log(event.detail.correctResponse);
         gameTimer.increaseScore(tagPointReward);
         if (/valdo/i.test(event.detail.fullName)) {
           gameTimer.incrementTime(valdoTagBonus);
@@ -30,10 +29,8 @@
           gameTimer.incrementTime(correctTagReward);
         }
         valdoStore.startNewRound();
-        console.log($valdoStore);
       } else {
         gameTimer.decrementTime(incorrectTagPenalty);
-        console.log(event.detail.incorrectResponse);
       }
     }
   }

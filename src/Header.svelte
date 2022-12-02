@@ -8,23 +8,20 @@
   let timerId;
   let completedGame = false;
 
-  function toggleTimer() {
+  function startTimer() {
     if (!$valdoStore.activatedGame) {
       valdoStore.startNewGame();
     }
-    if ($gameTimer.timerActive) {
-      gameTimer.setTimerInactive;
-      stopTimer(timerId);
-    } else {
-      gameTimer.setTimerActive();
-      timerId = setInterval(() => checkTimer(timerId), 1000);
-    }
+    gameTimer.setTimerActive();
+    timerId = setInterval(() => checkTimer(timerId), 1000);
+    console.log($gameTimer);
   }
 
   function checkTimer(id) {
     if ($gameTimer.remainingTime > 0) {
       gameTimer.decrementTime(1);
-    } else if ($gameTimer.remainingTime === 0) {
+    } else if ($gameTimer.remainingTime <= 0) {
+      console.log('finished game:', completedGame, $valdoStore, $gameTimer);
       stopTimer(id);
     }
   }
@@ -35,17 +32,22 @@
     if ($gameTimer.score > $gameTimer.highScore) {
       gameTimer.setHighscore($gameTimer.score);
     }
-    valdoStore.finishRound();
+    completedGame = true;
+    gameTimer.resetTime();
+    valdoStore.finishGame();
+    console.log('finished game:', completedGame, $valdoStore, $gameTimer);
   }
 </script>
 
 <header>
   <h3>Current Score: {$gameTimer.score}</h3>
   <h4>Current Valdo: {valdoName}</h4>
-  {#if !completedGame}
-    <button on:click={toggleTimer}>Click to Start</button>
+  {#if !$valdoStore.activatedGame && !completedGame}
+    <button class="hoverPointer" on:click={startTimer}>Click to Start</button>
+  {:else if $valdoStore.activatedGame}
+    <button>Good Luck!</button>
   {:else if completedGame}
-    <button on:click={toggleTimer}>Play Again?</button>
+    <button class="hoverPointer" on:click={startTimer}>Play Again?</button>
   {/if}
   <h3>
     Remaining Time: {$gameTimer.remainingTime}s
@@ -71,7 +73,7 @@
     flex-grow: 1;
   }
 
-  button:hover {
+  button.hoverPointer:hover {
     cursor: pointer;
   }
 

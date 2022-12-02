@@ -5,7 +5,7 @@ function createTimer() {
     const timer = writable({
         initialTime: 30,
         score: 0,
-        highScore: 15,
+        highScore: 10,
         remainingTime: 30,
         remainingPercent: 100,
         timerHasBeenSet: false,
@@ -40,8 +40,8 @@ function createTimer() {
             o.updateRemainingPercent();
             return o;
         }),
-		resetTime: () => timer.set(o => {
-            o.remainingTime = initialTime
+		resetTime: () => timer.update(o => {
+            o.remainingTime = o.initialTime
             o.updateRemainingPercent();
             return o;
         }),
