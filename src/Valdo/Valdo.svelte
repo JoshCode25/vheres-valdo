@@ -41,6 +41,7 @@
     torsoThickness = limbThickness,
   } = valdoData;
 
+  console.log(midPoint, shoulderPoint, rightHandPoint, leftHandPoint);
   const dispatch = createEventDispatcher();
 
   function handleclick() {
@@ -65,6 +66,8 @@
       <ValdoTorso {shoulderPoint} {hipPoint} {torsoThickness} {skinTone} />
       <!-- Right Arm -->
       <ValdoArm
+        {fullName}
+        armType={'right'}
         {shoulderPoint}
         {headDiameter}
         handPoint={rightHandPoint}
@@ -73,6 +76,8 @@
       />
       <!-- Left Arm -->
       <ValdoArm
+        {fullName}
+        armType={'left'}
         {shoulderPoint}
         {headDiameter}
         handPoint={leftHandPoint}

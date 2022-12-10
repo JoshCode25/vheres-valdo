@@ -5,7 +5,7 @@
   import { valdoStore } from './Stores/valdoStore.js';
   import { gameTimer } from './Stores/timerStore';
 
-  const displaySVG = false;
+  const displaySVG = true;
   const skinPalette = [
     //from https://huebliss.com/skin-color-code/
     'rgb(141, 85, 36)',
