@@ -41,7 +41,16 @@
     torsoThickness = limbThickness,
   } = valdoData;
 
-  console.log(midPoint, shoulderPoint, rightHandPoint, leftHandPoint);
+  console.log(
+    'mid',
+    midPoint,
+    'shoulder',
+    shoulderPoint,
+    'rhand',
+    rightHandPoint,
+    'lhand',
+    leftHandPoint
+  );
   const dispatch = createEventDispatcher();
 
   function handleclick() {

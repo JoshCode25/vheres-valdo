@@ -17,7 +17,6 @@
   let elbowDeltas = {};
   let handDeltas = {};
 
-  //RIGHT ARM NEEDS TO HAVE MIDPOINT ADDED TO X VALUES
   let straightLine = true;
   let shoulderHandDist = getPointDist(shoulderPoint, handPoint);
   let shoulderElbowDist = maxArmLength / 2;
@@ -48,10 +47,21 @@
   }
   //Need to calculate elbow point from elbow deltas from shoulder point to
   //calculate required deltas to handpoint
-  let elbowPoint = 'TBD';
+  let elbowPoint = {
+    x: shoulderPoint.x + elbowDeltas.x,
+    y: shoulderPoint.y + elbowDeltas.y,
+  };
 
   let elbowHandDeltas = getPointDeltas(elbowPoint, handPoint);
-  console.log(`${fullName + armType}:`, shoulderPoint, elbowPoint, handPoint);
+  console.log(
+    `${fullName + armType}:`,
+    'shoulder',
+    shoulderPoint,
+    'elbow',
+    elbowPoint,
+    'hand',
+    handPoint
+  );
 
   let armPath = `M ${shoulderPoint.x} ${shoulderPoint.y} 
     l ${elbowDeltas.y} ${elbowDeltas.x} 
@@ -59,7 +69,7 @@
 </script>
 
 <path
-  id={`${fullName.replace(' ', '')}${armType}arm`}
+  id={`${fullName}${armType}arm`}
   d={armPath}
   stroke={skinTone}
   stroke-width={limbThickness}

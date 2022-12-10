@@ -24,10 +24,9 @@ export function getPointDeltas(startPoint, endPoint) {
     x: endX - startX,
     y: endY - startY
   }
-  console.log(startPoint, endPoint, pointDeltas);
   return pointDeltas;
 }
 
 export function getShiftedPoint(startPoint, deltas) {
-  
+
 }
