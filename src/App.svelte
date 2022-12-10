@@ -4,7 +4,6 @@
   import ValdoDisplay from './ValdoDisplay.svelte';
   import { valdoStore } from './Stores/valdoStore.js';
   import { gameTimer } from './Stores/timerStore';
-  import ValdoSVG from './Valdo/ValdoSVG.svelte';
 
   const displaySVG = false;
   const skinPalette = [
@@ -48,7 +47,6 @@
     />
   {/each}
 </ValdoDisplay>
-<ValdoSVG />
 
 <style>
   :global(body) {
