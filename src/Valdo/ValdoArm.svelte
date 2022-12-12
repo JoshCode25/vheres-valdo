@@ -21,19 +21,18 @@
   let shoulderHandDist = getPointDist(shoulderPoint, handPoint);
   let shoulderElbowDist = maxArmLength / 2;
   let { angleToHoriz } = getPointDeltaAngle(shoulderPoint, handPoint);
+  let angleToHorizCos = armType === 'left' ? angleToHoriz + 90 : angleToHoriz;
 
   if (shoulderHandDist >= maxArmLength) {
     handDeltas = {
-      x: maxArmLength * Math.cos(angleToHoriz),
+      x: maxArmLength * Math.cos(angleToHorizCos),
       y: maxArmLength * Math.sin(angleToHoriz),
     };
     elbowDeltas = {
-      x: (maxArmLength * Math.cos(angleToHoriz)) / 2,
+      x: (maxArmLength * Math.cos(angleToHorizCos)) / 2,
       y: (maxArmLength * Math.sin(angleToHoriz)) / 2,
     };
-    // console.log(handPoint);
   } else if (shoulderHandDist < maxArmLength) {
-    // console.log('shoulderhand<maxArm', shoulderHandDist, maxArmLength);
     let isoscelesAngleInner = Math.acos(
       shoulderHandDist / (2 * shoulderElbowDist)
     );
@@ -45,8 +44,7 @@
       y: shoulderElbowDist * Math.sin(isoscelesAngleToHoriz),
     };
   }
-  //Need to calculate elbow point from elbow deltas from shoulder point to
-  //calculate required deltas to handpoint
+
   let elbowPoint = {
     x: shoulderPoint.x + elbowDeltas.x,
     y: shoulderPoint.y + elbowDeltas.y,
@@ -66,6 +64,8 @@
   let armPath = `M ${shoulderPoint.x} ${shoulderPoint.y} 
     l ${elbowDeltas.y} ${elbowDeltas.x} 
     l ${elbowHandDeltas.y} ${elbowHandDeltas.x}`;
+
+  console.log(armType, armPath);
 </script>
 
 <path
