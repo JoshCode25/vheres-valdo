@@ -18,7 +18,3 @@ export function getPointDeltaAngle(startPoint, endPoint) {
   }
   return pointDeltas;
 }
-
-export function getShiftedPoint(startPoint, deltas) {
-
-}

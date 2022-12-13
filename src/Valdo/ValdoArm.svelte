@@ -11,6 +11,7 @@
   export let armType = 'none';
   export let displayDots = true;
 
+  let troubleshooting = false;
   let elbowDeltas = {};
   let handDeltas = {};
 
@@ -34,7 +35,6 @@
     );
     let isoscelesAngleToHoriz = angleToHoriz - isoscelesAngleInner;
 
-    straightLine = false;
     elbowDeltas = {
       x: shoulderElbowDist * Math.cos(isoscelesAngleToHoriz),
       y: shoulderElbowDist * Math.sin(isoscelesAngleToHoriz),
@@ -53,21 +53,23 @@
     l ${elbowDeltas.x} ${elbowDeltas.y} 
     l ${elbowHandDeltas.x} ${elbowHandDeltas.y}`;
 
-  console.log(armType, armPath);
-  console.log(angleToHoriz, Math.cos(angleToHoriz), Math.sin(angleToHoriz));
-  console.log(
-    `${fullName + armType}Points- 
-    shoulder: x${shoulderPoint.x} y${shoulderPoint.y} 
-    elbow: x${elbowPoint.x} y${elbowPoint.y} 
-    hand: x${handPoint.x} y${handPoint.y}`
-  );
+  if (troubleshooting) {
+    console.log(armType, armPath);
+    console.log(angleToHoriz, Math.cos(angleToHoriz), Math.sin(angleToHoriz));
+    console.log(
+      `${fullName + armType}Points- 
+        shoulder: x${shoulderPoint.x} y${shoulderPoint.y} 
+        elbow: x${elbowPoint.x} y${elbowPoint.y} 
+        hand: x${handPoint.x} y${handPoint.y}`
+    );
 
-  console.log(
-    `${fullName + armType}Deltas- 
-    elbow: x${elbowDeltas.x} y${elbowDeltas.y} 
-    hand: x${handDeltas.x} y${handDeltas.y}
-    elbowHand: x${elbowHandDeltas.x} y${elbowHandDeltas.y} `
-  );
+    console.log(
+      `${fullName + armType}Deltas- 
+        elbow: x${elbowDeltas.x} y${elbowDeltas.y} 
+        hand: x${handDeltas.x} y${handDeltas.y}
+        elbowHand: x${elbowHandDeltas.x} y${elbowHandDeltas.y} `
+    );
+  }
 </script>
 
 <path

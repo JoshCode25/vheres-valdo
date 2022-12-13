@@ -13,6 +13,7 @@
     <button on:click={closeModal} aria-label="Close Modal Box">Close</button>
     <slot />
   </div>
+  <!-- svelte-ignore a11y-click-events-have-key-events -->
   <div on:click={closeModal} transition:fade class="background" />
 {/if}
 

@@ -18,7 +18,7 @@
     greeting = 'hello',
     correctResponse = 'yes',
     incorrectResponse = 'no',
-    height = 250,
+    height = 150,
     width = (height * 5) / 6,
     strokeWidth = 2,
     midPoint = { x: width / 2, y: height / 2 },
@@ -29,28 +29,18 @@
     hipPoint = { x: midPoint.x, y: 4 * headDiameter },
     rightHandPoint = {
       x: midPoint.x + 2 * headDiameter,
-      y: hipPoint.y,
+      y: hipPoint.y * 0.75,
     },
     leftHandPoint = {
       x: midPoint.x - 2 * headDiameter,
-      y: hipPoint.y,
+      y: headPoint.y,
     },
-    rightFootPoint = { x: midPoint.x + 2 * headDiameter, y: height },
+    rightFootPoint = { x: midPoint.x + 2 * headDiameter, y: hipPoint.y * 1.25 },
     leftFootPoint = { x: midPoint.x - 2 * headDiameter, y: height },
     limbThickness = height / 50,
     torsoThickness = limbThickness,
   } = valdoData;
 
-  console.log(
-    'mid',
-    midPoint,
-    'shoulder',
-    shoulderPoint,
-    'rhand',
-    rightHandPoint,
-    'lhand',
-    leftHandPoint
-  );
   const dispatch = createEventDispatcher();
 
   function handleclick() {
@@ -66,7 +56,7 @@
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <div on:click={handleclick} transition:fade>
   {#if displaySVG}
-    <svg {width} {height}>
+    <svg {width} height={height * 1.05}>
       <!-- Head -->
       <ValdoHead {headPoint} {headDiameter} {strokeWidth} {skinTone} />
       <!-- Neck -->
@@ -95,6 +85,8 @@
       />
       <!-- Right Leg -->
       <ValdoLeg
+        {fullName}
+        legType={'right'}
         {hipPoint}
         {headDiameter}
         footPoint={rightFootPoint}
@@ -103,6 +95,8 @@
       />
       <!-- Left Leg -->
       <ValdoLeg
+        {fullName}
+        legType={'left'}
         {hipPoint}
         {headDiameter}
         footPoint={leftFootPoint}
