@@ -125,6 +125,9 @@
     margin: 5px;
     border: 2px solid black;
   }
+  div {
+    background-color: white;
+  }
 
   div:hover {
     cursor: pointer;

@@ -4,6 +4,7 @@
   import ValdoDisplay from './ValdoDisplay.svelte';
   import { valdoStore } from './Stores/valdoStore.js';
   import { gameTimer } from './Stores/timerStore';
+  import Modal from './Modal.svelte';
 
   const displaySVG = true;
   const skinPalette = [
@@ -18,6 +19,7 @@
   let incorrectTagPenalty = 5;
   let valdoTagBonus = 5;
   let tagPointReward = 1;
+  let isModalOpen = true;
 
   function handleTag(event) {
     if ($gameTimer.timerActive) {
@@ -35,6 +37,14 @@
     }
   }
 </script>
+
+<Modal {isModalOpen}>
+  <Valdo
+    valdoData={$valdoStore.displayedValdos[1]}
+    {displaySVG}
+    skinTone={skinPalette[1]}
+  />
+</Modal>
 
 <Header valdoName={$valdoStore.activeValdo.fullName} />
 <ValdoDisplay>

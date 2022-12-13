@@ -1,9 +1,5 @@
 <script>
-  import {
-    getPointDist,
-    getPointDeltaAngle,
-    getPointDeltas,
-  } from './mathUtilities.js';
+  import { getPointDist, getPointDeltaAngle } from './mathUtilities.js';
 
   export let shoulderPoint = { x: 10, y: 10 };
   export let handPoint = { x: 15, y: 15 };
@@ -13,23 +9,23 @@
   export let skinTone = 'black';
   export let fullName = 'Jimberly Hanifred';
   export let armType = 'none';
+  export let displayDots = true;
 
   let elbowDeltas = {};
   let handDeltas = {};
 
-  let straightLine = true;
   let shoulderHandDist = getPointDist(shoulderPoint, handPoint);
   let shoulderElbowDist = maxArmLength / 2;
   let { angleToHoriz } = getPointDeltaAngle(shoulderPoint, handPoint);
-  let angleToHorizCos = armType === 'left' ? angleToHoriz + 90 : angleToHoriz;
+  if (armType === 'left') angleToHoriz = angleToHoriz + Math.PI;
 
   if (shoulderHandDist >= maxArmLength) {
     handDeltas = {
-      x: maxArmLength * Math.cos(angleToHorizCos),
+      x: maxArmLength * Math.cos(angleToHoriz),
       y: maxArmLength * Math.sin(angleToHoriz),
     };
     elbowDeltas = {
-      x: (maxArmLength * Math.cos(angleToHorizCos)) / 2,
+      x: (maxArmLength * Math.cos(angleToHoriz)) / 2,
       y: (maxArmLength * Math.sin(angleToHoriz)) / 2,
     };
   } else if (shoulderHandDist < maxArmLength) {
@@ -49,23 +45,29 @@
     x: shoulderPoint.x + elbowDeltas.x,
     y: shoulderPoint.y + elbowDeltas.y,
   };
-
-  let elbowHandDeltas = getPointDeltas(elbowPoint, handPoint);
-  console.log(
-    `${fullName + armType}:`,
-    'shoulder',
-    shoulderPoint,
-    'elbow',
-    elbowPoint,
-    'hand',
-    handPoint
-  );
+  let pointList = [shoulderPoint, elbowPoint, handPoint];
+  let pointNames = ['shoulder', 'elbow', 'hand'];
+  let elbowHandDeltas = getPointDeltaAngle(elbowPoint, handPoint);
 
   let armPath = `M ${shoulderPoint.x} ${shoulderPoint.y} 
-    l ${elbowDeltas.y} ${elbowDeltas.x} 
-    l ${elbowHandDeltas.y} ${elbowHandDeltas.x}`;
+    l ${elbowDeltas.x} ${elbowDeltas.y} 
+    l ${elbowHandDeltas.x} ${elbowHandDeltas.y}`;
 
   console.log(armType, armPath);
+  console.log(angleToHoriz, Math.cos(angleToHoriz), Math.sin(angleToHoriz));
+  console.log(
+    `${fullName + armType}Points- 
+    shoulder: x${shoulderPoint.x} y${shoulderPoint.y} 
+    elbow: x${elbowPoint.x} y${elbowPoint.y} 
+    hand: x${handPoint.x} y${handPoint.y}`
+  );
+
+  console.log(
+    `${fullName + armType}Deltas- 
+    elbow: x${elbowDeltas.x} y${elbowDeltas.y} 
+    hand: x${handDeltas.x} y${handDeltas.y}
+    elbowHand: x${elbowHandDeltas.x} y${elbowHandDeltas.y} `
+  );
 </script>
 
 <path
@@ -74,3 +76,13 @@
   stroke={skinTone}
   stroke-width={limbThickness}
 />
+{#if displayDots}
+  {#each pointList as point, i (point.x)}
+    <circle
+      id={pointNames[i] + armType}
+      cx={point.x}
+      cy={point.y}
+      r={headDiameter / 4}
+    />
+  {/each}
+{/if}
