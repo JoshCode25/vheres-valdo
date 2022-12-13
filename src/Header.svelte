@@ -2,8 +2,9 @@
   import TimerBar from './TimerBar.svelte';
   import { gameTimer } from './Stores/timerStore.js';
   import { valdoStore } from './Stores/valdoStore';
+  import Valdo from './Valdo/Valdo.svelte';
 
-  export let valdoName = 'Terry';
+  export let displaySVG = true;
 
   let timerId;
   let completedGame = false;
@@ -37,11 +38,20 @@
     valdoStore.finishGame();
     console.log('finished game:', completedGame, $valdoStore, $gameTimer);
   }
+  $: activeValdoData = $valdoStore.activeValdo;
+  console.log($valdoStore.activeValdo);
 </script>
 
 <header>
   <h3>Current Score: {$gameTimer.score}</h3>
-  <h4>Current Valdo: {valdoName}</h4>
+  <div>
+    <h4>Current Valdo:</h4>
+    {#if $valdoStore.activatedGame}
+      <Valdo height={100} valdoData={activeValdoData} {displaySVG} />
+    {:else}
+      <h4>Start to See!</h4>
+    {/if}
+  </div>
   {#if !$valdoStore.activatedGame && !completedGame}
     <button class="hoverPointer" on:click={startTimer}>Click to Start</button>
   {:else if $valdoStore.activatedGame}
