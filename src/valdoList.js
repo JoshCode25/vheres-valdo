@@ -1,3 +1,12 @@
+const skinPalette = [
+    //from https://huebliss.com/skin-color-code/
+    'rgb(141, 85, 36)',
+    'rgb(198, 134, 66)',
+    'rgb(224, 172, 105)',
+    'rgb(241, 194, 125)',
+    'rgb(255, 219, 172)',
+  ];
+
 const firstNames = [
     'Anibrev',
     'Bakinaw',
@@ -210,7 +219,8 @@ export default function getRandomValdoList() {
             greeting: shuffledGreetings[i%shuffledGreetings.length],
             fullName: `${name} ${shuffledLastNames[i]}`,
             correctResponse: shuffledCorrectResponses[i%shuffledCorrectResponses.length],
-            incorrectResponse: shuffledIncorrectResponses[i%shuffledIncorrectResponses.length]
+            incorrectResponse: shuffledIncorrectResponses[i%shuffledIncorrectResponses.length],
+            skinTone: skinPalette[i%skinPalette.length]
         }
     
         return valdo;

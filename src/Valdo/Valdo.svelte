@@ -9,16 +9,16 @@
   import ValdoTorso from './ValdoTorso.svelte';
 
   export let valdoData = {};
-  export let skinTone = 'black';
   export let displaySVG = true;
+  export let height = 150;
   let {
     firstName = 'Jeshua',
     lastName = 'Granstand',
     fullName = `${firstName} ${lastName}`,
+    skinTone = 'black',
     greeting = 'hello',
     correctResponse = 'yes',
     incorrectResponse = 'no',
-    height = 150,
     width = (height * 5) / 6,
     strokeWidth = 2,
     midPoint = { x: width / 2, y: height / 2 },
@@ -104,16 +104,12 @@
         {skinTone}
       />
     </svg>
+    <p>{fullName}</p>
   {:else}
     <h3>{fullName}</h3>
   {/if}
 </div>
 
-<!-- <p>
-  Midpoint x = {Math.round(midPoint.x * 1000) / 1000} y = {Math.round(
-    midPoint.y * 1000
-  ) / 1000}
-</p> -->
 <style>
   h3 {
     margin: 5px;

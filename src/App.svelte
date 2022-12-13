@@ -7,14 +7,7 @@
   import Modal from './Modal.svelte';
 
   const displaySVG = true;
-  const skinPalette = [
-    //from https://huebliss.com/skin-color-code/
-    'rgb(141, 85, 36)',
-    'rgb(198, 134, 66)',
-    'rgb(224, 172, 105)',
-    'rgb(241, 194, 125)',
-    'rgb(255, 219, 172)',
-  ];
+
   let correctTagReward = 2;
   let incorrectTagPenalty = 5;
   let valdoTagBonus = 5;
@@ -39,22 +32,13 @@
 </script>
 
 <Modal {isModalOpen}>
-  <Valdo
-    valdoData={$valdoStore.displayedValdos[1]}
-    {displaySVG}
-    skinTone={skinPalette[1]}
-  />
+  <Valdo valdoData={$valdoStore.displayedValdos[1]} {displaySVG} />
 </Modal>
 
-<Header valdoName={$valdoStore.activeValdo.fullName} />
+<Header />
 <ValdoDisplay>
-  {#each $valdoStore.displayedValdos as valdoData, i (valdoData.firstName)}
-    <Valdo
-      on:tag={handleTag}
-      {valdoData}
-      {displaySVG}
-      skinTone={skinPalette[i % 5]}
-    />
+  {#each $valdoStore.displayedValdos as valdoData (valdoData.firstName)}
+    <Valdo on:tag={handleTag} {valdoData} {displaySVG} />
   {/each}
 </ValdoDisplay>
 
