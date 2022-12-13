@@ -39,25 +39,25 @@
     };
   }
 
-  let elbowPoint = {
+  let kneePoint = {
     x: hipPoint.x + kneeDeltas.x,
     y: hipPoint.y + kneeDeltas.y,
   };
-  let pointList = [hipPoint, elbowPoint, footPoint];
+  let pointList = [hipPoint, kneePoint, footPoint];
   let pointNames = ['hip', 'knee', 'foot'];
-  let elbowfootDeltas = getPointDeltaAngle(elbowPoint, footPoint);
+  let kneeFootDeltas = getPointDeltaAngle(kneePoint, footPoint);
 
-  let armPath = `M ${hipPoint.x} ${hipPoint.y} 
+  let legPath = `M ${hipPoint.x} ${hipPoint.y} 
   l ${kneeDeltas.x} ${kneeDeltas.y} 
-  l ${elbowfootDeltas.x} ${elbowfootDeltas.y}`;
+  l ${kneeFootDeltas.x} ${kneeFootDeltas.y}`;
 
   if (troubleshooting) {
-    console.log(legType, armPath);
+    console.log(legType, legPath);
     console.log(angleToHoriz, Math.cos(angleToHoriz), Math.sin(angleToHoriz));
     console.log(
       `${fullName + legType}Points- 
     hip: x${hipPoint.x} y${hipPoint.y} 
-    knee: x${elbowPoint.x} y${elbowPoint.y} 
+    knee: x${kneePoint.x} y${kneePoint.y} 
     foot: x${footPoint.x} y${footPoint.y}`
     );
 
@@ -65,14 +65,14 @@
       `${fullName + legType}Deltas- 
     knee: x${kneeDeltas.x} y${kneeDeltas.y} 
     foot: x${footDeltas.x} y${footDeltas.y}
-    kneefoot: x${elbowfootDeltas.x} y${elbowfootDeltas.y} `
+    kneefoot: x${kneeFootDeltas.x} y${kneeFootDeltas.y} `
     );
   }
 </script>
 
 <path
   id={`${fullName}${legType}arm`}
-  d={armPath}
+  d={legPath}
   stroke={skinTone}
   stroke-width={limbThickness}
 />
@@ -86,3 +86,9 @@
     />
   {/each}
 {/if}
+
+<style>
+  path {
+    fill: none;
+  }
+</style>

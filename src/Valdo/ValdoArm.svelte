@@ -88,3 +88,9 @@
     />
   {/each}
 {/if}
+
+<style>
+  path {
+    fill: none;
+  }
+</style>
