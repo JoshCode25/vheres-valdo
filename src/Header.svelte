@@ -34,12 +34,12 @@
       gameTimer.setHighscore($gameTimer.score);
     }
     completedGame = true;
-    gameTimer.resetTime();
+    gameTimer.resetGame();
     valdoStore.finishGame();
     console.log('finished game:', completedGame, $valdoStore, $gameTimer);
   }
   $: activeValdoData = $valdoStore.activeValdo;
-  console.log($valdoStore.activeValdo);
+  $: console.log($valdoStore.activeValdo);
 </script>
 
 <header>

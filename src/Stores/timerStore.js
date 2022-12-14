@@ -12,6 +12,13 @@ function createTimer() {
         timerActive: false,
         updateRemainingPercent() {
             this.remainingPercent = Math.round(this.remainingTime/this.initialTime*100);
+        },
+        resetScore() {
+            this.score = 0;
+        },
+        resetTime() {
+            this.remainingTime = this.initialTime;
+            this.updateRemainingPercent();
         }
     });
 
@@ -40,9 +47,9 @@ function createTimer() {
             o.updateRemainingPercent();
             return o;
         }),
-		resetTime: () => timer.update(o => {
-            o.remainingTime = o.initialTime
-            o.updateRemainingPercent();
+        resetGame: () => timer.update(o => {
+            o.resetScore();
+            o.resetTime();
             return o;
         }),
         increaseScore: (delta) => timer.update(o => {
