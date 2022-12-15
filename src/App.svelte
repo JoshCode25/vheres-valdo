@@ -13,12 +13,14 @@
   let valdoTagBonus = 5;
   let tagPointReward = 1;
   let isModalOpen = true;
+  let showFullName = true;
 
   function handleTag(event) {
     if ($gameTimer.timerActive) {
       if (event.detail.fullName === $valdoStore.activeValdo.fullName) {
         gameTimer.increaseScore(tagPointReward);
         if (/valdo/i.test(event.detail.fullName)) {
+          //give extra time for valdos with 'Valdo' as a first or last name
           gameTimer.incrementTime(valdoTagBonus);
         } else {
           gameTimer.incrementTime(correctTagReward);
@@ -31,15 +33,17 @@
   }
 </script>
 
-<Modal {isModalOpen}>
+<!-- <Modal {isModalOpen}>
   <Valdo valdoData={$valdoStore.displayedValdos[1]} {displaySVG} />
-</Modal>
+</Modal> -->
 
 <Header />
 <ValdoDisplay>
-  {#each $valdoStore.displayedValdos as valdoData (valdoData.firstName)}
-    <Valdo on:tag={handleTag} {valdoData} {displaySVG} />
-  {/each}
+  {#if $valdoStore.activatedGame}
+    {#each $valdoStore.displayedValdos as valdoData (valdoData.firstName)}
+      <Valdo on:tag={handleTag} {valdoData} {displaySVG} {showFullName} />
+    {/each}
+  {/if}
 </ValdoDisplay>
 
 <style>

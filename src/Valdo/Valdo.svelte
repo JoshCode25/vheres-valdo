@@ -1,6 +1,7 @@
 <script>
   import { createEventDispatcher } from 'svelte';
   import { fade } from 'svelte/transition';
+  import { valdoStore } from '../Stores/valdoStore';
 
   import ValdoArm from './ValdoArm.svelte';
   import ValdoHead from './ValdoHead.svelte';
@@ -11,6 +12,9 @@
   export let valdoData = {};
   export let displaySVG = true;
   export let height = 150;
+  export let hoverPointer = true;
+  export let showFullName = false;
+
   let {
     firstName = 'Jeshua',
     lastName = 'Granstand',
@@ -54,7 +58,7 @@
 </script>
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
-<div on:click={handleclick} transition:fade>
+<div class:hoverPointer on:click={handleclick} transition:fade>
   {#if displaySVG}
     <svg {width} height={height * 1.05}>
       <!-- Head -->
@@ -104,7 +108,9 @@
         {skinTone}
       />
     </svg>
-    <p>{fullName}</p>
+    {#if showFullName}
+      <p>{fullName}</p>
+    {/if}
   {:else}
     <h3>{fullName}</h3>
   {/if}
@@ -119,7 +125,11 @@
     background-color: white;
   }
 
-  div:hover {
+  p {
+    margin: 2px 0px;
+  }
+
+  div.hoverPointer:hover {
     cursor: pointer;
   }
 </style>
