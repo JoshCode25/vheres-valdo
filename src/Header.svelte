@@ -62,7 +62,7 @@
     {#if $valdoStore.activatedGame}
       {#key $valdoStore.activeValdo}
         <Valdo
-          height={100}
+          totalHeight={100}
           valdoData={$valdoStore.activeValdo}
           {displaySVG}
           hoverPointer={false}

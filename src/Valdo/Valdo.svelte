@@ -1,7 +1,6 @@
 <script>
   import { createEventDispatcher } from 'svelte';
   import { fade } from 'svelte/transition';
-  import { valdoStore } from '../Stores/valdoStore';
 
   import ValdoArm from './ValdoArm.svelte';
   import ValdoHead from './ValdoHead.svelte';
@@ -11,7 +10,7 @@
 
   export let valdoData = {};
   export let displaySVG = true;
-  export let height = 150;
+  export let totalHeight = 150;
   export let hoverPointer = true;
   export let showFullName = false;
 
@@ -23,6 +22,7 @@
     greeting = 'hello',
     correctResponse = 'yes',
     incorrectResponse = 'no',
+    height = totalHeight * 0.95,
     width = (height * 5) / 6,
     strokeWidth = 2,
     midPoint = { x: width / 2, y: height / 2 },
@@ -60,7 +60,7 @@
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <div class:hoverPointer on:click={handleclick} transition:fade>
   {#if displaySVG}
-    <svg {width} height={height * 1.05}>
+    <svg {width} height={totalHeight}>
       <!-- Head -->
       <ValdoHead {headPoint} {headDiameter} {strokeWidth} {skinTone} />
       <!-- Neck -->
