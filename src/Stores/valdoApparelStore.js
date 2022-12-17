@@ -1,25 +1,7 @@
-import { Readable } from 'svelte/store';
+import { readable } from 'svelte/store';
 
 let colorList = [
-  '#5ad2f4',
-  '#7b904b',
-  '#cbc0d3',
-  '#a53860',
-  '#605770',
-  'dbad6a',
-  '96897b',
-  '242423',
-  '28587b',
-  'ff3864',
-  'e7e247',
-  '6457a6',
-  'fabc3c',
-  '6e2594',
-  'ecd444',
-  '2176ff',
-  'd1495b',
-][
-  ({
+  {
     name: 'Vivid Sky Blue',
     hex: '5ad2f4',
     rgb: [90, 210, 244],
@@ -63,5 +45,98 @@ let colorList = [
     hsb: [352, 65, 82],
     hsl: [352, 60, 55],
     lab: [51, 55, 19],
-  })
+  },
+  {
+    name: 'Asparagus',
+    hex: '87a878',
+    rgb: [135, 168, 120],
+    cmyk: [20, 0, 29, 34],
+    hsb: [101, 29, 66],
+    hsl: [101, 22, 56],
+    lab: [65, -20, 21],
+  },
+  {
+    name: 'Onyx',
+    hex: '32373b',
+    rgb: [50, 55, 59],
+    cmyk: [15, 7, 0, 77],
+    hsb: [207, 15, 23],
+    hsl: [207, 8, 21],
+    lab: [23, -1, -3],
+  },
+  {
+    name: 'Tea Green',
+    hex: 'dbf9b8',
+    rgb: [219, 249, 184],
+    cmyk: [12, 0, 26, 2],
+    hsb: [88, 26, 98],
+    hsl: [88, 84, 85],
+    lab: [94, -21, 28],
+  },
+  {
+    name: 'Vivid Tangerine',
+    hex: 'eb9486',
+    rgb: [235, 148, 134],
+    cmyk: [0, 37, 43, 8],
+    hsb: [8, 43, 92],
+    hsl: [8, 72, 72],
+    lab: [70, 31, 21],
+  },
+  {
+    name: 'Khaki Web',
+    hex: 'cab7a2',
+    rgb: [202, 183, 162],
+    cmyk: [0, 9, 20, 21],
+    hsb: [32, 20, 79],
+    hsl: [32, 27, 71],
+    lab: [75, 3, 13],
+  },
+  {
+    name: 'Magenta',
+    hex: 'f038ff',
+    rgb: [240, 56, 255],
+    cmyk: [6, 78, 0, 0],
+    hsb: [295, 78, 100],
+    hsl: [295, 100, 61],
+    lab: [60, 88, -61],
+  },
+  {
+    name: 'Cyclamen',
+    hex: 'ef709d',
+    rgb: [239, 112, 157],
+    cmyk: [0, 53, 34, 6],
+    hsb: [339, 53, 94],
+    hsl: [339, 80, 69],
+    lab: [64, 53, -1],
+  },
+  {
+    name: 'Granny Smith Apple',
+    hex: 'c7f2a7',
+    rgb: [199, 242, 167],
+    cmyk: [18, 0, 31, 5],
+    hsb: [94, 31, 95],
+    hsl: [94, 74, 80],
+    lab: [91, -27, 32],
+  },
 ];
+function createValdoApparelColorList(colorList) {
+  let doubledColorList = [...colorList, ...colorList];
+
+  let alphabet = 'abcdefghijklmnopqrstuvwxyz';
+
+  let shuffledAlphabet = alphabet.split('').sort(() => Math.random() - 0.5);
+
+  let valdoApparelColors = doubledColorList.reduce(
+    (compiledColorObject, colorData, i) => {
+      compiledColorObject[shuffledAlphabet[i]] = `#${colorData.hex}`;
+      return compiledColorObject;
+    },
+    {}
+  );
+
+  return valdoApparelColors;
+}
+
+let valdoApparelColorList = createValdoApparelColorList(colorList);
+
+export const valdoApparelColorStore = readable(valdoApparelColorList);
