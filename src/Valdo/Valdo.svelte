@@ -4,7 +4,7 @@
 
   import ValdoArm from './ValdoArm.svelte';
   import ValdoHead from './ValdoHead.svelte';
-  import ValdoLeg from './ValdoLeg.svelte';
+  import ValdoLegs from './ValdoLegs.svelte';
   import ValdoNeck from './ValdoNeck.svelte';
   import ValdoTorso from './ValdoTorso.svelte';
 
@@ -21,6 +21,7 @@
     fullName = `${firstName} ${lastName}`,
     skinTone = 'black',
     greeting = 'hello',
+    gender = 'none',
     correctResponse = 'yes',
     incorrectResponse = 'no',
     height = totalHeight * 0.95,
@@ -90,27 +91,17 @@
         {limbThickness}
         {skinTone}
       />
-      <!-- Right Leg -->
-      <ValdoLeg
+      <!-- Legs -->
+      <ValdoLegs 
         {displayDots}
         {fullName}
-        legType={'right'}
         {hipPoint}
         {headDiameter}
-        footPoint={rightFootPoint}
         {limbThickness}
         {skinTone}
-      />
-      <!-- Left Leg -->
-      <ValdoLeg
-        {displayDots}
-        {fullName}
-        legType={'left'}
-        {hipPoint}
-        {headDiameter}
-        footPoint={leftFootPoint}
-        {limbThickness}
-        {skinTone}
+        {rightFootPoint}
+        {leftFootPoint}
+        {gender}
       />
     </svg>
     {#if showFullName}
