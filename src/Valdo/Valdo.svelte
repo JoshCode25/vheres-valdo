@@ -13,6 +13,7 @@
   export let totalHeight = 150;
   export let hoverPointer = true;
   export let showFullName = false;
+  export let displayDots = true;
 
   let {
     firstName = 'Jeshua',
@@ -66,9 +67,10 @@
       <!-- Neck -->
       <ValdoNeck {neckPoint} {shoulderPoint} {limbThickness} {skinTone} />
       <!-- Torso -->
-      <ValdoTorso {shoulderPoint} {hipPoint} {torsoThickness} {skinTone} />
+      <ValdoTorso {shoulderPoint} {hipPoint} {torsoThickness} {skinTone} {fullName}/>
       <!-- Right Arm -->
       <ValdoArm
+        {displayDots}
         {fullName}
         armType={'right'}
         {shoulderPoint}
@@ -79,6 +81,7 @@
       />
       <!-- Left Arm -->
       <ValdoArm
+        {displayDots}
         {fullName}
         armType={'left'}
         {shoulderPoint}
@@ -89,6 +92,7 @@
       />
       <!-- Right Leg -->
       <ValdoLeg
+        {displayDots}
         {fullName}
         legType={'right'}
         {hipPoint}
@@ -99,6 +103,7 @@
       />
       <!-- Left Leg -->
       <ValdoLeg
+        {displayDots}
         {fullName}
         legType={'left'}
         {hipPoint}

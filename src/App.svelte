@@ -13,7 +13,8 @@
   let valdoTagBonus = 5;
   let tagPointReward = 1;
   let isModalOpen = true;
-  let showFullName = true;
+  let showFullName = false;
+  let displayDots = false;
 
   function handleTag(event) {
     if ($gameTimer.timerActive) {
@@ -41,7 +42,7 @@
 <ValdoDisplay>
   {#if $valdoStore.activatedGame}
     {#each $valdoStore.displayedValdos as valdoData (valdoData.firstName)}
-      <Valdo on:tag={handleTag} {valdoData} {displaySVG} {showFullName} />
+      <Valdo on:tag={handleTag} {valdoData} {displaySVG} {showFullName} {displayDots}/>
     {/each}
   {/if}
 </ValdoDisplay>
