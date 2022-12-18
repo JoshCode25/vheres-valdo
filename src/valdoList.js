@@ -47,7 +47,7 @@ const skinPalette = [
   },
 ];
 
-const firstNames = [
+const femaleNames = [
   'Anibrev',
   'Bakinaw',
   'Calibrew',
@@ -74,6 +74,9 @@ const firstNames = [
   'Xythe',
   'Yershig',
   'Zashima',
+];
+
+const maleNames = [
   'Adrik',
   'Baboi',
   'Cra',
@@ -246,7 +249,8 @@ const incorrectResponses = [
 
 export default function getRandomValdoList() {
   //loosely randomizes names, greetings, and responses
-  let shuffledFirstNames = firstNames.slice().sort(() => Math.random() - 0.5);
+  let shuffledFemaleNames = femaleNames.slice().sort(() => Math.random() - 0.5);
+  let shuffledMaleNames = maleNames.slice().sort(() => Math.random() - 0.5);
   let shuffledLastNames = lastNames.slice().sort(() => Math.random() - 0.5);
   let shuffledGreetings = greetings.slice().sort(() => Math.random() - 0.5);
   let shuffledCorrectResponses = correctResponses
@@ -256,12 +260,13 @@ export default function getRandomValdoList() {
     .slice()
     .sort(() => Math.random() - 0.5);
 
-  let randomList = shuffledFirstNames.map((name, i) => {
-    let valdo = {
+  let femaleList = shuffledFemaleNames.map((name, i) => {
+    let femaleValdo = {
       firstName: name,
       lastName: shuffledLastNames[i],
       greeting: shuffledGreetings[i % shuffledGreetings.length],
       fullName: `${name} ${shuffledLastNames[i]}`,
+      gender: 'female',
       correctResponse:
         shuffledCorrectResponses[i % shuffledCorrectResponses.length],
       incorrectResponse:
@@ -269,8 +274,27 @@ export default function getRandomValdoList() {
       skinTone: '#' + skinPalette[i % skinPalette.length].hex,
     };
 
-    return valdo;
+    return femaleValdo;
   });
+
+  let maleList = shuffledMaleNames.map((name, i) => {
+    let maleValdo = {
+      firstName: name,
+      lastName: shuffledLastNames[i],
+      greeting: shuffledGreetings[i % shuffledGreetings.length],
+      fullName: `${name} ${shuffledLastNames[i]}`,
+      gender: 'male',
+      correctResponse:
+        shuffledCorrectResponses[i % shuffledCorrectResponses.length],
+      incorrectResponse:
+        shuffledIncorrectResponses[i % shuffledIncorrectResponses.length],
+      skinTone: '#' + skinPalette[i % skinPalette.length].hex,
+    };
+
+    return maleValdo;
+  });
+
+  let randomList = [...femaleList, ...maleList].sort(() => Math.random - 0.5);
 
   return randomList;
 }

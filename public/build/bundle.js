@@ -1,2 +1,5303 @@
-var app=function(){"use strict";function e(){}const t=e=>e;function n(e){return e()}function o(){return Object.create(null)}function i(e){e.forEach(n)}function r(e){return"function"==typeof e}function s(e,t){return e!=e?t==t:e!==t||e&&"object"==typeof e||"function"==typeof e}function a(t,n,o){t.$$.on_destroy.push(function(t,...n){if(null==t)return e;const o=t.subscribe(...n);return o.unsubscribe?()=>o.unsubscribe():o}(n,o))}function l(e,t,n,o){return e[1]&&o?function(e,t){for(const n in t)e[n]=t[n];return e}(n.ctx.slice(),e[1](o(t))):n.ctx}const c="undefined"!=typeof window;let u=c?()=>window.performance.now():()=>Date.now(),d=c?e=>requestAnimationFrame(e):e;const h=new Set;function m(e){h.forEach((t=>{t.c(e)||(h.delete(t),t.f())})),0!==h.size&&d(m)}function f(e,t){e.appendChild(t)}function p(e){if(!e)return document;const t=e.getRootNode?e.getRootNode():e.ownerDocument;return t&&t.host?t:e.ownerDocument}function y(e){const t=k("style");return function(e,t){f(e.head||e,t),t.sheet}(p(e),t),t.sheet}function g(e,t,n){e.insertBefore(t,n||null)}function $(e){e.parentNode&&e.parentNode.removeChild(e)}function k(e){return document.createElement(e)}function b(e){return document.createElementNS("http://www.w3.org/2000/svg",e)}function x(e){return document.createTextNode(e)}function v(){return x(" ")}function w(){return x("")}function T(e,t,n,o){return e.addEventListener(t,n,o),()=>e.removeEventListener(t,n,o)}function P(e,t,n){null==n?e.removeAttribute(t):e.getAttribute(t)!==n&&e.setAttribute(t,n)}function N(e,t){t=""+t,e.wholeText!==t&&(e.data=t)}function D(e,t,n){e.classList[n?"add":"remove"](t)}function V(e,t,{bubbles:n=!1,cancelable:o=!1}={}){const i=document.createEvent("CustomEvent");return i.initCustomEvent(e,n,o,t),i}const L=new Map;let M,S=0;function G(e,t,n,o,i,r,s,a=0){const l=16.666/o;let c="{\n";for(let e=0;e<=1;e+=l){const o=t+(n-t)*r(e);c+=100*e+`%{${s(o,1-o)}}\n`}const u=c+`100% {${s(n,1-n)}}\n}`,d=`__svelte_${function(e){let t=5381,n=e.length;for(;n--;)t=(t<<5)-t^e.charCodeAt(n);return t>>>0}(u)}_${a}`,h=p(e),{stylesheet:m,rules:f}=L.get(h)||function(e,t){const n={stylesheet:y(t),rules:{}};return L.set(e,n),n}(h,e);f[d]||(f[d]=!0,m.insertRule(`@keyframes ${d} ${u}`,m.cssRules.length));const g=e.style.animation||"";return e.style.animation=`${g?`${g}, `:""}${d} ${o}ms linear ${i}ms 1 both`,S+=1,d}function I(e,t){const n=(e.style.animation||"").split(", "),o=n.filter(t?e=>e.indexOf(t)<0:e=>-1===e.indexOf("__svelte")),i=n.length-o.length;i&&(e.style.animation=o.join(", "),S-=i,S||d((()=>{S||(L.forEach((e=>{const{ownerNode:t}=e.stylesheet;t&&$(t)})),L.clear())})))}function C(e){M=e}function H(){const e=function(){if(!M)throw new Error("Function called outside component initialization");return M}();return(t,n,{cancelable:o=!1}={})=>{const i=e.$$.callbacks[t];if(i){const r=V(t,n,{cancelable:o});return i.slice().forEach((t=>{t.call(e,r)})),!r.defaultPrevented}return!0}}const A=[],_=[],z=[],R=[],E=Promise.resolve();let W=!1;function Y(e){z.push(e)}const j=new Set;let F,B=0;function O(){const e=M;do{for(;B<A.length;){const e=A[B];B++,C(e),J(e.$$)}for(C(null),A.length=0,B=0;_.length;)_.pop()();for(let e=0;e<z.length;e+=1){const t=z[e];j.has(t)||(j.add(t),t())}z.length=0}while(A.length);for(;R.length;)R.pop()();W=!1,j.clear(),C(e)}function J(e){if(null!==e.fragment){e.update(),i(e.before_update);const t=e.dirty;e.dirty=[-1],e.fragment&&e.fragment.p(e.ctx,t),e.after_update.forEach(Y)}}function q(e,t,n){e.dispatchEvent(V(`${t?"intro":"outro"}${n}`))}const K=new Set;let U;function Z(){U={r:0,c:[],p:U}}function Q(){U.r||i(U.c),U=U.p}function X(e,t){e&&e.i&&(K.delete(e),e.i(t))}function ee(e,t,n,o){if(e&&e.o){if(K.has(e))return;K.add(e),U.c.push((()=>{K.delete(e),o&&(n&&e.d(1),o())})),e.o(t)}else o&&o()}const te={duration:0};function ne(n,o,s,a){let l=o(n,s),c=a?0:1,f=null,p=null,y=null;function g(){y&&I(n,y)}function $(e,t){const n=e.b-c;return t*=Math.abs(n),{a:c,b:e.b,d:n,duration:t,start:e.start,end:e.start+t,group:e.group}}function k(o){const{delay:r=0,duration:s=300,easing:a=t,tick:k=e,css:b}=l||te,x={start:u()+r,b:o};o||(x.group=U,U.r+=1),f||p?p=x:(b&&(g(),y=G(n,c,o,s,r,a,b)),o&&k(0,1),f=$(x,s),Y((()=>q(n,o,"start"))),function(e){let t;0===h.size&&d(m),new Promise((n=>{h.add(t={c:e,f:n})}))}((e=>{if(p&&e>p.start&&(f=$(p,s),p=null,q(n,f.b,"start"),b&&(g(),y=G(n,c,f.b,f.duration,0,a,l.css))),f)if(e>=f.end)k(c=f.b,1-c),q(n,f.b,"end"),p||(f.b?g():--f.group.r||i(f.group.c)),f=null;else if(e>=f.start){const t=e-f.start;c=f.a+f.d*a(t/f.duration),k(c,1-c)}return!(!f&&!p)})))}return{run(e){r(l)?(F||(F=Promise.resolve(),F.then((()=>{F=null}))),F).then((()=>{l=l(),k(e)})):k(e)},end(){g(),f=p=null}}}function oe(e,t){e.d(1),t.delete(e.key)}function ie(e,t){ee(e,1,1,(()=>{t.delete(e.key)}))}function re(e,t,n,o,i,r,s,a,l,c,u,d){let h=e.length,m=r.length,f=h;const p={};for(;f--;)p[e[f].key]=f;const y=[],g=new Map,$=new Map;for(f=m;f--;){const e=d(i,r,f),a=n(e);let l=s.get(a);l?o&&l.p(e,t):(l=c(a,e),l.c()),g.set(a,y[f]=l),a in p&&$.set(a,Math.abs(f-p[a]))}const k=new Set,b=new Set;function x(e){X(e,1),e.m(a,u),s.set(e.key,e),u=e.first,m--}for(;h&&m;){const t=y[m-1],n=e[h-1],o=t.key,i=n.key;t===n?(u=t.first,h--,m--):g.has(i)?!s.has(o)||k.has(o)?x(t):b.has(i)?h--:$.get(o)>$.get(i)?(b.add(o),x(t)):(k.add(i),h--):(l(n,s),h--)}for(;h--;){const t=e[h];g.has(t.key)||l(t,s)}for(;m;)x(y[m-1]);return y}function se(e){e&&e.c()}function ae(e,t,o,s){const{fragment:a,after_update:l}=e.$$;a&&a.m(t,o),s||Y((()=>{const t=e.$$.on_mount.map(n).filter(r);e.$$.on_destroy?e.$$.on_destroy.push(...t):i(t),e.$$.on_mount=[]})),l.forEach(Y)}function le(e,t){const n=e.$$;null!==n.fragment&&(i(n.on_destroy),n.fragment&&n.fragment.d(t),n.on_destroy=n.fragment=null,n.ctx=[])}function ce(e,t){-1===e.$$.dirty[0]&&(A.push(e),W||(W=!0,E.then(O)),e.$$.dirty.fill(0)),e.$$.dirty[t/31|0]|=1<<t%31}function ue(t,n,r,s,a,l,c,u=[-1]){const d=M;C(t);const h=t.$$={fragment:null,ctx:[],props:l,update:e,not_equal:a,bound:o(),on_mount:[],on_destroy:[],on_disconnect:[],before_update:[],after_update:[],context:new Map(n.context||(d?d.$$.context:[])),callbacks:o(),dirty:u,skip_bound:!1,root:n.target||d.$$.root};c&&c(h.root);let m=!1;if(h.ctx=r?r(t,n.props||{},((e,n,...o)=>{const i=o.length?o[0]:n;return h.ctx&&a(h.ctx[e],h.ctx[e]=i)&&(!h.skip_bound&&h.bound[e]&&h.bound[e](i),m&&ce(t,e)),n})):[],h.update(),m=!0,i(h.before_update),h.fragment=!!s&&s(h.ctx),n.target){if(n.hydrate){const e=function(e){return Array.from(e.childNodes)}(n.target);h.fragment&&h.fragment.l(e),e.forEach($)}else h.fragment&&h.fragment.c();n.intro&&X(t.$$.fragment),ae(t,n.target,n.anchor,n.customElement),O()}C(d)}class de{$destroy(){le(this,1),this.$destroy=e}$on(t,n){if(!r(n))return e;const o=this.$$.callbacks[t]||(this.$$.callbacks[t]=[]);return o.push(n),()=>{const e=o.indexOf(n);-1!==e&&o.splice(e,1)}}$set(e){var t;this.$$set&&(t=e,0!==Object.keys(t).length)&&(this.$$.skip_bound=!0,this.$$set(e),this.$$.skip_bound=!1)}}const he=[];function me(t,n=e){let o;const i=new Set;function r(e){if(s(t,e)&&(t=e,o)){const e=!he.length;for(const e of i)e[1](),he.push(e,t);if(e){for(let e=0;e<he.length;e+=2)he[e][0](he[e+1]);he.length=0}}}return{set:r,update:function(e){r(e(t))},subscribe:function(s,a=e){const l=[s,a];return i.add(l),1===i.size&&(o=n(r)||e),s(t),()=>{i.delete(l),0===i.size&&(o(),o=null)}}}}const fe=function(){const e=me({initialTime:30,score:0,highScore:10,remainingTime:30,remainingPercent:100,timerHasBeenSet:!1,timerActive:!1,updateRemainingPercent(){this.remainingPercent=Math.round(this.remainingTime/this.initialTime*100)},resetScore(){this.score=0},resetTime(){this.remainingTime=this.initialTime,this.updateRemainingPercent()}});return{subscribe:e.subscribe,setTimerActive:()=>e.update((e=>(e.timerActive=!0,e))),setTimerInactive:()=>e.update((e=>(e.timerActive=!1,e))),setInitialTime:t=>e.update((e=>(e.initialTime=t,e.remainingTime=t,e))),incrementTime:t=>e.update((e=>(e.remainingTime=e.remainingTime+t,e.updateRemainingPercent(),e))),decrementTime:t=>e.update((e=>(e.remainingTime=e.remainingTime-t,e.updateRemainingPercent(),e))),resetGame:()=>e.update((e=>(e.resetScore(),e.resetTime(),e))),increaseScore:t=>e.update((e=>(e.score=e.score+t,e))),setHighscore:t=>e.update((e=>(e.highScore=t,e)))}}();function pe(t){let n,o;return{c(){n=k("div"),o=k("div"),P(o,"class","timerBar svelte-1wamyou"),P(n,"class","timerBarWrapper svelte-1wamyou"),P(n,"style",t[0])},m(e,t){g(e,n,t),f(n,o)},p(e,[t]){1&t&&P(n,"style",e[0])},i:e,o:e,d(e){e&&$(n)}}}function ye(e,t,n){let o,i;a(e,fe,(e=>n(2,i=e)));let r=["green","orange","red"],s=r[0];return e.$$.update=()=>{6&e.$$.dirty&&(i.remainingPercent>=50&&s!==r[0]?n(1,s=r[0]):i.remainingPercent<50&&s!==r[1]?n(1,s=r[1]):i.remainingPercent<10&&s!==r[2]&&n(1,s=r[2])),6&e.$$.dirty&&n(0,o=`--width: ${i.remainingPercent}%; --background-color: ${s}`)},[o,s,i]}class ge extends de{constructor(e){super(),ue(this,e,ye,pe,s,{})}}const $e=[{name:"Brown",hex:"8d5524",rgb:[141,85,36],cmyk:[0,40,74,45],hsb:[28,74,55],hsl:[28,59,35],lab:[42,19,37]},{name:"Bronze",hex:"c68642",rgb:[198,134,66],cmyk:[0,32,67,22],hsb:[31,67,78],hsl:[31,54,52],lab:[61,18,46]},{name:"Earth Yellow",hex:"e0ac69",rgb:[224,172,105],cmyk:[0,23,53,12],hsb:[34,53,88],hsl:[34,66,65],lab:[74,11,42]},{name:"Gold Crayola",hex:"f1c27d",rgb:[241,194,125],cmyk:[0,20,48,5],hsb:[36,48,95],hsl:[36,81,72],lab:[81,8,41]},{name:"Deep Champagne",hex:"ffdbac",rgb:[255,219,172],cmyk:[0,14,33,0],hsb:[34,33,100],hsl:[34,100,84],lab:[89,6,28]}],ke=["Anibrev","Bakinaw","Calibrew","Deknure","Elimoore","Farigraph","Ge","Hanifred","Indigo","Jerepass","Kekanumatonadoe","Lilu","Mavito","Neen","Oi","Prespinta","Q","Reshira","Sariphone","Tavisha","Umpturmass","Variphore","Wiltmoore","Xythe","Yershig","Zashima","Adrik","Baboi","Cra","Dartrik","Edgrene","Ferdinhand","Greaseinhamworth","Hue","Intison","Jurst","Kwekrish","Limast","Markwin","Nerdinand","Ogredin","Petegrismik","Questbrink","Rhestoromor","Stagrtire","Tiv","U","Valdo","Workwillmingtonham","Xyther","Yassy","Zeriford"],be=["Acre","Adathming","Brinkbronk","Bro","Cascade","Crustler","Dynamrick","Dustoshelf","Elison","Eghsk","Fsark","Fi","Gershandermind","Grint","Hinkminghan","Hunkertonmore","I","Ishmihash","Jrush","Jergo","Klimpkly","Ktuse","Lalilome","Lwaliluke","Madders","Mintma","Naftorafti","Nertmew","Oithyou","Ohgruq","Pepp","Poi","Qwertikeytab","Quibsta","Rickruck","Rhy","Salvisious","Slide","Tumpterton","To","Udgee","Uthergriv","Valdo","Vestiz","Westoip","Wringrij","XL","Xerximars","Yashrima","Yupe","Zawkimoh","Zcrievklmas"],xe=["Hey","Heru","Yersh","Yupsle","Ye-Yers","Heha","Yo","Hi","Sup","So'up","Wa-hey","Ye bop","Greetings","Y'all","Hio","Wowa"],ve=["You got me!","Here I am!","What a find!","I thought I was gonna get you on that one","How'd you know it was me?","No hiding the wool over your eyes","That hiding spot usually works","Good eye!","Looks like you can still see the trees in the forest","Are you sure I'm the one? ... Yeah it's me","Do you have time to find another?","I knew I should've picked a different spot!","Aww Rat-paste! You win!","I think I'll use my invisibility cloak next time","Wait, you got me already?","It takes two to tango but just you to find me","Okay, I'm the one","Yep, it's me!","Uh-huh, pat yourself on the back","Correct, but don't get too full of yourself","The next one will be more difficult!"],we=["Not today","You best be tryin' again","I don't look anything like them!","Negative, nope, nada!","I'm trying to read over here!","I'd ask you to help find my phone, but I think I need someone a little bit more skilled in the finding arena","Haha, nope!","Try again friend!","Was that your final answer?","Maybe next time","Don't quit your day job - or night if you've got that shift","I'm flattered you confused me with the real Valdo","You fell for my clever disguise! Try again!","You're still it!","Keep trying","Pick another","Have you seen my wallet?","Are you the one who took my ice cream?","The longer I look at the sun, the darker everything gets","Sorry, I was day dreaming - try again","I think they got it wrong, try me again!","Ewww! When was the last time you washed your hands?","Here's some more points - wait, nevermind","The timer's gonna keep ticking!","That tickled! No points for you!","Nope","Zilch","Nada","Nuh-uh","No no no no","Not me!","Nopers","Negatory","Sorry, wrong one!","I hate to disappoint you, but I'm not who you're looking for","Noooooooope!","Nah no Nah Nah!","Um... no","What day is it?","Are you allergic to incorrect answers?","Not a perfect score for you, but you can try again"];function Te(){let e=ke.slice().sort((()=>Math.random()-.5)),t=be.slice().sort((()=>Math.random()-.5)),n=xe.slice().sort((()=>Math.random()-.5)),o=ve.slice().sort((()=>Math.random()-.5)),i=we.slice().sort((()=>Math.random()-.5));return e.map(((e,r)=>({firstName:e,lastName:t[r],greeting:n[r%n.length],fullName:`${e} ${t[r]}`,correctResponse:o[r%o.length],incorrectResponse:i[r%i.length],skinTone:"#"+$e[r%$e.length].hex})))}let Pe=Te();const Ne=function(){const e=me({totalValdoList:Pe,netValdoList:Pe,activeValdo:{},displayedValdos:[],minDisplayedValdoNumber:4,foundValdos:[],activatedGame:!1,shuffleNetValdoList(){let e=function(e){for(let t=e.length-1;t>0;t--){const n=Math.floor(Math.random()*(t+1)),o=e[t];e[t]=e[n],e[n]=o}return e}(this.netValdoList.slice());this.netValdoList=e},setActiveValdo(){this.activeValdo=this.displayedValdos[Math.floor(Math.random()*this.displayedValdos.length)]},setDisplayedValdos(){this.shuffleNetValdoList();let e=this.netValdoList.slice(0,2*this.foundValdos.length+this.minDisplayedValdoNumber);this.displayedValdos=e,this.setActiveValdo()},addFoundValdo(){let e=this.netValdoList.findIndex((e=>e.fullName===this.activeValdo.fullName));if(-1!==e){let t=this.netValdoList.splice(e,1);return this.foundValdos=[...this.foundValdos,t],void this.setDisplayedValdos()}console.log(this.activeValdo,e)}});return{subscribe:e.subscribe,startNewGame:()=>e.update((e=>(e.activatedGame=!0,e.foundValdos.length=0,e.setDisplayedValdos(),console.log(e),e))),startNewRound:()=>e.update((e=>(e.addFoundValdo(),e))),finishGame:()=>e.update((e=>(e.activatedGame=!1,e.totalValdoList=Te(),e.netValdoList=e.totalValdoList,e)))}}();function De(e,{delay:n=0,duration:o=400,easing:i=t}={}){const r=+getComputedStyle(e).opacity;return{delay:n,duration:o,easing:i,css:e=>"opacity: "+e*r}}function Ve(e,t){return Math.sqrt(Math.pow(e.x-t.x,2)+Math.pow(e.y-t.y,2))}function Le(e,t){let{x:n,y:o}=e,{x:i,y:r}=t,s=i-n,a=r-o;return{x:i-n,y:r-o,angleToHoriz:Math.atan(a/s)}}let Me=function(e){let t=[...e,...e],n="abcdefghijklmnopqrstuvwxyz".split("").sort((()=>Math.random()-.5));return t.reduce(((e,t,o)=>(e[n[o]]=`#${t.hex}`,e)),{})}([{name:"Vivid Sky Blue",hex:"5ad2f4",rgb:[90,210,244],cmyk:[63,14,0,4],hsb:[193,63,96],hsl:[193,88,65],lab:[79,-24,-27]},{name:"Rebecca Purple",hex:"6e2594",rgb:[110,37,148],cmyk:[26,75,0,42],hsb:[279,75,58],hsl:[279,60,36],lab:[31,50,-47]},{name:"Minion Yellow",hex:"ecd444",rgb:[236,212,68],cmyk:[0,10,71,7],hsb:[51,71,93],hsl:[51,82,60],lab:[85,-7,70]},{name:"Blue Crayola",hex:"2176ff",rgb:[33,118,255],cmyk:[87,54,0,0],hsb:[217,87,100],hsl:[217,100,56],lab:[52,26,-75]},{name:"Brick Red",hex:"d1495b",rgb:[209,73,91],cmyk:[0,65,56,18],hsb:[352,65,82],hsl:[352,60,55],lab:[51,55,19]},{name:"Asparagus",hex:"87a878",rgb:[135,168,120],cmyk:[20,0,29,34],hsb:[101,29,66],hsl:[101,22,56],lab:[65,-20,21]},{name:"Onyx",hex:"32373b",rgb:[50,55,59],cmyk:[15,7,0,77],hsb:[207,15,23],hsl:[207,8,21],lab:[23,-1,-3]},{name:"Tea Green",hex:"dbf9b8",rgb:[219,249,184],cmyk:[12,0,26,2],hsb:[88,26,98],hsl:[88,84,85],lab:[94,-21,28]},{name:"Vivid Tangerine",hex:"eb9486",rgb:[235,148,134],cmyk:[0,37,43,8],hsb:[8,43,92],hsl:[8,72,72],lab:[70,31,21]},{name:"Khaki Web",hex:"cab7a2",rgb:[202,183,162],cmyk:[0,9,20,21],hsb:[32,20,79],hsl:[32,27,71],lab:[75,3,13]},{name:"Magenta",hex:"f038ff",rgb:[240,56,255],cmyk:[6,78,0,0],hsb:[295,78,100],hsl:[295,100,61],lab:[60,88,-61]},{name:"Cyclamen",hex:"ef709d",rgb:[239,112,157],cmyk:[0,53,34,6],hsb:[339,53,94],hsl:[339,80,69],lab:[64,53,-1]},{name:"Granny Smith Apple",hex:"c7f2a7",rgb:[199,242,167],cmyk:[18,0,31,5],hsb:[94,31,95],hsl:[94,74,80],lab:[91,-27,32]}]);console.log(Me);const Se={subscribe:me({apparelColorList:Me,apparelLengths:[3,10],sleevePantLength:.85,apparelThickness:4},(e=>()=>{})).subscribe};function Ge(e,t,n){const o=e.slice();return o[24]=t[n],o[26]=n,o}function Ie(e){let t,n=[],o=new Map,i=e[8];const r=e=>e[24].x;for(let t=0;t<i.length;t+=1){let s=Ge(e,i,t),a=r(s);o.set(a,n[t]=Ce(a,s))}return{c(){for(let e=0;e<n.length;e+=1)n[e].c();t=w()},m(e,o){for(let t=0;t<n.length;t+=1)n[t].m(e,o);g(e,t,o)},p(e,s){785&s&&(i=e[8],n=re(n,s,r,1,e,i,o,t.parentNode,oe,Ce,t,Ge))},d(e){for(let t=0;t<n.length;t+=1)n[t].d(e);e&&$(t)}}}function Ce(e,t){let n,o,i;return{key:e,first:null,c(){n=b("circle"),P(n,"id",o=t[9][t[26]]+t[4]),P(n,"cx",t[24].x),P(n,"cy",t[24].y),P(n,"r",i=t[0]/4),this.first=n},m(e,t){g(e,n,t)},p(e,r){t=e,16&r&&o!==(o=t[9][t[26]]+t[4])&&P(n,"id",o),1&r&&i!==(i=t[0]/4)&&P(n,"r",i)},d(e){e&&$(n)}}}function He(t){let n,o,i,r,s,a=t[11]&&function(e){let t,n,o;return{c(){t=b("path"),P(t,"id",n=`${e[3]}${e[4]}sleeve`),P(t,"d",e[6]),P(t,"stroke",e[12]),P(t,"stroke-width",o=e[7].apparelThickness*e[1]),P(t,"class","svelte-1k8lj6w")},m(e,n){g(e,t,n)},p(e,i){24&i&&n!==(n=`${e[3]}${e[4]}sleeve`)&&P(t,"id",n),64&i&&P(t,"d",e[6]),130&i&&o!==(o=e[7].apparelThickness*e[1])&&P(t,"stroke-width",o)},d(e){e&&$(t)}}}(t),l=t[5]&&Ie(t);return{c(){n=b("path"),i=v(),a&&a.c(),r=v(),l&&l.c(),s=w(),P(n,"id",o=`${t[3]}${t[4]}arm`),P(n,"d",t[10]),P(n,"stroke",t[2]),P(n,"stroke-width",t[1]),P(n,"class","svelte-1k8lj6w")},m(e,t){g(e,n,t),g(e,i,t),a&&a.m(e,t),g(e,r,t),l&&l.m(e,t),g(e,s,t)},p(e,[t]){24&t&&o!==(o=`${e[3]}${e[4]}arm`)&&P(n,"id",o),4&t&&P(n,"stroke",e[2]),2&t&&P(n,"stroke-width",e[1]),e[11]&&a.p(e,t),e[5]?l?l.p(e,t):(l=Ie(e),l.c(),l.m(s.parentNode,s)):l&&(l.d(1),l=null)},i:e,o:e,d(e){e&&$(n),e&&$(i),a&&a.d(e),e&&$(r),l&&l.d(e),e&&$(s)}}}function Ae(e,t,n){let o;a(e,Se,(e=>n(7,o=e)));let{shoulderPoint:i={x:10,y:10}}=t,{handPoint:r={x:15,y:15}}=t,{headDiameter:s=5}=t,{maxArmLength:l=3*s}=t,{limbThickness:c=4}=t,{skinTone:u="black"}=t,{fullName:d="Jimberly Hanifred"}=t,{armType:h="none"}=t,{displayDots:m=!0}=t,f=d.split(" ")[0],p={},y=Ve(i,r),g=l/2,{angleToHoriz:$}=Le(i,r);if("left"===h&&($+=Math.PI),y>=l)p={x:l*Math.cos($)/2,y:l*Math.sin($)/2};else if(y<l){let e=$-Math.acos(y/(2*g));p={x:g*Math.cos(e),y:g*Math.sin(e)}}let k={x:i.x+p.x,y:i.y+p.y},b=[i,k,r],x=Le(k,r),v=`M ${i.x} ${i.y} \n    l ${p.x} ${p.y} \n    l ${x.x} ${x.y}`,w=f.length>o.apparelLengths[0],T="",P=o.apparelColorList[f[0].toLowerCase()];if(w){let e,t,n=f.length>o.apparelLengths[1]?"long":"short";"long"===n?(e=p,t={x:x.x*o.sleevePantLength,y:x.y*o.sleevePantLength},T=`M ${i.x} ${i.y} \n        l ${e.x} ${e.y} \n        l ${t.x} ${t.y}`):"short"===n&&(e={x:p.x*o.sleevePantLength,y:p.y*o.sleevePantLength},T=`M ${i.x} ${i.y} \n        l ${e.x} ${e.y}`)}return e.$$set=e=>{"shoulderPoint"in e&&n(13,i=e.shoulderPoint),"handPoint"in e&&n(14,r=e.handPoint),"headDiameter"in e&&n(0,s=e.headDiameter),"maxArmLength"in e&&n(15,l=e.maxArmLength),"limbThickness"in e&&n(1,c=e.limbThickness),"skinTone"in e&&n(2,u=e.skinTone),"fullName"in e&&n(3,d=e.fullName),"armType"in e&&n(4,h=e.armType),"displayDots"in e&&n(5,m=e.displayDots)},[s,c,u,d,h,m,T,o,b,["shoulder","elbow","hand"],v,w,P,i,r,l]}console.log(Se);class _e extends de{constructor(e){super(),ue(this,e,Ae,He,s,{shoulderPoint:13,handPoint:14,headDiameter:0,maxArmLength:15,limbThickness:1,skinTone:2,fullName:3,armType:4,displayDots:5})}}function ze(t){let n,o,i,r;return{c(){n=b("circle"),P(n,"cx",o=t[0].x),P(n,"cy",i=t[0].y),P(n,"r",r=t[1]/2),P(n,"stroke",t[3]),P(n,"stroke-width",t[2]),P(n,"fill",t[3])},m(e,t){g(e,n,t)},p(e,[t]){1&t&&o!==(o=e[0].x)&&P(n,"cx",o),1&t&&i!==(i=e[0].y)&&P(n,"cy",i),2&t&&r!==(r=e[1]/2)&&P(n,"r",r),8&t&&P(n,"stroke",e[3]),4&t&&P(n,"stroke-width",e[2]),8&t&&P(n,"fill",e[3])},i:e,o:e,d(e){e&&$(n)}}}function Re(e,t,n){let{headPoint:o={}}=t,{headDiameter:i=15}=t,{strokeWidth:r=4}=t,{skinTone:s="black"}=t;return e.$$set=e=>{"headPoint"in e&&n(0,o=e.headPoint),"headDiameter"in e&&n(1,i=e.headDiameter),"strokeWidth"in e&&n(2,r=e.strokeWidth),"skinTone"in e&&n(3,s=e.skinTone)},[o,i,r,s]}class Ee extends de{constructor(e){super(),ue(this,e,Re,ze,s,{headPoint:0,headDiameter:1,strokeWidth:2,skinTone:3})}}function We(e,t,n){const o=e.slice();return o[24]=t[n],o[26]=n,o}function Ye(e){let t,n=[],o=new Map,i=e[8];const r=e=>e[24].x;for(let t=0;t<i.length;t+=1){let s=We(e,i,t),a=r(s);o.set(a,n[t]=je(a,s))}return{c(){for(let e=0;e<n.length;e+=1)n[e].c();t=w()},m(e,o){for(let t=0;t<n.length;t+=1)n[t].m(e,o);g(e,t,o)},p(e,s){785&s&&(i=e[8],n=re(n,s,r,1,e,i,o,t.parentNode,oe,je,t,We))},d(e){for(let t=0;t<n.length;t+=1)n[t].d(e);e&&$(t)}}}function je(e,t){let n,o,i;return{key:e,first:null,c(){n=b("circle"),P(n,"id",o=t[9][t[26]]+t[4]),P(n,"cx",t[24].x),P(n,"cy",t[24].y),P(n,"r",i=t[0]/4),this.first=n},m(e,t){g(e,n,t)},p(e,r){t=e,16&r&&o!==(o=t[9][t[26]]+t[4])&&P(n,"id",o),1&r&&i!==(i=t[0]/4)&&P(n,"r",i)},d(e){e&&$(n)}}}function Fe(t){let n,o,i,r,s,a=t[11]&&function(e){let t,n,o;return{c(){t=b("path"),P(t,"id",n=`${e[3]}${e[4]}pant`),P(t,"d",e[6]),P(t,"stroke",e[12]),P(t,"stroke-width",o=e[7].apparelThickness*e[1]),P(t,"class","svelte-1k8lj6w")},m(e,n){g(e,t,n)},p(e,i){24&i&&n!==(n=`${e[3]}${e[4]}pant`)&&P(t,"id",n),64&i&&P(t,"d",e[6]),130&i&&o!==(o=e[7].apparelThickness*e[1])&&P(t,"stroke-width",o)},d(e){e&&$(t)}}}(t),l=t[5]&&Ye(t);return{c(){n=b("path"),i=v(),a&&a.c(),r=v(),l&&l.c(),s=w(),P(n,"id",o=`${t[3]}${t[4]}arm`),P(n,"d",t[10]),P(n,"stroke",t[2]),P(n,"stroke-width",t[1]),P(n,"class","svelte-1k8lj6w")},m(e,t){g(e,n,t),g(e,i,t),a&&a.m(e,t),g(e,r,t),l&&l.m(e,t),g(e,s,t)},p(e,[t]){24&t&&o!==(o=`${e[3]}${e[4]}arm`)&&P(n,"id",o),4&t&&P(n,"stroke",e[2]),2&t&&P(n,"stroke-width",e[1]),e[11]&&a.p(e,t),e[5]?l?l.p(e,t):(l=Ye(e),l.c(),l.m(s.parentNode,s)):l&&(l.d(1),l=null)},i:e,o:e,d(e){e&&$(n),e&&$(i),a&&a.d(e),e&&$(r),l&&l.d(e),e&&$(s)}}}function Be(e,t,n){let o;a(e,Se,(e=>n(7,o=e)));let{hipPoint:i={x:10,y:10}}=t,{footPoint:r={x:15,y:15}}=t,{headDiameter:s=5}=t,{maxLegLength:l=3*s}=t,{limbThickness:c=4}=t,{skinTone:u="black"}=t,{fullName:d="Jimberly Hanifred"}=t,{legType:h="none"}=t,{displayDots:m=!0}=t,f=d.split(" ")[1],p={},y=Ve(i,r),g=l/2,{angleToHoriz:$}=Le(i,r);if("left"===h&&($+=Math.PI),y>=l)p={x:l*Math.cos($)/2,y:l*Math.sin($)/2};else if(y<l){let e=$-Math.acos(y/(2*g));p={x:g*Math.cos(e),y:g*Math.sin(e)}}let k={x:i.x+p.x,y:i.y+p.y},b=[i,k,r],x=Le(k,r),v=`M ${i.x} ${i.y} \n  l ${p.x} ${p.y} \n  l ${x.x} ${x.y}`,w=f.length>o.apparelLengths[0],T="",P=o.apparelColorList[f[0].toLowerCase()];if(w){let e,t,n=f.length>o.apparelLengths[1]?"long":"short";"long"===n?(e=p,t={x:x.x*o.sleevePantLength,y:x.y*o.sleevePantLength},T=`M ${i.x} ${i.y} \n        l ${e.x} ${e.y} \n        l ${t.x} ${t.y}`):"short"===n&&(e={x:p.x*o.sleevePantLength,y:p.y*o.sleevePantLength},T=`M ${i.x} ${i.y} \n        l ${e.x} ${e.y}`)}return e.$$set=e=>{"hipPoint"in e&&n(13,i=e.hipPoint),"footPoint"in e&&n(14,r=e.footPoint),"headDiameter"in e&&n(0,s=e.headDiameter),"maxLegLength"in e&&n(15,l=e.maxLegLength),"limbThickness"in e&&n(1,c=e.limbThickness),"skinTone"in e&&n(2,u=e.skinTone),"fullName"in e&&n(3,d=e.fullName),"legType"in e&&n(4,h=e.legType),"displayDots"in e&&n(5,m=e.displayDots)},[s,c,u,d,h,m,T,o,b,["hip","knee","foot"],v,w,P,i,r,l]}class Oe extends de{constructor(e){super(),ue(this,e,Be,Fe,s,{hipPoint:13,footPoint:14,headDiameter:0,maxLegLength:15,limbThickness:1,skinTone:2,fullName:3,legType:4,displayDots:5})}}function Je(t){let n,o,i,r,s;return{c(){n=b("line"),P(n,"x1",o=t[0].x),P(n,"y1",i=t[0].y),P(n,"x2",r=t[1].x),P(n,"y2",s=t[1].y),P(n,"stroke",t[3]),P(n,"stroke-width",t[2])},m(e,t){g(e,n,t)},p(e,[t]){1&t&&o!==(o=e[0].x)&&P(n,"x1",o),1&t&&i!==(i=e[0].y)&&P(n,"y1",i),2&t&&r!==(r=e[1].x)&&P(n,"x2",r),2&t&&s!==(s=e[1].y)&&P(n,"y2",s),8&t&&P(n,"stroke",e[3]),4&t&&P(n,"stroke-width",e[2])},i:e,o:e,d(e){e&&$(n)}}}function qe(e,t,n){let{neckPoint:o={}}=t,{shoulderPoint:i={}}=t,{limbThickness:r=4}=t,{skinTone:s="black"}=t;return e.$$set=e=>{"neckPoint"in e&&n(0,o=e.neckPoint),"shoulderPoint"in e&&n(1,i=e.shoulderPoint),"limbThickness"in e&&n(2,r=e.limbThickness),"skinTone"in e&&n(3,s=e.skinTone)},[o,i,r,s]}class Ke extends de{constructor(e){super(),ue(this,e,qe,Je,s,{neckPoint:0,shoulderPoint:1,limbThickness:2,skinTone:3})}}function Ue(t){let n,o,i,r,s,a,l,c,u,d,h,m,f;return{c(){n=b("line"),a=v(),l=b("line"),P(n,"x1",o=t[0].x),P(n,"y1",i=t[0].y),P(n,"x2",r=t[1].x),P(n,"y2",s=t[1].y),P(n,"stroke",t[3]),P(n,"stroke-width",t[2]),P(l,"x1",c=t[0].x),P(l,"y1",u=t[0].y),P(l,"x2",d=t[1].x),P(l,"y2",h=t[1].y),P(l,"stroke",m=t[4].apparelColorList[t[5][0]]),P(l,"stroke-width",f=t[2]*t[4].apparelThickness*2)},m(e,t){g(e,n,t),g(e,a,t),g(e,l,t)},p(e,[t]){1&t&&o!==(o=e[0].x)&&P(n,"x1",o),1&t&&i!==(i=e[0].y)&&P(n,"y1",i),2&t&&r!==(r=e[1].x)&&P(n,"x2",r),2&t&&s!==(s=e[1].y)&&P(n,"y2",s),8&t&&P(n,"stroke",e[3]),4&t&&P(n,"stroke-width",e[2]),1&t&&c!==(c=e[0].x)&&P(l,"x1",c),1&t&&u!==(u=e[0].y)&&P(l,"y1",u),2&t&&d!==(d=e[1].x)&&P(l,"x2",d),2&t&&h!==(h=e[1].y)&&P(l,"y2",h),16&t&&m!==(m=e[4].apparelColorList[e[5][0]])&&P(l,"stroke",m),20&t&&f!==(f=e[2]*e[4].apparelThickness*2)&&P(l,"stroke-width",f)},i:e,o:e,d(e){e&&$(n),e&&$(a),e&&$(l)}}}function Ze(e,t,n){let o;a(e,Se,(e=>n(4,o=e)));let{shoulderPoint:i={}}=t,{hipPoint:r={}}=t,{torsoThickness:s=4}=t,{fullName:l="Jack Gerifor"}=t,{skinTone:c="black"}=t,u=l[0].toLowerCase();return e.$$set=e=>{"shoulderPoint"in e&&n(0,i=e.shoulderPoint),"hipPoint"in e&&n(1,r=e.hipPoint),"torsoThickness"in e&&n(2,s=e.torsoThickness),"fullName"in e&&n(6,l=e.fullName),"skinTone"in e&&n(3,c=e.skinTone)},[i,r,s,c,o,u,l]}class Qe extends de{constructor(e){super(),ue(this,e,Ze,Ue,s,{shoulderPoint:0,hipPoint:1,torsoThickness:2,fullName:6,skinTone:3})}}function Xe(t){let n;return{c(){n=k("h3"),n.textContent=`${t[5]}`,P(n,"class","svelte-1utlztj")},m(e,t){g(e,n,t)},p:e,i:e,o:e,d(e){e&&$(n)}}}function et(e){let t,n,o,i,r,s,a,l,c,u,d;n=new Ee({props:{headPoint:e[10],headDiameter:e[9],strokeWidth:e[8],skinTone:e[6]}}),o=new Ke({props:{neckPoint:e[11],shoulderPoint:e[12],limbThickness:e[18],skinTone:e[6]}}),i=new Qe({props:{shoulderPoint:e[12],hipPoint:e[13],torsoThickness:e[19],skinTone:e[6],fullName:e[5]}}),r=new _e({props:{displayDots:e[4],fullName:e[5],armType:"right",shoulderPoint:e[12],headDiameter:e[9],handPoint:e[14],limbThickness:e[18],skinTone:e[6]}}),s=new _e({props:{displayDots:e[4],fullName:e[5],armType:"left",shoulderPoint:e[12],headDiameter:e[9],handPoint:e[15],limbThickness:e[18],skinTone:e[6]}}),a=new Oe({props:{displayDots:e[4],fullName:e[5],legType:"right",hipPoint:e[13],headDiameter:e[9],footPoint:e[16],limbThickness:e[18],skinTone:e[6]}}),l=new Oe({props:{displayDots:e[4],fullName:e[5],legType:"left",hipPoint:e[13],headDiameter:e[9],footPoint:e[17],limbThickness:e[18],skinTone:e[6]}});let h=e[3]&&tt(e);return{c(){t=b("svg"),se(n.$$.fragment),se(o.$$.fragment),se(i.$$.fragment),se(r.$$.fragment),se(s.$$.fragment),se(a.$$.fragment),se(l.$$.fragment),c=v(),h&&h.c(),u=w(),P(t,"width",e[7]),P(t,"height",e[1])},m(e,m){g(e,t,m),ae(n,t,null),ae(o,t,null),ae(i,t,null),ae(r,t,null),ae(s,t,null),ae(a,t,null),ae(l,t,null),g(e,c,m),h&&h.m(e,m),g(e,u,m),d=!0},p(e,n){const o={};16&n&&(o.displayDots=e[4]),r.$set(o);const i={};16&n&&(i.displayDots=e[4]),s.$set(i);const c={};16&n&&(c.displayDots=e[4]),a.$set(c);const m={};16&n&&(m.displayDots=e[4]),l.$set(m),(!d||2&n)&&P(t,"height",e[1]),e[3]?h?h.p(e,n):(h=tt(e),h.c(),h.m(u.parentNode,u)):h&&(h.d(1),h=null)},i(e){d||(X(n.$$.fragment,e),X(o.$$.fragment,e),X(i.$$.fragment,e),X(r.$$.fragment,e),X(s.$$.fragment,e),X(a.$$.fragment,e),X(l.$$.fragment,e),d=!0)},o(e){ee(n.$$.fragment,e),ee(o.$$.fragment,e),ee(i.$$.fragment,e),ee(r.$$.fragment,e),ee(s.$$.fragment,e),ee(a.$$.fragment,e),ee(l.$$.fragment,e),d=!1},d(e){e&&$(t),le(n),le(o),le(i),le(r),le(s),le(a),le(l),e&&$(c),h&&h.d(e),e&&$(u)}}}function tt(t){let n;return{c(){n=k("p"),n.textContent=`${t[5]}`,P(n,"class","svelte-1utlztj")},m(e,t){g(e,n,t)},p:e,d(e){e&&$(n)}}}function nt(e){let t,n,o,i,r,s,a;const l=[et,Xe],c=[];function u(e,t){return e[0]?0:1}return n=u(e),o=c[n]=l[n](e),{c(){t=k("div"),o.c(),P(t,"class","svelte-1utlztj"),D(t,"hoverPointer",e[2])},m(o,i){g(o,t,i),c[n].m(t,null),r=!0,s||(a=T(t,"click",e[20]),s=!0)},p(e,[i]){let s=n;n=u(e),n===s?c[n].p(e,i):(Z(),ee(c[s],1,1,(()=>{c[s]=null})),Q(),o=c[n],o?o.p(e,i):(o=c[n]=l[n](e),o.c()),X(o,1),o.m(t,null)),(!r||4&i)&&D(t,"hoverPointer",e[2])},i(e){r||(X(o),Y((()=>{i||(i=ne(t,De,{},!0)),i.run(1)})),r=!0)},o(e){ee(o),i||(i=ne(t,De,{},!1)),i.run(0),r=!1},d(e){e&&$(t),c[n].d(),e&&i&&i.end(),s=!1,a()}}}function ot(e,t,n){let{valdoData:o={}}=t,{displaySVG:i=!0}=t,{totalHeight:r=100}=t,{hoverPointer:s=!0}=t,{showFullName:a=!1}=t,{displayDots:l=!0}=t,{firstName:c="Jeshua",lastName:u="Granstand",fullName:d=`${c} ${u}`,skinTone:h="black",greeting:m="hello",correctResponse:f="yes",incorrectResponse:p="no",height:y=.95*r,width:g=5*y/6,strokeWidth:$=2,midPoint:k={x:g/2,y:y/2},headDiameter:b=y/7,headPoint:x={x:k.x,y:$+b/2},neckPoint:v={x:k.x,y:2+b},shoulderPoint:w={x:k.x,y:2+1.5*b},hipPoint:T={x:k.x,y:4*b},rightHandPoint:P={x:k.x+2*b,y:.75*T.y},leftHandPoint:N={x:k.x-2*b,y:x.y},rightFootPoint:D={x:k.x+2*b,y:1.25*T.y},leftFootPoint:V={x:k.x-2*b,y:y},limbThickness:L=y/50,torsoThickness:M=L}=o;const S=H();return e.$$set=e=>{"valdoData"in e&&n(21,o=e.valdoData),"displaySVG"in e&&n(0,i=e.displaySVG),"totalHeight"in e&&n(1,r=e.totalHeight),"hoverPointer"in e&&n(2,s=e.hoverPointer),"showFullName"in e&&n(3,a=e.showFullName),"displayDots"in e&&n(4,l=e.displayDots)},[i,r,s,a,l,d,h,g,$,b,x,v,w,T,P,N,D,V,L,M,function(){S("tag",{fullName:d,greeting:m,correctResponse:f,incorrectResponse:p})},o]}class it extends de{constructor(e){super(),ue(this,e,ot,nt,s,{valdoData:21,displaySVG:0,totalHeight:1,hoverPointer:2,showFullName:3,displayDots:4})}}function rt(t){let n,o,i;return{c(){n=k("button"),n.textContent="Play Again?",P(n,"class","hoverPointer svelte-3yivzb")},m(e,r){g(e,n,r),o||(i=T(n,"click",t[4]),o=!0)},p:e,d(e){e&&$(n),o=!1,i()}}}function st(t){let n;return{c(){n=k("h2"),n.textContent="Current Valdo:",P(n,"class","svelte-3yivzb")},m(e,t){g(e,n,t)},p:e,d(e){e&&$(n)}}}function at(t){let n,o,i;return{c(){n=k("button"),n.textContent="Click to Start",P(n,"class","hoverPointer svelte-3yivzb")},m(e,r){g(e,n,r),o||(i=T(n,"click",t[4]),o=!0)},p:e,d(e){e&&$(n),o=!1,i()}}}function lt(t){let n;return{c(){n=k("h4"),n.textContent="New Valdo Pending..."},m(e,t){g(e,n,t)},p:e,i:e,o:e,d(e){e&&$(n)}}}function ct(t){let n,o,i=t[1].activeValdo,r=ut(t);return{c(){r.c(),n=w()},m(e,t){r.m(e,t),g(e,n,t),o=!0},p(t,o){2&o&&s(i,i=t[1].activeValdo)?(Z(),ee(r,1,1,e),Q(),r=ut(t),r.c(),X(r,1),r.m(n.parentNode,n)):r.p(t,o)},i(e){o||(X(r),o=!0)},o(e){ee(r),o=!1},d(e){e&&$(n),r.d(e)}}}function ut(e){let t,n;return t=new it({props:{displayDots:!1,totalHeight:100,valdoData:e[1].activeValdo,displaySVG:e[0],hoverPointer:!1}}),{c(){se(t.$$.fragment)},m(e,o){ae(t,e,o),n=!0},p(e,n){const o={};2&n&&(o.valdoData=e[1].activeValdo),1&n&&(o.displaySVG=e[0]),t.$set(o)},i(e){n||(X(t.$$.fragment,e),n=!0)},o(e){ee(t.$$.fragment,e),n=!1},d(e){le(t,e)}}}function dt(e){let t,n,o,i,r,s,a,l,c,u,d,h,m,p,y,b,w,T,D,V,L,M,S,G=e[3].score+"",I=e[3].highScore+"",C=e[3].remainingTime+"";function H(e,t){return e[1].activatedGame||e[2]?e[1].activatedGame?st:e[2]?rt:void 0:at}let A=H(e),_=A&&A(e);const z=[ct,lt],R=[];function E(e,t){return e[1].activatedGame?0:1}return D=E(e),V=R[D]=z[D](e),M=new ge({}),{c(){t=k("header"),n=k("div"),o=k("h3"),i=x("Current Score: "),r=x(G),s=v(),a=k("h3"),l=x("High Score: "),c=x(I),u=v(),d=k("h3"),h=x("Remaining Time: "),m=x(C),p=x("s"),y=v(),b=k("div"),_&&_.c(),w=v(),T=k("div"),V.c(),L=v(),se(M.$$.fragment),P(o,"class","svelte-3yivzb"),P(a,"class","svelte-3yivzb"),P(d,"class","svelte-3yivzb"),P(n,"class","gameInfoWrapper svelte-3yivzb"),P(b,"class","svelte-3yivzb"),P(T,"class","currentValdoWrapper svelte-3yivzb"),P(t,"class","svelte-3yivzb")},m(e,$){g(e,t,$),f(t,n),f(n,o),f(o,i),f(o,r),f(n,s),f(n,a),f(a,l),f(a,c),f(n,u),f(n,d),f(d,h),f(d,m),f(d,p),f(t,y),f(t,b),_&&_.m(b,null),f(t,w),f(t,T),R[D].m(T,null),g(e,L,$),ae(M,e,$),S=!0},p(e,[t]){(!S||8&t)&&G!==(G=e[3].score+"")&&N(r,G),(!S||8&t)&&I!==(I=e[3].highScore+"")&&N(c,I),(!S||8&t)&&C!==(C=e[3].remainingTime+"")&&N(m,C),A===(A=H(e))&&_?_.p(e,t):(_&&_.d(1),_=A&&A(e),_&&(_.c(),_.m(b,null)));let n=D;D=E(e),D===n?R[D].p(e,t):(Z(),ee(R[n],1,1,(()=>{R[n]=null})),Q(),V=R[D],V?V.p(e,t):(V=R[D]=z[D](e),V.c()),X(V,1),V.m(T,null))},i(e){S||(X(V),X(M.$$.fragment,e),S=!0)},o(e){ee(V),ee(M.$$.fragment,e),S=!1},d(e){e&&$(t),_&&_.d(),R[D].d(),e&&$(L),le(M,e)}}}function ht(e,t,n){let o,i;a(e,Ne,(e=>n(1,o=e))),a(e,fe,(e=>n(3,i=e)));let r,{displaySVG:s=!0}=t,l=!1;return e.$$set=e=>{"displaySVG"in e&&n(0,s=e.displaySVG)},e.$$.update=()=>{2&e.$$.dirty&&console.log(o.activeValdo)},[s,o,l,i,function(){o.activatedGame||Ne.startNewGame(),fe.setTimerActive(),r=setInterval((()=>{return e=r,void(i.remainingTime>0?fe.decrementTime(1):i.remainingTime<=0&&(console.log("finished game:",l,o,i),function(e){clearInterval(e),fe.setTimerInactive(),i.score>i.highScore&&fe.setHighscore(i.score),n(2,l=!0),fe.resetGame(),Ne.finishGame(),console.log("finished game:",l,o,i)}(e)));var e}),1e3),console.log(i)}]}class mt extends de{constructor(e){super(),ue(this,e,ht,dt,s,{displaySVG:0})}}function ft(e){let t,n;const o=e[1].default,i=function(e,t,n,o){if(e){const i=l(e,t,n,o);return e[0](i)}}(o,e,e[0],null);return{c(){t=k("div"),i&&i.c(),P(t,"class","svelte-w77ngl")},m(e,o){g(e,t,o),i&&i.m(t,null),n=!0},p(e,[t]){i&&i.p&&(!n||1&t)&&function(e,t,n,o,i,r){if(i){const s=l(t,n,o,r);e.p(s,i)}}(i,o,e,e[0],n?function(e,t,n,o){if(e[2]&&o){const i=e[2](o(n));if(void 0===t.dirty)return i;if("object"==typeof i){const e=[],n=Math.max(t.dirty.length,i.length);for(let o=0;o<n;o+=1)e[o]=t.dirty[o]|i[o];return e}return t.dirty|i}return t.dirty}(o,e[0],t,null):function(e){if(e.ctx.length>32){const t=[],n=e.ctx.length/32;for(let e=0;e<n;e++)t[e]=-1;return t}return-1}(e[0]),null)},i(e){n||(X(i,e),n=!0)},o(e){ee(i,e),n=!1},d(e){e&&$(t),i&&i.d(e)}}}function pt(e,t,n){let{$$slots:o={},$$scope:i}=t;return e.$$set=e=>{"$$scope"in e&&n(0,i=e.$$scope)},[i,o]}class yt extends de{constructor(e){super(),ue(this,e,pt,ft,s,{})}}function gt(e,t,n){const o=e.slice();return o[3]=t[n],o}function $t(e){let t,n,o=[],i=new Map,r=e[0].displayedValdos;const s=e=>e[3].firstName;for(let t=0;t<r.length;t+=1){let n=gt(e,r,t),a=s(n);i.set(a,o[t]=kt(a,n))}return{c(){for(let e=0;e<o.length;e+=1)o[e].c();t=w()},m(e,i){for(let t=0;t<o.length;t+=1)o[t].m(e,i);g(e,t,i),n=!0},p(e,n){3&n&&(r=e[0].displayedValdos,Z(),o=re(o,n,s,1,e,r,i,t.parentNode,ie,kt,t,gt),Q())},i(e){if(!n){for(let e=0;e<r.length;e+=1)X(o[e]);n=!0}},o(e){for(let e=0;e<o.length;e+=1)ee(o[e]);n=!1},d(e){for(let t=0;t<o.length;t+=1)o[t].d(e);e&&$(t)}}}function kt(e,t){let n,o,i;return o=new it({props:{valdoData:t[3],displaySVG:vt,showFullName:wt,displayDots:Tt}}),o.$on("tag",t[1]),{key:e,first:null,c(){n=w(),se(o.$$.fragment),this.first=n},m(e,t){g(e,n,t),ae(o,e,t),i=!0},p(e,n){t=e;const i={};1&n&&(i.valdoData=t[3]),o.$set(i)},i(e){i||(X(o.$$.fragment,e),i=!0)},o(e){ee(o.$$.fragment,e),i=!1},d(e){e&&$(n),le(o,e)}}}function bt(e){let t,n,o=e[0].activatedGame&&$t(e);return{c(){o&&o.c(),t=w()},m(e,i){o&&o.m(e,i),g(e,t,i),n=!0},p(e,n){e[0].activatedGame?o?(o.p(e,n),1&n&&X(o,1)):(o=$t(e),o.c(),X(o,1),o.m(t.parentNode,t)):o&&(Z(),ee(o,1,1,(()=>{o=null})),Q())},i(e){n||(X(o),n=!0)},o(e){ee(o),n=!1},d(e){o&&o.d(e),e&&$(t)}}}function xt(e){let t,n,o,i;return t=new mt({}),o=new yt({props:{$$slots:{default:[bt]},$$scope:{ctx:e}}}),{c(){se(t.$$.fragment),n=v(),se(o.$$.fragment)},m(e,r){ae(t,e,r),g(e,n,r),ae(o,e,r),i=!0},p(e,[t]){const n={};65&t&&(n.$$scope={dirty:t,ctx:e}),o.$set(n)},i(e){i||(X(t.$$.fragment,e),X(o.$$.fragment,e),i=!0)},o(e){ee(t.$$.fragment,e),ee(o.$$.fragment,e),i=!1},d(e){le(t,e),e&&$(n),le(o,e)}}}const vt=!0;let wt=!1,Tt=!1;function Pt(e,t,n){let o,i;return a(e,Ne,(e=>n(0,o=e))),a(e,fe,(e=>n(2,i=e))),[o,function(e){i.timerActive&&(e.detail.fullName===o.activeValdo.fullName?(fe.increaseScore(1),/valdo/i.test(e.detail.fullName)?fe.incrementTime(5):fe.incrementTime(2),Ne.startNewRound()):fe.decrementTime(5))}]}return new class extends de{constructor(e){super(),ue(this,e,Pt,xt,s,{})}}({target:document.body})}();
+
+(function(l, r) { if (!l || l.getElementById('livereloadscript')) return; r = l.createElement('script'); r.async = 1; r.src = '//' + (self.location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1'; r.id = 'livereloadscript'; l.getElementsByTagName('head')[0].appendChild(r) })(self.document);
+var app = (function () {
+    'use strict';
+
+    function noop() { }
+    const identity = x => x;
+    function assign(tar, src) {
+        // @ts-ignore
+        for (const k in src)
+            tar[k] = src[k];
+        return tar;
+    }
+    function add_location(element, file, line, column, char) {
+        element.__svelte_meta = {
+            loc: { file, line, column, char }
+        };
+    }
+    function run(fn) {
+        return fn();
+    }
+    function blank_object() {
+        return Object.create(null);
+    }
+    function run_all(fns) {
+        fns.forEach(run);
+    }
+    function is_function(thing) {
+        return typeof thing === 'function';
+    }
+    function safe_not_equal(a, b) {
+        return a != a ? b == b : a !== b || ((a && typeof a === 'object') || typeof a === 'function');
+    }
+    function is_empty(obj) {
+        return Object.keys(obj).length === 0;
+    }
+    function validate_store(store, name) {
+        if (store != null && typeof store.subscribe !== 'function') {
+            throw new Error(`'${name}' is not a store with a 'subscribe' method`);
+        }
+    }
+    function subscribe(store, ...callbacks) {
+        if (store == null) {
+            return noop;
+        }
+        const unsub = store.subscribe(...callbacks);
+        return unsub.unsubscribe ? () => unsub.unsubscribe() : unsub;
+    }
+    function component_subscribe(component, store, callback) {
+        component.$$.on_destroy.push(subscribe(store, callback));
+    }
+    function create_slot(definition, ctx, $$scope, fn) {
+        if (definition) {
+            const slot_ctx = get_slot_context(definition, ctx, $$scope, fn);
+            return definition[0](slot_ctx);
+        }
+    }
+    function get_slot_context(definition, ctx, $$scope, fn) {
+        return definition[1] && fn
+            ? assign($$scope.ctx.slice(), definition[1](fn(ctx)))
+            : $$scope.ctx;
+    }
+    function get_slot_changes(definition, $$scope, dirty, fn) {
+        if (definition[2] && fn) {
+            const lets = definition[2](fn(dirty));
+            if ($$scope.dirty === undefined) {
+                return lets;
+            }
+            if (typeof lets === 'object') {
+                const merged = [];
+                const len = Math.max($$scope.dirty.length, lets.length);
+                for (let i = 0; i < len; i += 1) {
+                    merged[i] = $$scope.dirty[i] | lets[i];
+                }
+                return merged;
+            }
+            return $$scope.dirty | lets;
+        }
+        return $$scope.dirty;
+    }
+    function update_slot_base(slot, slot_definition, ctx, $$scope, slot_changes, get_slot_context_fn) {
+        if (slot_changes) {
+            const slot_context = get_slot_context(slot_definition, ctx, $$scope, get_slot_context_fn);
+            slot.p(slot_context, slot_changes);
+        }
+    }
+    function get_all_dirty_from_scope($$scope) {
+        if ($$scope.ctx.length > 32) {
+            const dirty = [];
+            const length = $$scope.ctx.length / 32;
+            for (let i = 0; i < length; i++) {
+                dirty[i] = -1;
+            }
+            return dirty;
+        }
+        return -1;
+    }
+
+    const is_client = typeof window !== 'undefined';
+    let now = is_client
+        ? () => window.performance.now()
+        : () => Date.now();
+    let raf = is_client ? cb => requestAnimationFrame(cb) : noop;
+
+    const tasks = new Set();
+    function run_tasks(now) {
+        tasks.forEach(task => {
+            if (!task.c(now)) {
+                tasks.delete(task);
+                task.f();
+            }
+        });
+        if (tasks.size !== 0)
+            raf(run_tasks);
+    }
+    /**
+     * Creates a new task that runs on each raf frame
+     * until it returns a falsy value or is aborted
+     */
+    function loop(callback) {
+        let task;
+        if (tasks.size === 0)
+            raf(run_tasks);
+        return {
+            promise: new Promise(fulfill => {
+                tasks.add(task = { c: callback, f: fulfill });
+            }),
+            abort() {
+                tasks.delete(task);
+            }
+        };
+    }
+    function append(target, node) {
+        target.appendChild(node);
+    }
+    function get_root_for_style(node) {
+        if (!node)
+            return document;
+        const root = node.getRootNode ? node.getRootNode() : node.ownerDocument;
+        if (root && root.host) {
+            return root;
+        }
+        return node.ownerDocument;
+    }
+    function append_empty_stylesheet(node) {
+        const style_element = element('style');
+        append_stylesheet(get_root_for_style(node), style_element);
+        return style_element.sheet;
+    }
+    function append_stylesheet(node, style) {
+        append(node.head || node, style);
+        return style.sheet;
+    }
+    function insert(target, node, anchor) {
+        target.insertBefore(node, anchor || null);
+    }
+    function detach(node) {
+        if (node.parentNode) {
+            node.parentNode.removeChild(node);
+        }
+    }
+    function element(name) {
+        return document.createElement(name);
+    }
+    function svg_element(name) {
+        return document.createElementNS('http://www.w3.org/2000/svg', name);
+    }
+    function text(data) {
+        return document.createTextNode(data);
+    }
+    function space() {
+        return text(' ');
+    }
+    function empty() {
+        return text('');
+    }
+    function listen(node, event, handler, options) {
+        node.addEventListener(event, handler, options);
+        return () => node.removeEventListener(event, handler, options);
+    }
+    function attr(node, attribute, value) {
+        if (value == null)
+            node.removeAttribute(attribute);
+        else if (node.getAttribute(attribute) !== value)
+            node.setAttribute(attribute, value);
+    }
+    function children(element) {
+        return Array.from(element.childNodes);
+    }
+    function toggle_class(element, name, toggle) {
+        element.classList[toggle ? 'add' : 'remove'](name);
+    }
+    function custom_event(type, detail, { bubbles = false, cancelable = false } = {}) {
+        const e = document.createEvent('CustomEvent');
+        e.initCustomEvent(type, bubbles, cancelable, detail);
+        return e;
+    }
+
+    // we need to store the information for multiple documents because a Svelte application could also contain iframes
+    // https://github.com/sveltejs/svelte/issues/3624
+    const managed_styles = new Map();
+    let active = 0;
+    // https://github.com/darkskyapp/string-hash/blob/master/index.js
+    function hash(str) {
+        let hash = 5381;
+        let i = str.length;
+        while (i--)
+            hash = ((hash << 5) - hash) ^ str.charCodeAt(i);
+        return hash >>> 0;
+    }
+    function create_style_information(doc, node) {
+        const info = { stylesheet: append_empty_stylesheet(node), rules: {} };
+        managed_styles.set(doc, info);
+        return info;
+    }
+    function create_rule(node, a, b, duration, delay, ease, fn, uid = 0) {
+        const step = 16.666 / duration;
+        let keyframes = '{\n';
+        for (let p = 0; p <= 1; p += step) {
+            const t = a + (b - a) * ease(p);
+            keyframes += p * 100 + `%{${fn(t, 1 - t)}}\n`;
+        }
+        const rule = keyframes + `100% {${fn(b, 1 - b)}}\n}`;
+        const name = `__svelte_${hash(rule)}_${uid}`;
+        const doc = get_root_for_style(node);
+        const { stylesheet, rules } = managed_styles.get(doc) || create_style_information(doc, node);
+        if (!rules[name]) {
+            rules[name] = true;
+            stylesheet.insertRule(`@keyframes ${name} ${rule}`, stylesheet.cssRules.length);
+        }
+        const animation = node.style.animation || '';
+        node.style.animation = `${animation ? `${animation}, ` : ''}${name} ${duration}ms linear ${delay}ms 1 both`;
+        active += 1;
+        return name;
+    }
+    function delete_rule(node, name) {
+        const previous = (node.style.animation || '').split(', ');
+        const next = previous.filter(name
+            ? anim => anim.indexOf(name) < 0 // remove specific animation
+            : anim => anim.indexOf('__svelte') === -1 // remove all Svelte animations
+        );
+        const deleted = previous.length - next.length;
+        if (deleted) {
+            node.style.animation = next.join(', ');
+            active -= deleted;
+            if (!active)
+                clear_rules();
+        }
+    }
+    function clear_rules() {
+        raf(() => {
+            if (active)
+                return;
+            managed_styles.forEach(info => {
+                const { ownerNode } = info.stylesheet;
+                // there is no ownerNode if it runs on jsdom.
+                if (ownerNode)
+                    detach(ownerNode);
+            });
+            managed_styles.clear();
+        });
+    }
+
+    let current_component;
+    function set_current_component(component) {
+        current_component = component;
+    }
+    function get_current_component() {
+        if (!current_component)
+            throw new Error('Function called outside component initialization');
+        return current_component;
+    }
+    /**
+     * Creates an event dispatcher that can be used to dispatch [component events](/docs#template-syntax-component-directives-on-eventname).
+     * Event dispatchers are functions that can take two arguments: `name` and `detail`.
+     *
+     * Component events created with `createEventDispatcher` create a
+     * [CustomEvent](https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent).
+     * These events do not [bubble](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events#Event_bubbling_and_capture).
+     * The `detail` argument corresponds to the [CustomEvent.detail](https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent/detail)
+     * property and can contain any type of data.
+     *
+     * https://svelte.dev/docs#run-time-svelte-createeventdispatcher
+     */
+    function createEventDispatcher() {
+        const component = get_current_component();
+        return (type, detail, { cancelable = false } = {}) => {
+            const callbacks = component.$$.callbacks[type];
+            if (callbacks) {
+                // TODO are there situations where events could be dispatched
+                // in a server (non-DOM) environment?
+                const event = custom_event(type, detail, { cancelable });
+                callbacks.slice().forEach(fn => {
+                    fn.call(component, event);
+                });
+                return !event.defaultPrevented;
+            }
+            return true;
+        };
+    }
+
+    const dirty_components = [];
+    const binding_callbacks = [];
+    const render_callbacks = [];
+    const flush_callbacks = [];
+    const resolved_promise = Promise.resolve();
+    let update_scheduled = false;
+    function schedule_update() {
+        if (!update_scheduled) {
+            update_scheduled = true;
+            resolved_promise.then(flush);
+        }
+    }
+    function add_render_callback(fn) {
+        render_callbacks.push(fn);
+    }
+    // flush() calls callbacks in this order:
+    // 1. All beforeUpdate callbacks, in order: parents before children
+    // 2. All bind:this callbacks, in reverse order: children before parents.
+    // 3. All afterUpdate callbacks, in order: parents before children. EXCEPT
+    //    for afterUpdates called during the initial onMount, which are called in
+    //    reverse order: children before parents.
+    // Since callbacks might update component values, which could trigger another
+    // call to flush(), the following steps guard against this:
+    // 1. During beforeUpdate, any updated components will be added to the
+    //    dirty_components array and will cause a reentrant call to flush(). Because
+    //    the flush index is kept outside the function, the reentrant call will pick
+    //    up where the earlier call left off and go through all dirty components. The
+    //    current_component value is saved and restored so that the reentrant call will
+    //    not interfere with the "parent" flush() call.
+    // 2. bind:this callbacks cannot trigger new flush() calls.
+    // 3. During afterUpdate, any updated components will NOT have their afterUpdate
+    //    callback called a second time; the seen_callbacks set, outside the flush()
+    //    function, guarantees this behavior.
+    const seen_callbacks = new Set();
+    let flushidx = 0; // Do *not* move this inside the flush() function
+    function flush() {
+        const saved_component = current_component;
+        do {
+            // first, call beforeUpdate functions
+            // and update components
+            while (flushidx < dirty_components.length) {
+                const component = dirty_components[flushidx];
+                flushidx++;
+                set_current_component(component);
+                update(component.$$);
+            }
+            set_current_component(null);
+            dirty_components.length = 0;
+            flushidx = 0;
+            while (binding_callbacks.length)
+                binding_callbacks.pop()();
+            // then, once components are updated, call
+            // afterUpdate functions. This may cause
+            // subsequent updates...
+            for (let i = 0; i < render_callbacks.length; i += 1) {
+                const callback = render_callbacks[i];
+                if (!seen_callbacks.has(callback)) {
+                    // ...so guard against infinite loops
+                    seen_callbacks.add(callback);
+                    callback();
+                }
+            }
+            render_callbacks.length = 0;
+        } while (dirty_components.length);
+        while (flush_callbacks.length) {
+            flush_callbacks.pop()();
+        }
+        update_scheduled = false;
+        seen_callbacks.clear();
+        set_current_component(saved_component);
+    }
+    function update($$) {
+        if ($$.fragment !== null) {
+            $$.update();
+            run_all($$.before_update);
+            const dirty = $$.dirty;
+            $$.dirty = [-1];
+            $$.fragment && $$.fragment.p($$.ctx, dirty);
+            $$.after_update.forEach(add_render_callback);
+        }
+    }
+
+    let promise;
+    function wait() {
+        if (!promise) {
+            promise = Promise.resolve();
+            promise.then(() => {
+                promise = null;
+            });
+        }
+        return promise;
+    }
+    function dispatch(node, direction, kind) {
+        node.dispatchEvent(custom_event(`${direction ? 'intro' : 'outro'}${kind}`));
+    }
+    const outroing = new Set();
+    let outros;
+    function group_outros() {
+        outros = {
+            r: 0,
+            c: [],
+            p: outros // parent group
+        };
+    }
+    function check_outros() {
+        if (!outros.r) {
+            run_all(outros.c);
+        }
+        outros = outros.p;
+    }
+    function transition_in(block, local) {
+        if (block && block.i) {
+            outroing.delete(block);
+            block.i(local);
+        }
+    }
+    function transition_out(block, local, detach, callback) {
+        if (block && block.o) {
+            if (outroing.has(block))
+                return;
+            outroing.add(block);
+            outros.c.push(() => {
+                outroing.delete(block);
+                if (callback) {
+                    if (detach)
+                        block.d(1);
+                    callback();
+                }
+            });
+            block.o(local);
+        }
+        else if (callback) {
+            callback();
+        }
+    }
+    const null_transition = { duration: 0 };
+    function create_bidirectional_transition(node, fn, params, intro) {
+        let config = fn(node, params);
+        let t = intro ? 0 : 1;
+        let running_program = null;
+        let pending_program = null;
+        let animation_name = null;
+        function clear_animation() {
+            if (animation_name)
+                delete_rule(node, animation_name);
+        }
+        function init(program, duration) {
+            const d = (program.b - t);
+            duration *= Math.abs(d);
+            return {
+                a: t,
+                b: program.b,
+                d,
+                duration,
+                start: program.start,
+                end: program.start + duration,
+                group: program.group
+            };
+        }
+        function go(b) {
+            const { delay = 0, duration = 300, easing = identity, tick = noop, css } = config || null_transition;
+            const program = {
+                start: now() + delay,
+                b
+            };
+            if (!b) {
+                // @ts-ignore todo: improve typings
+                program.group = outros;
+                outros.r += 1;
+            }
+            if (running_program || pending_program) {
+                pending_program = program;
+            }
+            else {
+                // if this is an intro, and there's a delay, we need to do
+                // an initial tick and/or apply CSS animation immediately
+                if (css) {
+                    clear_animation();
+                    animation_name = create_rule(node, t, b, duration, delay, easing, css);
+                }
+                if (b)
+                    tick(0, 1);
+                running_program = init(program, duration);
+                add_render_callback(() => dispatch(node, b, 'start'));
+                loop(now => {
+                    if (pending_program && now > pending_program.start) {
+                        running_program = init(pending_program, duration);
+                        pending_program = null;
+                        dispatch(node, running_program.b, 'start');
+                        if (css) {
+                            clear_animation();
+                            animation_name = create_rule(node, t, running_program.b, running_program.duration, 0, easing, config.css);
+                        }
+                    }
+                    if (running_program) {
+                        if (now >= running_program.end) {
+                            tick(t = running_program.b, 1 - t);
+                            dispatch(node, running_program.b, 'end');
+                            if (!pending_program) {
+                                // we're done
+                                if (running_program.b) {
+                                    // intro — we can tidy up immediately
+                                    clear_animation();
+                                }
+                                else {
+                                    // outro — needs to be coordinated
+                                    if (!--running_program.group.r)
+                                        run_all(running_program.group.c);
+                                }
+                            }
+                            running_program = null;
+                        }
+                        else if (now >= running_program.start) {
+                            const p = now - running_program.start;
+                            t = running_program.a + running_program.d * easing(p / running_program.duration);
+                            tick(t, 1 - t);
+                        }
+                    }
+                    return !!(running_program || pending_program);
+                });
+            }
+        }
+        return {
+            run(b) {
+                if (is_function(config)) {
+                    wait().then(() => {
+                        // @ts-ignore
+                        config = config();
+                        go(b);
+                    });
+                }
+                else {
+                    go(b);
+                }
+            },
+            end() {
+                clear_animation();
+                running_program = pending_program = null;
+            }
+        };
+    }
+
+    const globals = (typeof window !== 'undefined'
+        ? window
+        : typeof globalThis !== 'undefined'
+            ? globalThis
+            : global);
+
+    function destroy_block(block, lookup) {
+        block.d(1);
+        lookup.delete(block.key);
+    }
+    function outro_and_destroy_block(block, lookup) {
+        transition_out(block, 1, 1, () => {
+            lookup.delete(block.key);
+        });
+    }
+    function update_keyed_each(old_blocks, dirty, get_key, dynamic, ctx, list, lookup, node, destroy, create_each_block, next, get_context) {
+        let o = old_blocks.length;
+        let n = list.length;
+        let i = o;
+        const old_indexes = {};
+        while (i--)
+            old_indexes[old_blocks[i].key] = i;
+        const new_blocks = [];
+        const new_lookup = new Map();
+        const deltas = new Map();
+        i = n;
+        while (i--) {
+            const child_ctx = get_context(ctx, list, i);
+            const key = get_key(child_ctx);
+            let block = lookup.get(key);
+            if (!block) {
+                block = create_each_block(key, child_ctx);
+                block.c();
+            }
+            else if (dynamic) {
+                block.p(child_ctx, dirty);
+            }
+            new_lookup.set(key, new_blocks[i] = block);
+            if (key in old_indexes)
+                deltas.set(key, Math.abs(i - old_indexes[key]));
+        }
+        const will_move = new Set();
+        const did_move = new Set();
+        function insert(block) {
+            transition_in(block, 1);
+            block.m(node, next);
+            lookup.set(block.key, block);
+            next = block.first;
+            n--;
+        }
+        while (o && n) {
+            const new_block = new_blocks[n - 1];
+            const old_block = old_blocks[o - 1];
+            const new_key = new_block.key;
+            const old_key = old_block.key;
+            if (new_block === old_block) {
+                // do nothing
+                next = new_block.first;
+                o--;
+                n--;
+            }
+            else if (!new_lookup.has(old_key)) {
+                // remove old block
+                destroy(old_block, lookup);
+                o--;
+            }
+            else if (!lookup.has(new_key) || will_move.has(new_key)) {
+                insert(new_block);
+            }
+            else if (did_move.has(old_key)) {
+                o--;
+            }
+            else if (deltas.get(new_key) > deltas.get(old_key)) {
+                did_move.add(new_key);
+                insert(new_block);
+            }
+            else {
+                will_move.add(old_key);
+                o--;
+            }
+        }
+        while (o--) {
+            const old_block = old_blocks[o];
+            if (!new_lookup.has(old_block.key))
+                destroy(old_block, lookup);
+        }
+        while (n)
+            insert(new_blocks[n - 1]);
+        return new_blocks;
+    }
+    function validate_each_keys(ctx, list, get_context, get_key) {
+        const keys = new Set();
+        for (let i = 0; i < list.length; i++) {
+            const key = get_key(get_context(ctx, list, i));
+            if (keys.has(key)) {
+                throw new Error('Cannot have duplicate keys in a keyed each');
+            }
+            keys.add(key);
+        }
+    }
+    function create_component(block) {
+        block && block.c();
+    }
+    function mount_component(component, target, anchor, customElement) {
+        const { fragment, after_update } = component.$$;
+        fragment && fragment.m(target, anchor);
+        if (!customElement) {
+            // onMount happens before the initial afterUpdate
+            add_render_callback(() => {
+                const new_on_destroy = component.$$.on_mount.map(run).filter(is_function);
+                // if the component was destroyed immediately
+                // it will update the `$$.on_destroy` reference to `null`.
+                // the destructured on_destroy may still reference to the old array
+                if (component.$$.on_destroy) {
+                    component.$$.on_destroy.push(...new_on_destroy);
+                }
+                else {
+                    // Edge case - component was destroyed immediately,
+                    // most likely as a result of a binding initialising
+                    run_all(new_on_destroy);
+                }
+                component.$$.on_mount = [];
+            });
+        }
+        after_update.forEach(add_render_callback);
+    }
+    function destroy_component(component, detaching) {
+        const $$ = component.$$;
+        if ($$.fragment !== null) {
+            run_all($$.on_destroy);
+            $$.fragment && $$.fragment.d(detaching);
+            // TODO null out other refs, including component.$$ (but need to
+            // preserve final state?)
+            $$.on_destroy = $$.fragment = null;
+            $$.ctx = [];
+        }
+    }
+    function make_dirty(component, i) {
+        if (component.$$.dirty[0] === -1) {
+            dirty_components.push(component);
+            schedule_update();
+            component.$$.dirty.fill(0);
+        }
+        component.$$.dirty[(i / 31) | 0] |= (1 << (i % 31));
+    }
+    function init(component, options, instance, create_fragment, not_equal, props, append_styles, dirty = [-1]) {
+        const parent_component = current_component;
+        set_current_component(component);
+        const $$ = component.$$ = {
+            fragment: null,
+            ctx: [],
+            // state
+            props,
+            update: noop,
+            not_equal,
+            bound: blank_object(),
+            // lifecycle
+            on_mount: [],
+            on_destroy: [],
+            on_disconnect: [],
+            before_update: [],
+            after_update: [],
+            context: new Map(options.context || (parent_component ? parent_component.$$.context : [])),
+            // everything else
+            callbacks: blank_object(),
+            dirty,
+            skip_bound: false,
+            root: options.target || parent_component.$$.root
+        };
+        append_styles && append_styles($$.root);
+        let ready = false;
+        $$.ctx = instance
+            ? instance(component, options.props || {}, (i, ret, ...rest) => {
+                const value = rest.length ? rest[0] : ret;
+                if ($$.ctx && not_equal($$.ctx[i], $$.ctx[i] = value)) {
+                    if (!$$.skip_bound && $$.bound[i])
+                        $$.bound[i](value);
+                    if (ready)
+                        make_dirty(component, i);
+                }
+                return ret;
+            })
+            : [];
+        $$.update();
+        ready = true;
+        run_all($$.before_update);
+        // `false` as a special case of no DOM component
+        $$.fragment = create_fragment ? create_fragment($$.ctx) : false;
+        if (options.target) {
+            if (options.hydrate) {
+                const nodes = children(options.target);
+                // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+                $$.fragment && $$.fragment.l(nodes);
+                nodes.forEach(detach);
+            }
+            else {
+                // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+                $$.fragment && $$.fragment.c();
+            }
+            if (options.intro)
+                transition_in(component.$$.fragment);
+            mount_component(component, options.target, options.anchor, options.customElement);
+            flush();
+        }
+        set_current_component(parent_component);
+    }
+    /**
+     * Base class for Svelte components. Used when dev=false.
+     */
+    class SvelteComponent {
+        $destroy() {
+            destroy_component(this, 1);
+            this.$destroy = noop;
+        }
+        $on(type, callback) {
+            if (!is_function(callback)) {
+                return noop;
+            }
+            const callbacks = (this.$$.callbacks[type] || (this.$$.callbacks[type] = []));
+            callbacks.push(callback);
+            return () => {
+                const index = callbacks.indexOf(callback);
+                if (index !== -1)
+                    callbacks.splice(index, 1);
+            };
+        }
+        $set($$props) {
+            if (this.$$set && !is_empty($$props)) {
+                this.$$.skip_bound = true;
+                this.$$set($$props);
+                this.$$.skip_bound = false;
+            }
+        }
+    }
+
+    function dispatch_dev(type, detail) {
+        document.dispatchEvent(custom_event(type, Object.assign({ version: '3.53.0' }, detail), { bubbles: true }));
+    }
+    function append_dev(target, node) {
+        dispatch_dev('SvelteDOMInsert', { target, node });
+        append(target, node);
+    }
+    function insert_dev(target, node, anchor) {
+        dispatch_dev('SvelteDOMInsert', { target, node, anchor });
+        insert(target, node, anchor);
+    }
+    function detach_dev(node) {
+        dispatch_dev('SvelteDOMRemove', { node });
+        detach(node);
+    }
+    function listen_dev(node, event, handler, options, has_prevent_default, has_stop_propagation) {
+        const modifiers = options === true ? ['capture'] : options ? Array.from(Object.keys(options)) : [];
+        if (has_prevent_default)
+            modifiers.push('preventDefault');
+        if (has_stop_propagation)
+            modifiers.push('stopPropagation');
+        dispatch_dev('SvelteDOMAddEventListener', { node, event, handler, modifiers });
+        const dispose = listen(node, event, handler, options);
+        return () => {
+            dispatch_dev('SvelteDOMRemoveEventListener', { node, event, handler, modifiers });
+            dispose();
+        };
+    }
+    function attr_dev(node, attribute, value) {
+        attr(node, attribute, value);
+        if (value == null)
+            dispatch_dev('SvelteDOMRemoveAttribute', { node, attribute });
+        else
+            dispatch_dev('SvelteDOMSetAttribute', { node, attribute, value });
+    }
+    function set_data_dev(text, data) {
+        data = '' + data;
+        if (text.wholeText === data)
+            return;
+        dispatch_dev('SvelteDOMSetData', { node: text, data });
+        text.data = data;
+    }
+    function validate_each_argument(arg) {
+        if (typeof arg !== 'string' && !(arg && typeof arg === 'object' && 'length' in arg)) {
+            let msg = '{#each} only iterates over array-like objects.';
+            if (typeof Symbol === 'function' && arg && Symbol.iterator in arg) {
+                msg += ' You can use a spread to convert this iterable into an array.';
+            }
+            throw new Error(msg);
+        }
+    }
+    function validate_slots(name, slot, keys) {
+        for (const slot_key of Object.keys(slot)) {
+            if (!~keys.indexOf(slot_key)) {
+                console.warn(`<${name}> received an unexpected slot "${slot_key}".`);
+            }
+        }
+    }
+    /**
+     * Base class for Svelte components with some minor dev-enhancements. Used when dev=true.
+     */
+    class SvelteComponentDev extends SvelteComponent {
+        constructor(options) {
+            if (!options || (!options.target && !options.$$inline)) {
+                throw new Error("'target' is a required option");
+            }
+            super();
+        }
+        $destroy() {
+            super.$destroy();
+            this.$destroy = () => {
+                console.warn('Component was already destroyed'); // eslint-disable-line no-console
+            };
+        }
+        $capture_state() { }
+        $inject_state() { }
+    }
+
+    const subscriber_queue = [];
+    /**
+     * Creates a `Readable` store that allows reading by subscription.
+     * @param value initial value
+     * @param {StartStopNotifier}start start and stop notifications for subscriptions
+     */
+    function readable(value, start) {
+        return {
+            subscribe: writable(value, start).subscribe
+        };
+    }
+    /**
+     * Create a `Writable` store that allows both updating and reading by subscription.
+     * @param {*=}value initial value
+     * @param {StartStopNotifier=}start start and stop notifications for subscriptions
+     */
+    function writable(value, start = noop) {
+        let stop;
+        const subscribers = new Set();
+        function set(new_value) {
+            if (safe_not_equal(value, new_value)) {
+                value = new_value;
+                if (stop) { // store is ready
+                    const run_queue = !subscriber_queue.length;
+                    for (const subscriber of subscribers) {
+                        subscriber[1]();
+                        subscriber_queue.push(subscriber, value);
+                    }
+                    if (run_queue) {
+                        for (let i = 0; i < subscriber_queue.length; i += 2) {
+                            subscriber_queue[i][0](subscriber_queue[i + 1]);
+                        }
+                        subscriber_queue.length = 0;
+                    }
+                }
+            }
+        }
+        function update(fn) {
+            set(fn(value));
+        }
+        function subscribe(run, invalidate = noop) {
+            const subscriber = [run, invalidate];
+            subscribers.add(subscriber);
+            if (subscribers.size === 1) {
+                stop = start(set) || noop;
+            }
+            run(value);
+            return () => {
+                subscribers.delete(subscriber);
+                if (subscribers.size === 0) {
+                    stop();
+                    stop = null;
+                }
+            };
+        }
+        return { set, update, subscribe };
+    }
+
+    function createTimer() {
+
+        const timer = writable({
+            initialTime: 30,
+            score: 0,
+            highScore: 10,
+            remainingTime: 30,
+            remainingPercent: 100,
+            timerHasBeenSet: false,
+            timerActive: false,
+            updateRemainingPercent() {
+                this.remainingPercent = Math.round(this.remainingTime/this.initialTime*100);
+            },
+            resetScore() {
+                this.score = 0;
+            },
+            resetTime() {
+                this.remainingTime = this.initialTime;
+                this.updateRemainingPercent();
+            }
+        });
+
+    	return {
+            subscribe: timer.subscribe,
+            setTimerActive: () => timer.update(o => {
+                o.timerActive = true;
+                return o;
+            }),
+            setTimerInactive: () => timer.update(o => {
+                o.timerActive = false;
+                return o;
+            }),
+            setInitialTime: (initialTime) => timer.update(o => {
+                o.initialTime = initialTime;
+                o.remainingTime = initialTime;
+                return o;
+            }),
+    		incrementTime: (delta) => timer.update(o => {
+                o.remainingTime = o.remainingTime + delta;
+                o.updateRemainingPercent();
+                return o;
+            }),
+            decrementTime: (delta) => timer.update(o => {
+                o.remainingTime = o.remainingTime - delta;
+                o.updateRemainingPercent();
+                return o;
+            }),
+            resetGame: () => timer.update(o => {
+                o.resetScore();
+                o.resetTime();
+                return o;
+            }),
+            increaseScore: (delta) => timer.update(o => {
+                o.score = o.score + delta;
+                return o;
+            }),
+            setHighscore: (score) => timer.update(o => {
+                o.highScore = score;
+                return o;
+            })
+    	};
+    }
+
+    const gameTimer = createTimer();
+
+    /* src\TimerBar.svelte generated by Svelte v3.53.0 */
+    const file$9 = "src\\TimerBar.svelte";
+
+    function create_fragment$a(ctx) {
+    	let div1;
+    	let div0;
+
+    	const block = {
+    		c: function create() {
+    			div1 = element("div");
+    			div0 = element("div");
+    			attr_dev(div0, "class", "timerBar svelte-1wamyou");
+    			add_location(div0, file$9, 28, 2, 929);
+    			attr_dev(div1, "class", "timerBarWrapper svelte-1wamyou");
+    			attr_dev(div1, "style", /*timerBarStyle*/ ctx[0]);
+    			add_location(div1, file$9, 27, 0, 874);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div1, anchor);
+    			append_dev(div1, div0);
+    		},
+    		p: function update(ctx, [dirty]) {
+    			if (dirty & /*timerBarStyle*/ 1) {
+    				attr_dev(div1, "style", /*timerBarStyle*/ ctx[0]);
+    			}
+    		},
+    		i: noop,
+    		o: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div1);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment$a.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function instance$a($$self, $$props, $$invalidate) {
+    	let timerBarStyle;
+    	let $gameTimer;
+    	validate_store(gameTimer, 'gameTimer');
+    	component_subscribe($$self, gameTimer, $$value => $$invalidate(2, $gameTimer = $$value));
+    	let { $$slots: slots = {}, $$scope } = $$props;
+    	validate_slots('TimerBar', slots, []);
+    	let timerBarColorList = ['green', 'orange', 'red'];
+    	let timerBarColor = timerBarColorList[0];
+    	let greenPercentage = 50;
+    	let orangePercentage = 10;
+    	const writable_props = [];
+
+    	Object.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== '$$' && key !== 'slot') console.warn(`<TimerBar> was created with unknown prop '${key}'`);
+    	});
+
+    	$$self.$capture_state = () => ({
+    		gameTimer,
+    		timerBarColorList,
+    		timerBarColor,
+    		greenPercentage,
+    		orangePercentage,
+    		timerBarStyle,
+    		$gameTimer
+    	});
+
+    	$$self.$inject_state = $$props => {
+    		if ('timerBarColorList' in $$props) $$invalidate(3, timerBarColorList = $$props.timerBarColorList);
+    		if ('timerBarColor' in $$props) $$invalidate(1, timerBarColor = $$props.timerBarColor);
+    		if ('greenPercentage' in $$props) $$invalidate(4, greenPercentage = $$props.greenPercentage);
+    		if ('orangePercentage' in $$props) $$invalidate(5, orangePercentage = $$props.orangePercentage);
+    		if ('timerBarStyle' in $$props) $$invalidate(0, timerBarStyle = $$props.timerBarStyle);
+    	};
+
+    	if ($$props && "$$inject" in $$props) {
+    		$$self.$inject_state($$props.$$inject);
+    	}
+
+    	$$self.$$.update = () => {
+    		if ($$self.$$.dirty & /*$gameTimer, timerBarColor*/ 6) {
+    			if ($gameTimer.remainingPercent >= greenPercentage && timerBarColor !== timerBarColorList[0]) {
+    				$$invalidate(1, timerBarColor = timerBarColorList[0]);
+    			} else if ($gameTimer.remainingPercent < greenPercentage && timerBarColor !== timerBarColorList[1]) {
+    				$$invalidate(1, timerBarColor = timerBarColorList[1]);
+    			} else if ($gameTimer.remainingPercent < orangePercentage && timerBarColor !== timerBarColorList[2]) {
+    				$$invalidate(1, timerBarColor = timerBarColorList[2]);
+    			}
+    		}
+
+    		if ($$self.$$.dirty & /*$gameTimer, timerBarColor*/ 6) {
+    			$$invalidate(0, timerBarStyle = `--width: ${$gameTimer.remainingPercent}%; --background-color: ${timerBarColor}`);
+    		}
+    	};
+
+    	return [timerBarStyle, timerBarColor, $gameTimer];
+    }
+
+    class TimerBar extends SvelteComponentDev {
+    	constructor(options) {
+    		super(options);
+    		init(this, options, instance$a, create_fragment$a, safe_not_equal, {});
+
+    		dispatch_dev("SvelteRegisterComponent", {
+    			component: this,
+    			tagName: "TimerBar",
+    			options,
+    			id: create_fragment$a.name
+    		});
+    	}
+    }
+
+    const skinPalette = [
+      //from https://huebliss.com/skin-color-code/
+      {
+        name: 'Brown',
+        hex: '8d5524',
+        rgb: [141, 85, 36],
+        cmyk: [0, 40, 74, 45],
+        hsb: [28, 74, 55],
+        hsl: [28, 59, 35],
+        lab: [42, 19, 37],
+      },
+      {
+        name: 'Bronze',
+        hex: 'c68642',
+        rgb: [198, 134, 66],
+        cmyk: [0, 32, 67, 22],
+        hsb: [31, 67, 78],
+        hsl: [31, 54, 52],
+        lab: [61, 18, 46],
+      },
+      {
+        name: 'Earth Yellow',
+        hex: 'e0ac69',
+        rgb: [224, 172, 105],
+        cmyk: [0, 23, 53, 12],
+        hsb: [34, 53, 88],
+        hsl: [34, 66, 65],
+        lab: [74, 11, 42],
+      },
+      {
+        name: 'Gold Crayola',
+        hex: 'f1c27d',
+        rgb: [241, 194, 125],
+        cmyk: [0, 20, 48, 5],
+        hsb: [36, 48, 95],
+        hsl: [36, 81, 72],
+        lab: [81, 8, 41],
+      },
+      {
+        name: 'Deep Champagne',
+        hex: 'ffdbac',
+        rgb: [255, 219, 172],
+        cmyk: [0, 14, 33, 0],
+        hsb: [34, 33, 100],
+        hsl: [34, 100, 84],
+        lab: [89, 6, 28],
+      },
+    ];
+
+    const femaleNames = [
+      'Anibrev',
+      'Bakinaw',
+      'Calibrew',
+      'Deknure',
+      'Elimoore',
+      'Farigraph',
+      'Ge',
+      'Hanifred',
+      'Indigo',
+      'Jerepass',
+      'Kekanumatonadoe',
+      'Lilu',
+      'Mavito',
+      'Neen',
+      'Oi',
+      'Prespinta',
+      'Q',
+      'Reshira',
+      'Sariphone',
+      'Tavisha',
+      'Umpturmass',
+      'Variphore',
+      'Wiltmoore',
+      'Xythe',
+      'Yershig',
+      'Zashima',
+    ];
+
+    const maleNames = [
+      'Adrik',
+      'Baboi',
+      'Cra',
+      'Dartrik',
+      'Edgrene',
+      'Ferdinhand',
+      'Greaseinhamworth',
+      'Hue',
+      'Intison',
+      'Jurst',
+      'Kwekrish',
+      'Limast',
+      'Markwin',
+      'Nerdinand',
+      'Ogredin',
+      'Petegrismik',
+      'Questbrink',
+      'Rhestoromor',
+      'Stagrtire',
+      'Tiv',
+      'U',
+      'Valdo',
+      'Workwillmingtonham',
+      'Xyther',
+      'Yassy',
+      'Zeriford',
+    ];
+
+    const lastNames = [
+      'Acre',
+      'Adathming',
+      'Brinkbronk',
+      'Bro',
+      'Cascade',
+      'Crustler',
+      'Dynamrick',
+      'Dustoshelf',
+      'Elison',
+      'Eghsk',
+      'Fsark',
+      'Fi',
+      'Gershandermind',
+      'Grint',
+      'Hinkminghan',
+      'Hunkertonmore',
+      'I',
+      'Ishmihash',
+      'Jrush',
+      'Jergo',
+      'Klimpkly',
+      'Ktuse',
+      'Lalilome',
+      'Lwaliluke',
+      'Madders',
+      'Mintma',
+      'Naftorafti',
+      'Nertmew',
+      'Oithyou',
+      'Ohgruq',
+      'Pepp',
+      'Poi',
+      'Qwertikeytab',
+      'Quibsta',
+      'Rickruck',
+      'Rhy',
+      'Salvisious',
+      'Slide',
+      'Tumpterton',
+      'To',
+      'Udgee',
+      'Uthergriv',
+      'Valdo',
+      'Vestiz',
+      'Westoip',
+      'Wringrij',
+      'XL',
+      'Xerximars',
+      'Yashrima',
+      'Yupe',
+      'Zawkimoh',
+      'Zcrievklmas',
+    ];
+
+    const greetings = [
+      'Hey',
+      'Heru',
+      'Yersh',
+      'Yupsle',
+      'Ye-Yers',
+      'Heha',
+      'Yo',
+      'Hi',
+      'Sup',
+      "So'up",
+      'Wa-hey',
+      'Ye bop',
+      'Greetings',
+      "Y'all",
+      'Hio',
+      'Wowa',
+    ];
+
+    const correctResponses = [
+      'You got me!',
+      'Here I am!',
+      'What a find!',
+      'I thought I was gonna get you on that one',
+      "How'd you know it was me?",
+      'No hiding the wool over your eyes',
+      'That hiding spot usually works',
+      'Good eye!',
+      'Looks like you can still see the trees in the forest',
+      "Are you sure I'm the one? ... Yeah it's me",
+      'Do you have time to find another?',
+      "I knew I should've picked a different spot!",
+      'Aww Rat-paste! You win!',
+      "I think I'll use my invisibility cloak next time",
+      'Wait, you got me already?',
+      'It takes two to tango but just you to find me',
+      "Okay, I'm the one",
+      "Yep, it's me!",
+      'Uh-huh, pat yourself on the back',
+      "Correct, but don't get too full of yourself",
+      'The next one will be more difficult!',
+    ];
+
+    const incorrectResponses = [
+      'Not today',
+      "You best be tryin' again",
+      "I don't look anything like them!",
+      'Negative, nope, nada!',
+      "I'm trying to read over here!",
+      "I'd ask you to help find my phone, but I think I need someone a little bit more skilled in the finding arena",
+      'Haha, nope!',
+      'Try again friend!',
+      'Was that your final answer?',
+      'Maybe next time',
+      "Don't quit your day job - or night if you've got that shift",
+      "I'm flattered you confused me with the real Valdo",
+      'You fell for my clever disguise! Try again!',
+      "You're still it!",
+      'Keep trying',
+      'Pick another',
+      'Have you seen my wallet?',
+      'Are you the one who took my ice cream?',
+      'The longer I look at the sun, the darker everything gets',
+      'Sorry, I was day dreaming - try again',
+      'I think they got it wrong, try me again!',
+      'Ewww! When was the last time you washed your hands?',
+      "Here's some more points - wait, nevermind",
+      "The timer's gonna keep ticking!",
+      'That tickled! No points for you!',
+      'Nope',
+      'Zilch',
+      'Nada',
+      'Nuh-uh',
+      'No no no no',
+      'Not me!',
+      'Nopers',
+      'Negatory',
+      'Sorry, wrong one!',
+      "I hate to disappoint you, but I'm not who you're looking for",
+      'Noooooooope!',
+      'Nah no Nah Nah!',
+      'Um... no',
+      'What day is it?',
+      'Are you allergic to incorrect answers?',
+      'Not a perfect score for you, but you can try again',
+    ];
+
+    function getRandomValdoList() {
+      //loosely randomizes names, greetings, and responses
+      let shuffledFemaleNames = femaleNames.slice().sort(() => Math.random() - 0.5);
+      let shuffledMaleNames = maleNames.slice().sort(() => Math.random() - 0.5);
+      let shuffledLastNames = lastNames.slice().sort(() => Math.random() - 0.5);
+      let shuffledGreetings = greetings.slice().sort(() => Math.random() - 0.5);
+      let shuffledCorrectResponses = correctResponses
+        .slice()
+        .sort(() => Math.random() - 0.5);
+      let shuffledIncorrectResponses = incorrectResponses
+        .slice()
+        .sort(() => Math.random() - 0.5);
+
+      let femaleList = shuffledFemaleNames.map((name, i) => {
+        let femaleValdo = {
+          firstName: name,
+          lastName: shuffledLastNames[i],
+          greeting: shuffledGreetings[i % shuffledGreetings.length],
+          fullName: `${name} ${shuffledLastNames[i]}`,
+          gender: 'female',
+          correctResponse:
+            shuffledCorrectResponses[i % shuffledCorrectResponses.length],
+          incorrectResponse:
+            shuffledIncorrectResponses[i % shuffledIncorrectResponses.length],
+          skinTone: '#' + skinPalette[i % skinPalette.length].hex,
+        };
+
+        return femaleValdo;
+      });
+
+      let maleList = shuffledMaleNames.map((name, i) => {
+        let maleValdo = {
+          firstName: name,
+          lastName: shuffledLastNames[i],
+          greeting: shuffledGreetings[i % shuffledGreetings.length],
+          fullName: `${name} ${shuffledLastNames[i]}`,
+          gender: 'male',
+          correctResponse:
+            shuffledCorrectResponses[i % shuffledCorrectResponses.length],
+          incorrectResponse:
+            shuffledIncorrectResponses[i % shuffledIncorrectResponses.length],
+          skinTone: '#' + skinPalette[i % skinPalette.length].hex,
+        };
+
+        return maleValdo;
+      });
+
+      let randomList = [...femaleList, ...maleList].sort(() => Math.random - 0.5);
+
+      return randomList;
+    }
+
+    let valdoList = getRandomValdoList();
+
+    function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            const temp = array[i];
+            array[i] = array[j];
+            array[j] = temp;
+        }
+        return array;
+    }
+
+    function createValdoStore() {
+
+        const valdoStore = writable({
+            totalValdoList: valdoList,
+            netValdoList: valdoList,
+            activeValdo: {},
+            displayedValdos: [],
+            minDisplayedValdoNumber: 4,
+            foundValdos: [],
+            activatedGame: false,
+            shuffleNetValdoList() {
+                let shuffledNetValdoList = shuffleArray(this.netValdoList.slice());
+                this.netValdoList = shuffledNetValdoList;
+            },
+            setActiveValdo() {
+                //pick a random Valdo from the displayed to be the active/searched for Valdo
+                this.activeValdo = this.displayedValdos[Math.floor(Math.random()*this.displayedValdos.length)];
+            },
+            setDisplayedValdos() {
+                //shuffle netValdoList and reset the displayed and active Valdos
+                this.shuffleNetValdoList();
+                let newDisplayedValdos = this.netValdoList.slice(0, 2*this.foundValdos.length + this.minDisplayedValdoNumber);
+                this.displayedValdos = newDisplayedValdos;
+                this.setActiveValdo();
+            },
+            addFoundValdo() {
+                //find and remove found Valdo from netList to prevent duplicates
+                let activeIndex = this.netValdoList.findIndex(valdo => valdo.fullName === this.activeValdo.fullName);
+                if (activeIndex !== -1) {
+                    let foundValdo = this.netValdoList.splice(activeIndex, 1);
+                    this.foundValdos = [...this.foundValdos, foundValdo];
+                    this.setDisplayedValdos();
+                    return
+                }
+                console.log(this.activeValdo, activeIndex);
+            },
+        });
+
+        return {
+            subscribe: valdoStore.subscribe,
+            startNewGame: () => valdoStore.update(o => {
+                o.activatedGame = true;
+                o.foundValdos.length = 0;
+                o.setDisplayedValdos();
+                console.log(o);
+                return o;
+            }),
+            startNewRound: () => valdoStore.update(o => {
+                o.addFoundValdo();
+                return o;
+            }),
+            finishGame: () => valdoStore.update(o => {
+                o.activatedGame = false;
+                o.totalValdoList = getRandomValdoList();
+                o.netValdoList = o.totalValdoList;
+                return o;
+            })
+
+        }
+    }
+
+    const valdoStore = createValdoStore();
+
+    function cubicOut(t) {
+        const f = t - 1.0;
+        return f * f * f + 1.0;
+    }
+
+    function fade(node, { delay = 0, duration = 400, easing = identity } = {}) {
+        const o = +getComputedStyle(node).opacity;
+        return {
+            delay,
+            duration,
+            easing,
+            css: t => `opacity: ${t * o}`
+        };
+    }
+    function fly(node, { delay = 0, duration = 400, easing = cubicOut, x = 0, y = 0, opacity = 0 } = {}) {
+        const style = getComputedStyle(node);
+        const target_opacity = +style.opacity;
+        const transform = style.transform === 'none' ? '' : style.transform;
+        const od = target_opacity * (1 - opacity);
+        return {
+            delay,
+            duration,
+            easing,
+            css: (t, u) => `
+			transform: ${transform} translate(${(1 - t) * x}px, ${(1 - t) * y}px);
+			opacity: ${target_opacity - (od * u)}`
+        };
+    }
+
+    function getPointDist(point1, point2) {
+      return Math.sqrt(
+        Math.pow(point1.x - point2.x, 2) + Math.pow(point1.y - point2.y, 2)
+      );
+    }
+
+    //receives two points and returns the distances between them broken into x-y components
+    function getPointDeltaAngle(startPoint, endPoint) {
+      let {x:startX, y:startY} = startPoint;
+      let {x:endX, y:endY} = endPoint;
+      let deltaX = endX - startX;
+      let deltaY = endY - startY;
+      let angleToHoriz = Math.atan(deltaY / deltaX);
+      let pointDeltas = {
+        x: endX - startX,
+        y: endY - startY,
+        angleToHoriz: angleToHoriz
+      };
+      return pointDeltas;
+    }
+
+    let colorList = [
+      {
+        name: 'Vivid Sky Blue',
+        hex: '5ad2f4',
+        rgb: [90, 210, 244],
+        cmyk: [63, 14, 0, 4],
+        hsb: [193, 63, 96],
+        hsl: [193, 88, 65],
+        lab: [79, -24, -27],
+      },
+      {
+        name: 'Rebecca Purple',
+        hex: '6e2594',
+        rgb: [110, 37, 148],
+        cmyk: [26, 75, 0, 42],
+        hsb: [279, 75, 58],
+        hsl: [279, 60, 36],
+        lab: [31, 50, -47],
+      },
+      {
+        name: 'Minion Yellow',
+        hex: 'ecd444',
+        rgb: [236, 212, 68],
+        cmyk: [0, 10, 71, 7],
+        hsb: [51, 71, 93],
+        hsl: [51, 82, 60],
+        lab: [85, -7, 70],
+      },
+      {
+        name: 'Blue Crayola',
+        hex: '2176ff',
+        rgb: [33, 118, 255],
+        cmyk: [87, 54, 0, 0],
+        hsb: [217, 87, 100],
+        hsl: [217, 100, 56],
+        lab: [52, 26, -75],
+      },
+      {
+        name: 'Brick Red',
+        hex: 'd1495b',
+        rgb: [209, 73, 91],
+        cmyk: [0, 65, 56, 18],
+        hsb: [352, 65, 82],
+        hsl: [352, 60, 55],
+        lab: [51, 55, 19],
+      },
+      {
+        name: 'Asparagus',
+        hex: '87a878',
+        rgb: [135, 168, 120],
+        cmyk: [20, 0, 29, 34],
+        hsb: [101, 29, 66],
+        hsl: [101, 22, 56],
+        lab: [65, -20, 21],
+      },
+      {
+        name: 'Onyx',
+        hex: '32373b',
+        rgb: [50, 55, 59],
+        cmyk: [15, 7, 0, 77],
+        hsb: [207, 15, 23],
+        hsl: [207, 8, 21],
+        lab: [23, -1, -3],
+      },
+      {
+        name: 'Tea Green',
+        hex: 'dbf9b8',
+        rgb: [219, 249, 184],
+        cmyk: [12, 0, 26, 2],
+        hsb: [88, 26, 98],
+        hsl: [88, 84, 85],
+        lab: [94, -21, 28],
+      },
+      {
+        name: 'Vivid Tangerine',
+        hex: 'eb9486',
+        rgb: [235, 148, 134],
+        cmyk: [0, 37, 43, 8],
+        hsb: [8, 43, 92],
+        hsl: [8, 72, 72],
+        lab: [70, 31, 21],
+      },
+      {
+        name: 'Khaki Web',
+        hex: 'cab7a2',
+        rgb: [202, 183, 162],
+        cmyk: [0, 9, 20, 21],
+        hsb: [32, 20, 79],
+        hsl: [32, 27, 71],
+        lab: [75, 3, 13],
+      },
+      {
+        name: 'Magenta',
+        hex: 'f038ff',
+        rgb: [240, 56, 255],
+        cmyk: [6, 78, 0, 0],
+        hsb: [295, 78, 100],
+        hsl: [295, 100, 61],
+        lab: [60, 88, -61],
+      },
+      {
+        name: 'Cyclamen',
+        hex: 'ef709d',
+        rgb: [239, 112, 157],
+        cmyk: [0, 53, 34, 6],
+        hsb: [339, 53, 94],
+        hsl: [339, 80, 69],
+        lab: [64, 53, -1],
+      },
+      {
+        name: 'Granny Smith Apple',
+        hex: 'c7f2a7',
+        rgb: [199, 242, 167],
+        cmyk: [18, 0, 31, 5],
+        hsb: [94, 31, 95],
+        hsl: [94, 74, 80],
+        lab: [91, -27, 32],
+      },
+    ];
+    function createValdoApparelColorList(colorList) {
+      let doubledColorList = [...colorList, ...colorList];
+
+      let alphabet = 'abcdefghijklmnopqrstuvwxyz';
+
+      let shuffledAlphabet = alphabet.split('').sort(() => Math.random() - 0.5);
+
+      let valdoApparelColors = doubledColorList.reduce(
+        (compiledColorObject, colorData, i) => {
+          compiledColorObject[shuffledAlphabet[i]] = `#${colorData.hex}`;
+          return compiledColorObject;
+        },
+        {}
+      );
+
+      return valdoApparelColors;
+    }
+
+    let valdoApparelColorList = createValdoApparelColorList(colorList);
+    console.log(valdoApparelColorList);
+
+    const valdoApparelColorStore = readable(
+      {
+        apparelColorList: valdoApparelColorList,
+        apparelLengths: [3, 10],
+        sleevePantLength: 0.85,
+        apparelThickness: 4,
+      },
+      (set) => {
+        return () => {};
+      }
+    );
+
+    console.log(valdoApparelColorStore);
+
+    /* src\Valdo\ValdoArm.svelte generated by Svelte v3.53.0 */
+
+    const { console: console_1$2 } = globals;
+    const file$8 = "src\\Valdo\\ValdoArm.svelte";
+
+    function get_each_context$2(ctx, list, i) {
+    	const child_ctx = ctx.slice();
+    	child_ctx[25] = list[i];
+    	child_ctx[27] = i;
+    	return child_ctx;
+    }
+
+    // (117:0) {#if isSleeve}
+    function create_if_block_1$3(ctx) {
+    	let path;
+    	let path_id_value;
+    	let path_stroke_width_value;
+
+    	const block = {
+    		c: function create() {
+    			path = svg_element("path");
+    			attr_dev(path, "id", path_id_value = `${/*fullName*/ ctx[3]}${/*armType*/ ctx[4]}sleeve`);
+    			attr_dev(path, "d", /*sleevePath*/ ctx[6]);
+    			attr_dev(path, "stroke", /*sleeveColor*/ ctx[12]);
+    			attr_dev(path, "stroke-width", path_stroke_width_value = /*$valdoApparelColorStore*/ ctx[7].apparelThickness * /*limbThickness*/ ctx[1]);
+    			attr_dev(path, "class", "svelte-1k8lj6w");
+    			add_location(path, file$8, 117, 2, 4187);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, path, anchor);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*fullName, armType*/ 24 && path_id_value !== (path_id_value = `${/*fullName*/ ctx[3]}${/*armType*/ ctx[4]}sleeve`)) {
+    				attr_dev(path, "id", path_id_value);
+    			}
+
+    			if (dirty & /*sleevePath*/ 64) {
+    				attr_dev(path, "d", /*sleevePath*/ ctx[6]);
+    			}
+
+    			if (dirty & /*$valdoApparelColorStore, limbThickness*/ 130 && path_stroke_width_value !== (path_stroke_width_value = /*$valdoApparelColorStore*/ ctx[7].apparelThickness * /*limbThickness*/ ctx[1])) {
+    				attr_dev(path, "stroke-width", path_stroke_width_value);
+    			}
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(path);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block_1$3.name,
+    		type: "if",
+    		source: "(117:0) {#if isSleeve}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (125:0) {#if displayDots}
+    function create_if_block$5(ctx) {
+    	let each_blocks = [];
+    	let each_1_lookup = new Map();
+    	let each_1_anchor;
+    	let each_value = /*pointList*/ ctx[8];
+    	validate_each_argument(each_value);
+    	const get_key = ctx => /*point*/ ctx[25].x;
+    	validate_each_keys(ctx, each_value, get_each_context$2, get_key);
+
+    	for (let i = 0; i < each_value.length; i += 1) {
+    		let child_ctx = get_each_context$2(ctx, each_value, i);
+    		let key = get_key(child_ctx);
+    		each_1_lookup.set(key, each_blocks[i] = create_each_block$2(key, child_ctx));
+    	}
+
+    	const block = {
+    		c: function create() {
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].c();
+    			}
+
+    			each_1_anchor = empty();
+    		},
+    		m: function mount(target, anchor) {
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].m(target, anchor);
+    			}
+
+    			insert_dev(target, each_1_anchor, anchor);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*pointNames, pointList, armType, headDiameter*/ 785) {
+    				each_value = /*pointList*/ ctx[8];
+    				validate_each_argument(each_value);
+    				validate_each_keys(ctx, each_value, get_each_context$2, get_key);
+    				each_blocks = update_keyed_each(each_blocks, dirty, get_key, 1, ctx, each_value, each_1_lookup, each_1_anchor.parentNode, destroy_block, create_each_block$2, each_1_anchor, get_each_context$2);
+    			}
+    		},
+    		d: function destroy(detaching) {
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].d(detaching);
+    			}
+
+    			if (detaching) detach_dev(each_1_anchor);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block$5.name,
+    		type: "if",
+    		source: "(125:0) {#if displayDots}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (126:2) {#each pointList as point, i (point.x)}
+    function create_each_block$2(key_1, ctx) {
+    	let circle;
+    	let circle_id_value;
+    	let circle_r_value;
+
+    	const block = {
+    		key: key_1,
+    		first: null,
+    		c: function create() {
+    			circle = svg_element("circle");
+    			attr_dev(circle, "id", circle_id_value = /*pointNames*/ ctx[9][/*i*/ ctx[27]] + /*armType*/ ctx[4]);
+    			attr_dev(circle, "cx", /*point*/ ctx[25].x);
+    			attr_dev(circle, "cy", /*point*/ ctx[25].y);
+    			attr_dev(circle, "r", circle_r_value = /*headDiameter*/ ctx[0] / 4);
+    			add_location(circle, file$8, 126, 4, 4435);
+    			this.first = circle;
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, circle, anchor);
+    		},
+    		p: function update(new_ctx, dirty) {
+    			ctx = new_ctx;
+
+    			if (dirty & /*armType*/ 16 && circle_id_value !== (circle_id_value = /*pointNames*/ ctx[9][/*i*/ ctx[27]] + /*armType*/ ctx[4])) {
+    				attr_dev(circle, "id", circle_id_value);
+    			}
+
+    			if (dirty & /*headDiameter*/ 1 && circle_r_value !== (circle_r_value = /*headDiameter*/ ctx[0] / 4)) {
+    				attr_dev(circle, "r", circle_r_value);
+    			}
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(circle);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_each_block$2.name,
+    		type: "each",
+    		source: "(126:2) {#each pointList as point, i (point.x)}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function create_fragment$9(ctx) {
+    	let path;
+    	let path_id_value;
+    	let t0;
+    	let t1;
+    	let if_block1_anchor;
+    	let if_block0 = /*isSleeve*/ ctx[11] && create_if_block_1$3(ctx);
+    	let if_block1 = /*displayDots*/ ctx[5] && create_if_block$5(ctx);
+
+    	const block = {
+    		c: function create() {
+    			path = svg_element("path");
+    			t0 = space();
+    			if (if_block0) if_block0.c();
+    			t1 = space();
+    			if (if_block1) if_block1.c();
+    			if_block1_anchor = empty();
+    			attr_dev(path, "id", path_id_value = `${/*fullName*/ ctx[3]}${/*armType*/ ctx[4]}arm`);
+    			attr_dev(path, "d", /*armPath*/ ctx[10]);
+    			attr_dev(path, "stroke", /*skinTone*/ ctx[2]);
+    			attr_dev(path, "stroke-width", /*limbThickness*/ ctx[1]);
+    			attr_dev(path, "class", "svelte-1k8lj6w");
+    			add_location(path, file$8, 110, 0, 4055);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, path, anchor);
+    			insert_dev(target, t0, anchor);
+    			if (if_block0) if_block0.m(target, anchor);
+    			insert_dev(target, t1, anchor);
+    			if (if_block1) if_block1.m(target, anchor);
+    			insert_dev(target, if_block1_anchor, anchor);
+    		},
+    		p: function update(ctx, [dirty]) {
+    			if (dirty & /*fullName, armType*/ 24 && path_id_value !== (path_id_value = `${/*fullName*/ ctx[3]}${/*armType*/ ctx[4]}arm`)) {
+    				attr_dev(path, "id", path_id_value);
+    			}
+
+    			if (dirty & /*skinTone*/ 4) {
+    				attr_dev(path, "stroke", /*skinTone*/ ctx[2]);
+    			}
+
+    			if (dirty & /*limbThickness*/ 2) {
+    				attr_dev(path, "stroke-width", /*limbThickness*/ ctx[1]);
+    			}
+
+    			if (/*isSleeve*/ ctx[11]) if_block0.p(ctx, dirty);
+
+    			if (/*displayDots*/ ctx[5]) {
+    				if (if_block1) {
+    					if_block1.p(ctx, dirty);
+    				} else {
+    					if_block1 = create_if_block$5(ctx);
+    					if_block1.c();
+    					if_block1.m(if_block1_anchor.parentNode, if_block1_anchor);
+    				}
+    			} else if (if_block1) {
+    				if_block1.d(1);
+    				if_block1 = null;
+    			}
+    		},
+    		i: noop,
+    		o: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(path);
+    			if (detaching) detach_dev(t0);
+    			if (if_block0) if_block0.d(detaching);
+    			if (detaching) detach_dev(t1);
+    			if (if_block1) if_block1.d(detaching);
+    			if (detaching) detach_dev(if_block1_anchor);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment$9.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function instance$9($$self, $$props, $$invalidate) {
+    	let $valdoApparelColorStore;
+    	validate_store(valdoApparelColorStore, 'valdoApparelColorStore');
+    	component_subscribe($$self, valdoApparelColorStore, $$value => $$invalidate(7, $valdoApparelColorStore = $$value));
+    	let { $$slots: slots = {}, $$scope } = $$props;
+    	validate_slots('ValdoArm', slots, []);
+    	let { shoulderPoint = { x: 10, y: 10 } } = $$props;
+    	let { handPoint = { x: 15, y: 15 } } = $$props;
+    	let { headDiameter = 5 } = $$props;
+    	let { maxArmLength = 3 * headDiameter } = $$props;
+    	let { limbThickness = 4 } = $$props;
+    	let { skinTone = 'black' } = $$props;
+    	let { fullName = 'Jimberly Hanifred' } = $$props;
+    	let { armType = 'none' } = $$props;
+    	let { displayDots = true } = $$props;
+    	let troubleshooting = false;
+    	let firstName = fullName.split(' ')[0];
+    	let elbowDeltas = {};
+    	let handDeltas = {};
+
+    	//determine elbow and hand locations
+    	let shoulderHandDist = getPointDist(shoulderPoint, handPoint);
+
+    	let shoulderElbowDist = maxArmLength / 2;
+    	let { angleToHoriz } = getPointDeltaAngle(shoulderPoint, handPoint);
+    	if (armType === 'left') angleToHoriz = angleToHoriz + Math.PI;
+
+    	if (shoulderHandDist >= maxArmLength) {
+    		handDeltas = {
+    			x: maxArmLength * Math.cos(angleToHoriz),
+    			y: maxArmLength * Math.sin(angleToHoriz)
+    		};
+
+    		elbowDeltas = {
+    			x: maxArmLength * Math.cos(angleToHoriz) / 2,
+    			y: maxArmLength * Math.sin(angleToHoriz) / 2
+    		};
+    	} else if (shoulderHandDist < maxArmLength) {
+    		let isoscelesAngleInner = Math.acos(shoulderHandDist / (2 * shoulderElbowDist));
+    		let isoscelesAngleToHoriz = angleToHoriz - isoscelesAngleInner;
+
+    		elbowDeltas = {
+    			x: shoulderElbowDist * Math.cos(isoscelesAngleToHoriz),
+    			y: shoulderElbowDist * Math.sin(isoscelesAngleToHoriz)
+    		};
+    	}
+
+    	let elbowPoint = {
+    		x: shoulderPoint.x + elbowDeltas.x,
+    		y: shoulderPoint.y + elbowDeltas.y
+    	};
+
+    	let pointList = [shoulderPoint, elbowPoint, handPoint];
+    	let pointNames = ['shoulder', 'elbow', 'hand'];
+    	let elbowHandDeltas = getPointDeltaAngle(elbowPoint, handPoint);
+
+    	let armPath = `M ${shoulderPoint.x} ${shoulderPoint.y} 
+    l ${elbowDeltas.x} ${elbowDeltas.y} 
+    l ${elbowHandDeltas.x} ${elbowHandDeltas.y}`;
+
+    	if (troubleshooting) {
+    		console.log(armType, armPath);
+    		console.log(angleToHoriz, Math.cos(angleToHoriz), Math.sin(angleToHoriz));
+
+    		console.log(`${fullName + armType}Points- 
+        shoulder: x${shoulderPoint.x} y${shoulderPoint.y} 
+        elbow: x${elbowPoint.x} y${elbowPoint.y} 
+        hand: x${handPoint.x} y${handPoint.y}`);
+
+    		console.log(`${fullName + armType}Deltas- 
+        elbow: x${elbowDeltas.x} y${elbowDeltas.y} 
+        hand: x${handDeltas.x} y${handDeltas.y}
+        elbowHand: x${elbowHandDeltas.x} y${elbowHandDeltas.y} `);
+    	}
+
+    	//determine sleeve length and color
+    	let isSleeve = firstName.length > $valdoApparelColorStore.apparelLengths[0]
+    	? true
+    	: false;
+
+    	let sleevePath = '';
+
+    	//determine sleeve color based on first letter of first name
+    	let sleeveColor = $valdoApparelColorStore.apparelColorList[firstName[0].toLowerCase()];
+
+    	//if there is a sleeve, determine if it's short or long based on first name length
+    	if (isSleeve) {
+    		let sleeveLength = firstName.length > $valdoApparelColorStore.apparelLengths[1]
+    		? 'long'
+    		: 'short';
+
+    		let sleeveElbowDeltas;
+    		let sleeveHandDeltas;
+
+    		if (sleeveLength === 'long') {
+    			sleeveElbowDeltas = elbowDeltas;
+
+    			sleeveHandDeltas = {
+    				x: elbowHandDeltas.x * $valdoApparelColorStore.sleevePantLength,
+    				y: elbowHandDeltas.y * $valdoApparelColorStore.sleevePantLength
+    			};
+
+    			sleevePath = `M ${shoulderPoint.x} ${shoulderPoint.y} 
+        l ${sleeveElbowDeltas.x} ${sleeveElbowDeltas.y} 
+        l ${sleeveHandDeltas.x} ${sleeveHandDeltas.y}`;
+    		} else if (sleeveLength === 'short') {
+    			sleeveElbowDeltas = {
+    				x: elbowDeltas.x * $valdoApparelColorStore.sleevePantLength,
+    				y: elbowDeltas.y * $valdoApparelColorStore.sleevePantLength
+    			};
+
+    			sleevePath = `M ${shoulderPoint.x} ${shoulderPoint.y} 
+        l ${sleeveElbowDeltas.x} ${sleeveElbowDeltas.y}`;
+    		}
+    	}
+
+    	const writable_props = [
+    		'shoulderPoint',
+    		'handPoint',
+    		'headDiameter',
+    		'maxArmLength',
+    		'limbThickness',
+    		'skinTone',
+    		'fullName',
+    		'armType',
+    		'displayDots'
+    	];
+
+    	Object.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== '$$' && key !== 'slot') console_1$2.warn(`<ValdoArm> was created with unknown prop '${key}'`);
+    	});
+
+    	$$self.$$set = $$props => {
+    		if ('shoulderPoint' in $$props) $$invalidate(13, shoulderPoint = $$props.shoulderPoint);
+    		if ('handPoint' in $$props) $$invalidate(14, handPoint = $$props.handPoint);
+    		if ('headDiameter' in $$props) $$invalidate(0, headDiameter = $$props.headDiameter);
+    		if ('maxArmLength' in $$props) $$invalidate(15, maxArmLength = $$props.maxArmLength);
+    		if ('limbThickness' in $$props) $$invalidate(1, limbThickness = $$props.limbThickness);
+    		if ('skinTone' in $$props) $$invalidate(2, skinTone = $$props.skinTone);
+    		if ('fullName' in $$props) $$invalidate(3, fullName = $$props.fullName);
+    		if ('armType' in $$props) $$invalidate(4, armType = $$props.armType);
+    		if ('displayDots' in $$props) $$invalidate(5, displayDots = $$props.displayDots);
+    	};
+
+    	$$self.$capture_state = () => ({
+    		getPointDist,
+    		getPointDeltaAngle,
+    		valdoApparelColorStore,
+    		shoulderPoint,
+    		handPoint,
+    		headDiameter,
+    		maxArmLength,
+    		limbThickness,
+    		skinTone,
+    		fullName,
+    		armType,
+    		displayDots,
+    		troubleshooting,
+    		firstName,
+    		elbowDeltas,
+    		handDeltas,
+    		shoulderHandDist,
+    		shoulderElbowDist,
+    		angleToHoriz,
+    		elbowPoint,
+    		pointList,
+    		pointNames,
+    		elbowHandDeltas,
+    		armPath,
+    		isSleeve,
+    		sleevePath,
+    		sleeveColor,
+    		$valdoApparelColorStore
+    	});
+
+    	$$self.$inject_state = $$props => {
+    		if ('shoulderPoint' in $$props) $$invalidate(13, shoulderPoint = $$props.shoulderPoint);
+    		if ('handPoint' in $$props) $$invalidate(14, handPoint = $$props.handPoint);
+    		if ('headDiameter' in $$props) $$invalidate(0, headDiameter = $$props.headDiameter);
+    		if ('maxArmLength' in $$props) $$invalidate(15, maxArmLength = $$props.maxArmLength);
+    		if ('limbThickness' in $$props) $$invalidate(1, limbThickness = $$props.limbThickness);
+    		if ('skinTone' in $$props) $$invalidate(2, skinTone = $$props.skinTone);
+    		if ('fullName' in $$props) $$invalidate(3, fullName = $$props.fullName);
+    		if ('armType' in $$props) $$invalidate(4, armType = $$props.armType);
+    		if ('displayDots' in $$props) $$invalidate(5, displayDots = $$props.displayDots);
+    		if ('troubleshooting' in $$props) troubleshooting = $$props.troubleshooting;
+    		if ('firstName' in $$props) firstName = $$props.firstName;
+    		if ('elbowDeltas' in $$props) elbowDeltas = $$props.elbowDeltas;
+    		if ('handDeltas' in $$props) handDeltas = $$props.handDeltas;
+    		if ('shoulderHandDist' in $$props) shoulderHandDist = $$props.shoulderHandDist;
+    		if ('shoulderElbowDist' in $$props) shoulderElbowDist = $$props.shoulderElbowDist;
+    		if ('angleToHoriz' in $$props) angleToHoriz = $$props.angleToHoriz;
+    		if ('elbowPoint' in $$props) elbowPoint = $$props.elbowPoint;
+    		if ('pointList' in $$props) $$invalidate(8, pointList = $$props.pointList);
+    		if ('pointNames' in $$props) $$invalidate(9, pointNames = $$props.pointNames);
+    		if ('elbowHandDeltas' in $$props) elbowHandDeltas = $$props.elbowHandDeltas;
+    		if ('armPath' in $$props) $$invalidate(10, armPath = $$props.armPath);
+    		if ('isSleeve' in $$props) $$invalidate(11, isSleeve = $$props.isSleeve);
+    		if ('sleevePath' in $$props) $$invalidate(6, sleevePath = $$props.sleevePath);
+    		if ('sleeveColor' in $$props) $$invalidate(12, sleeveColor = $$props.sleeveColor);
+    	};
+
+    	if ($$props && "$$inject" in $$props) {
+    		$$self.$inject_state($$props.$$inject);
+    	}
+
+    	return [
+    		headDiameter,
+    		limbThickness,
+    		skinTone,
+    		fullName,
+    		armType,
+    		displayDots,
+    		sleevePath,
+    		$valdoApparelColorStore,
+    		pointList,
+    		pointNames,
+    		armPath,
+    		isSleeve,
+    		sleeveColor,
+    		shoulderPoint,
+    		handPoint,
+    		maxArmLength
+    	];
+    }
+
+    class ValdoArm extends SvelteComponentDev {
+    	constructor(options) {
+    		super(options);
+
+    		init(this, options, instance$9, create_fragment$9, safe_not_equal, {
+    			shoulderPoint: 13,
+    			handPoint: 14,
+    			headDiameter: 0,
+    			maxArmLength: 15,
+    			limbThickness: 1,
+    			skinTone: 2,
+    			fullName: 3,
+    			armType: 4,
+    			displayDots: 5
+    		});
+
+    		dispatch_dev("SvelteRegisterComponent", {
+    			component: this,
+    			tagName: "ValdoArm",
+    			options,
+    			id: create_fragment$9.name
+    		});
+    	}
+
+    	get shoulderPoint() {
+    		throw new Error("<ValdoArm>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set shoulderPoint(value) {
+    		throw new Error("<ValdoArm>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get handPoint() {
+    		throw new Error("<ValdoArm>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set handPoint(value) {
+    		throw new Error("<ValdoArm>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get headDiameter() {
+    		throw new Error("<ValdoArm>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set headDiameter(value) {
+    		throw new Error("<ValdoArm>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get maxArmLength() {
+    		throw new Error("<ValdoArm>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set maxArmLength(value) {
+    		throw new Error("<ValdoArm>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get limbThickness() {
+    		throw new Error("<ValdoArm>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set limbThickness(value) {
+    		throw new Error("<ValdoArm>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get skinTone() {
+    		throw new Error("<ValdoArm>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set skinTone(value) {
+    		throw new Error("<ValdoArm>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get fullName() {
+    		throw new Error("<ValdoArm>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set fullName(value) {
+    		throw new Error("<ValdoArm>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get armType() {
+    		throw new Error("<ValdoArm>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set armType(value) {
+    		throw new Error("<ValdoArm>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get displayDots() {
+    		throw new Error("<ValdoArm>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set displayDots(value) {
+    		throw new Error("<ValdoArm>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+    }
+
+    /* src\Valdo\ValdoHead.svelte generated by Svelte v3.53.0 */
+
+    const file$7 = "src\\Valdo\\ValdoHead.svelte";
+
+    function create_fragment$8(ctx) {
+    	let circle;
+    	let circle_cx_value;
+    	let circle_cy_value;
+    	let circle_r_value;
+
+    	const block = {
+    		c: function create() {
+    			circle = svg_element("circle");
+    			attr_dev(circle, "cx", circle_cx_value = /*headPoint*/ ctx[0].x);
+    			attr_dev(circle, "cy", circle_cy_value = /*headPoint*/ ctx[0].y);
+    			attr_dev(circle, "r", circle_r_value = /*headDiameter*/ ctx[1] / 2);
+    			attr_dev(circle, "stroke", /*skinTone*/ ctx[3]);
+    			attr_dev(circle, "stroke-width", /*strokeWidth*/ ctx[2]);
+    			attr_dev(circle, "fill", /*skinTone*/ ctx[3]);
+    			add_location(circle, file$7, 7, 0, 151);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, circle, anchor);
+    		},
+    		p: function update(ctx, [dirty]) {
+    			if (dirty & /*headPoint*/ 1 && circle_cx_value !== (circle_cx_value = /*headPoint*/ ctx[0].x)) {
+    				attr_dev(circle, "cx", circle_cx_value);
+    			}
+
+    			if (dirty & /*headPoint*/ 1 && circle_cy_value !== (circle_cy_value = /*headPoint*/ ctx[0].y)) {
+    				attr_dev(circle, "cy", circle_cy_value);
+    			}
+
+    			if (dirty & /*headDiameter*/ 2 && circle_r_value !== (circle_r_value = /*headDiameter*/ ctx[1] / 2)) {
+    				attr_dev(circle, "r", circle_r_value);
+    			}
+
+    			if (dirty & /*skinTone*/ 8) {
+    				attr_dev(circle, "stroke", /*skinTone*/ ctx[3]);
+    			}
+
+    			if (dirty & /*strokeWidth*/ 4) {
+    				attr_dev(circle, "stroke-width", /*strokeWidth*/ ctx[2]);
+    			}
+
+    			if (dirty & /*skinTone*/ 8) {
+    				attr_dev(circle, "fill", /*skinTone*/ ctx[3]);
+    			}
+    		},
+    		i: noop,
+    		o: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(circle);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment$8.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function instance$8($$self, $$props, $$invalidate) {
+    	let { $$slots: slots = {}, $$scope } = $$props;
+    	validate_slots('ValdoHead', slots, []);
+    	let { headPoint = {} } = $$props;
+    	let { headDiameter = 15 } = $$props;
+    	let { strokeWidth = 4 } = $$props;
+    	let { skinTone = 'black' } = $$props;
+    	const writable_props = ['headPoint', 'headDiameter', 'strokeWidth', 'skinTone'];
+
+    	Object.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== '$$' && key !== 'slot') console.warn(`<ValdoHead> was created with unknown prop '${key}'`);
+    	});
+
+    	$$self.$$set = $$props => {
+    		if ('headPoint' in $$props) $$invalidate(0, headPoint = $$props.headPoint);
+    		if ('headDiameter' in $$props) $$invalidate(1, headDiameter = $$props.headDiameter);
+    		if ('strokeWidth' in $$props) $$invalidate(2, strokeWidth = $$props.strokeWidth);
+    		if ('skinTone' in $$props) $$invalidate(3, skinTone = $$props.skinTone);
+    	};
+
+    	$$self.$capture_state = () => ({
+    		headPoint,
+    		headDiameter,
+    		strokeWidth,
+    		skinTone
+    	});
+
+    	$$self.$inject_state = $$props => {
+    		if ('headPoint' in $$props) $$invalidate(0, headPoint = $$props.headPoint);
+    		if ('headDiameter' in $$props) $$invalidate(1, headDiameter = $$props.headDiameter);
+    		if ('strokeWidth' in $$props) $$invalidate(2, strokeWidth = $$props.strokeWidth);
+    		if ('skinTone' in $$props) $$invalidate(3, skinTone = $$props.skinTone);
+    	};
+
+    	if ($$props && "$$inject" in $$props) {
+    		$$self.$inject_state($$props.$$inject);
+    	}
+
+    	return [headPoint, headDiameter, strokeWidth, skinTone];
+    }
+
+    class ValdoHead extends SvelteComponentDev {
+    	constructor(options) {
+    		super(options);
+
+    		init(this, options, instance$8, create_fragment$8, safe_not_equal, {
+    			headPoint: 0,
+    			headDiameter: 1,
+    			strokeWidth: 2,
+    			skinTone: 3
+    		});
+
+    		dispatch_dev("SvelteRegisterComponent", {
+    			component: this,
+    			tagName: "ValdoHead",
+    			options,
+    			id: create_fragment$8.name
+    		});
+    	}
+
+    	get headPoint() {
+    		throw new Error("<ValdoHead>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set headPoint(value) {
+    		throw new Error("<ValdoHead>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get headDiameter() {
+    		throw new Error("<ValdoHead>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set headDiameter(value) {
+    		throw new Error("<ValdoHead>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get strokeWidth() {
+    		throw new Error("<ValdoHead>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set strokeWidth(value) {
+    		throw new Error("<ValdoHead>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get skinTone() {
+    		throw new Error("<ValdoHead>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set skinTone(value) {
+    		throw new Error("<ValdoHead>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+    }
+
+    /* src\Valdo\ValdoLeg.svelte generated by Svelte v3.53.0 */
+
+    const { console: console_1$1 } = globals;
+    const file$6 = "src\\Valdo\\ValdoLeg.svelte";
+
+    function get_each_context$1(ctx, list, i) {
+    	const child_ctx = ctx.slice();
+    	child_ctx[25] = list[i];
+    	child_ctx[27] = i;
+    	return child_ctx;
+    }
+
+    // (113:0) {#if isPant}
+    function create_if_block_1$2(ctx) {
+    	let path;
+    	let path_id_value;
+    	let path_stroke_width_value;
+
+    	const block = {
+    		c: function create() {
+    			path = svg_element("path");
+    			attr_dev(path, "id", path_id_value = `${/*fullName*/ ctx[3]}${/*legType*/ ctx[4]}pant`);
+    			attr_dev(path, "d", /*pantPath*/ ctx[6]);
+    			attr_dev(path, "stroke", /*pantColor*/ ctx[12]);
+    			attr_dev(path, "stroke-width", path_stroke_width_value = /*$valdoApparelColorStore*/ ctx[7].apparelThickness * /*limbThickness*/ ctx[1]);
+    			attr_dev(path, "class", "svelte-1k8lj6w");
+    			add_location(path, file$6, 113, 2, 3902);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, path, anchor);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*fullName, legType*/ 24 && path_id_value !== (path_id_value = `${/*fullName*/ ctx[3]}${/*legType*/ ctx[4]}pant`)) {
+    				attr_dev(path, "id", path_id_value);
+    			}
+
+    			if (dirty & /*pantPath*/ 64) {
+    				attr_dev(path, "d", /*pantPath*/ ctx[6]);
+    			}
+
+    			if (dirty & /*$valdoApparelColorStore, limbThickness*/ 130 && path_stroke_width_value !== (path_stroke_width_value = /*$valdoApparelColorStore*/ ctx[7].apparelThickness * /*limbThickness*/ ctx[1])) {
+    				attr_dev(path, "stroke-width", path_stroke_width_value);
+    			}
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(path);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block_1$2.name,
+    		type: "if",
+    		source: "(113:0) {#if isPant}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (121:0) {#if displayDots}
+    function create_if_block$4(ctx) {
+    	let each_blocks = [];
+    	let each_1_lookup = new Map();
+    	let each_1_anchor;
+    	let each_value = /*pointList*/ ctx[8];
+    	validate_each_argument(each_value);
+    	const get_key = ctx => /*point*/ ctx[25].x;
+    	validate_each_keys(ctx, each_value, get_each_context$1, get_key);
+
+    	for (let i = 0; i < each_value.length; i += 1) {
+    		let child_ctx = get_each_context$1(ctx, each_value, i);
+    		let key = get_key(child_ctx);
+    		each_1_lookup.set(key, each_blocks[i] = create_each_block$1(key, child_ctx));
+    	}
+
+    	const block = {
+    		c: function create() {
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].c();
+    			}
+
+    			each_1_anchor = empty();
+    		},
+    		m: function mount(target, anchor) {
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].m(target, anchor);
+    			}
+
+    			insert_dev(target, each_1_anchor, anchor);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*pointNames, pointList, legType, headDiameter*/ 785) {
+    				each_value = /*pointList*/ ctx[8];
+    				validate_each_argument(each_value);
+    				validate_each_keys(ctx, each_value, get_each_context$1, get_key);
+    				each_blocks = update_keyed_each(each_blocks, dirty, get_key, 1, ctx, each_value, each_1_lookup, each_1_anchor.parentNode, destroy_block, create_each_block$1, each_1_anchor, get_each_context$1);
+    			}
+    		},
+    		d: function destroy(detaching) {
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].d(detaching);
+    			}
+
+    			if (detaching) detach_dev(each_1_anchor);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block$4.name,
+    		type: "if",
+    		source: "(121:0) {#if displayDots}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (122:2) {#each pointList as point, i (point.x)}
+    function create_each_block$1(key_1, ctx) {
+    	let circle;
+    	let circle_id_value;
+    	let circle_r_value;
+
+    	const block = {
+    		key: key_1,
+    		first: null,
+    		c: function create() {
+    			circle = svg_element("circle");
+    			attr_dev(circle, "id", circle_id_value = /*pointNames*/ ctx[9][/*i*/ ctx[27]] + /*legType*/ ctx[4]);
+    			attr_dev(circle, "cx", /*point*/ ctx[25].x);
+    			attr_dev(circle, "cy", /*point*/ ctx[25].y);
+    			attr_dev(circle, "r", circle_r_value = /*headDiameter*/ ctx[0] / 4);
+    			add_location(circle, file$6, 122, 4, 4144);
+    			this.first = circle;
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, circle, anchor);
+    		},
+    		p: function update(new_ctx, dirty) {
+    			ctx = new_ctx;
+
+    			if (dirty & /*legType*/ 16 && circle_id_value !== (circle_id_value = /*pointNames*/ ctx[9][/*i*/ ctx[27]] + /*legType*/ ctx[4])) {
+    				attr_dev(circle, "id", circle_id_value);
+    			}
+
+    			if (dirty & /*headDiameter*/ 1 && circle_r_value !== (circle_r_value = /*headDiameter*/ ctx[0] / 4)) {
+    				attr_dev(circle, "r", circle_r_value);
+    			}
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(circle);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_each_block$1.name,
+    		type: "each",
+    		source: "(122:2) {#each pointList as point, i (point.x)}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function create_fragment$7(ctx) {
+    	let path;
+    	let path_id_value;
+    	let t0;
+    	let t1;
+    	let if_block1_anchor;
+    	let if_block0 = /*isPant*/ ctx[11] && create_if_block_1$2(ctx);
+    	let if_block1 = /*displayDots*/ ctx[5] && create_if_block$4(ctx);
+
+    	const block = {
+    		c: function create() {
+    			path = svg_element("path");
+    			t0 = space();
+    			if (if_block0) if_block0.c();
+    			t1 = space();
+    			if (if_block1) if_block1.c();
+    			if_block1_anchor = empty();
+    			attr_dev(path, "id", path_id_value = `${/*fullName*/ ctx[3]}${/*legType*/ ctx[4]}arm`);
+    			attr_dev(path, "d", /*legPath*/ ctx[10]);
+    			attr_dev(path, "stroke", /*skinTone*/ ctx[2]);
+    			attr_dev(path, "stroke-width", /*limbThickness*/ ctx[1]);
+    			attr_dev(path, "class", "svelte-1k8lj6w");
+    			add_location(path, file$6, 106, 0, 3772);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, path, anchor);
+    			insert_dev(target, t0, anchor);
+    			if (if_block0) if_block0.m(target, anchor);
+    			insert_dev(target, t1, anchor);
+    			if (if_block1) if_block1.m(target, anchor);
+    			insert_dev(target, if_block1_anchor, anchor);
+    		},
+    		p: function update(ctx, [dirty]) {
+    			if (dirty & /*fullName, legType*/ 24 && path_id_value !== (path_id_value = `${/*fullName*/ ctx[3]}${/*legType*/ ctx[4]}arm`)) {
+    				attr_dev(path, "id", path_id_value);
+    			}
+
+    			if (dirty & /*skinTone*/ 4) {
+    				attr_dev(path, "stroke", /*skinTone*/ ctx[2]);
+    			}
+
+    			if (dirty & /*limbThickness*/ 2) {
+    				attr_dev(path, "stroke-width", /*limbThickness*/ ctx[1]);
+    			}
+
+    			if (/*isPant*/ ctx[11]) if_block0.p(ctx, dirty);
+
+    			if (/*displayDots*/ ctx[5]) {
+    				if (if_block1) {
+    					if_block1.p(ctx, dirty);
+    				} else {
+    					if_block1 = create_if_block$4(ctx);
+    					if_block1.c();
+    					if_block1.m(if_block1_anchor.parentNode, if_block1_anchor);
+    				}
+    			} else if (if_block1) {
+    				if_block1.d(1);
+    				if_block1 = null;
+    			}
+    		},
+    		i: noop,
+    		o: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(path);
+    			if (detaching) detach_dev(t0);
+    			if (if_block0) if_block0.d(detaching);
+    			if (detaching) detach_dev(t1);
+    			if (if_block1) if_block1.d(detaching);
+    			if (detaching) detach_dev(if_block1_anchor);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment$7.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function instance$7($$self, $$props, $$invalidate) {
+    	let $valdoApparelColorStore;
+    	validate_store(valdoApparelColorStore, 'valdoApparelColorStore');
+    	component_subscribe($$self, valdoApparelColorStore, $$value => $$invalidate(7, $valdoApparelColorStore = $$value));
+    	let { $$slots: slots = {}, $$scope } = $$props;
+    	validate_slots('ValdoLeg', slots, []);
+    	let { hipPoint = { x: 10, y: 10 } } = $$props;
+    	let { footPoint = { x: 15, y: 15 } } = $$props;
+    	let { headDiameter = 5 } = $$props;
+    	let { maxLegLength = 3 * headDiameter } = $$props;
+    	let { limbThickness = 4 } = $$props;
+    	let { skinTone = 'black' } = $$props;
+    	let { fullName = 'Jimberly Hanifred' } = $$props;
+    	let { legType = 'none' } = $$props;
+    	let { displayDots = true } = $$props;
+    	let troubleshooting = false;
+    	let lastName = fullName.split(' ')[1];
+    	let kneeDeltas = {};
+    	let footDeltas = {};
+    	let hipFootDist = getPointDist(hipPoint, footPoint);
+    	let hipKneeDist = maxLegLength / 2;
+    	let { angleToHoriz } = getPointDeltaAngle(hipPoint, footPoint);
+    	if (legType === 'left') angleToHoriz = angleToHoriz + Math.PI;
+
+    	if (hipFootDist >= maxLegLength) {
+    		footDeltas = {
+    			x: maxLegLength * Math.cos(angleToHoriz),
+    			y: maxLegLength * Math.sin(angleToHoriz)
+    		};
+
+    		kneeDeltas = {
+    			x: maxLegLength * Math.cos(angleToHoriz) / 2,
+    			y: maxLegLength * Math.sin(angleToHoriz) / 2
+    		};
+    	} else if (hipFootDist < maxLegLength) {
+    		let isoscelesAngleInner = Math.acos(hipFootDist / (2 * hipKneeDist));
+    		let isoscelesAngleToHoriz = angleToHoriz - isoscelesAngleInner;
+
+    		kneeDeltas = {
+    			x: hipKneeDist * Math.cos(isoscelesAngleToHoriz),
+    			y: hipKneeDist * Math.sin(isoscelesAngleToHoriz)
+    		};
+    	}
+
+    	let kneePoint = {
+    		x: hipPoint.x + kneeDeltas.x,
+    		y: hipPoint.y + kneeDeltas.y
+    	};
+
+    	let pointList = [hipPoint, kneePoint, footPoint];
+    	let pointNames = ['hip', 'knee', 'foot'];
+    	let kneeFootDeltas = getPointDeltaAngle(kneePoint, footPoint);
+
+    	let legPath = `M ${hipPoint.x} ${hipPoint.y} 
+  l ${kneeDeltas.x} ${kneeDeltas.y} 
+  l ${kneeFootDeltas.x} ${kneeFootDeltas.y}`;
+
+    	if (troubleshooting) {
+    		console.log(legType, legPath);
+    		console.log(angleToHoriz, Math.cos(angleToHoriz), Math.sin(angleToHoriz));
+
+    		console.log(`${fullName + legType}Points- 
+    hip: x${hipPoint.x} y${hipPoint.y} 
+    knee: x${kneePoint.x} y${kneePoint.y} 
+    foot: x${footPoint.x} y${footPoint.y}`);
+
+    		console.log(`${fullName + legType}Deltas- 
+    knee: x${kneeDeltas.x} y${kneeDeltas.y} 
+    foot: x${footDeltas.x} y${footDeltas.y}
+    kneefoot: x${kneeFootDeltas.x} y${kneeFootDeltas.y} `);
+    	}
+
+    	//determine sleeve length and color
+    	let isPant = lastName.length > $valdoApparelColorStore.apparelLengths[0]
+    	? true
+    	: false;
+
+    	let pantPath = '';
+
+    	//determine sleeve color based on first letter of first name
+    	let pantColor = $valdoApparelColorStore.apparelColorList[lastName[0].toLowerCase()];
+
+    	//if there is a sleeve, determine if it's short or long based on first name length
+    	if (isPant) {
+    		let pantLength = lastName.length > $valdoApparelColorStore.apparelLengths[1]
+    		? 'long'
+    		: 'short';
+
+    		let pantKneeDeltas;
+    		let pantFootDeltas;
+
+    		if (pantLength === 'long') {
+    			pantKneeDeltas = kneeDeltas;
+
+    			pantFootDeltas = {
+    				x: kneeFootDeltas.x * $valdoApparelColorStore.sleevePantLength,
+    				y: kneeFootDeltas.y * $valdoApparelColorStore.sleevePantLength
+    			};
+
+    			pantPath = `M ${hipPoint.x} ${hipPoint.y} 
+        l ${pantKneeDeltas.x} ${pantKneeDeltas.y} 
+        l ${pantFootDeltas.x} ${pantFootDeltas.y}`;
+    		} else if (pantLength === 'short') {
+    			pantKneeDeltas = {
+    				x: kneeDeltas.x * $valdoApparelColorStore.sleevePantLength,
+    				y: kneeDeltas.y * $valdoApparelColorStore.sleevePantLength
+    			};
+
+    			pantPath = `M ${hipPoint.x} ${hipPoint.y} 
+        l ${pantKneeDeltas.x} ${pantKneeDeltas.y}`;
+    		}
+    	}
+
+    	const writable_props = [
+    		'hipPoint',
+    		'footPoint',
+    		'headDiameter',
+    		'maxLegLength',
+    		'limbThickness',
+    		'skinTone',
+    		'fullName',
+    		'legType',
+    		'displayDots'
+    	];
+
+    	Object.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== '$$' && key !== 'slot') console_1$1.warn(`<ValdoLeg> was created with unknown prop '${key}'`);
+    	});
+
+    	$$self.$$set = $$props => {
+    		if ('hipPoint' in $$props) $$invalidate(13, hipPoint = $$props.hipPoint);
+    		if ('footPoint' in $$props) $$invalidate(14, footPoint = $$props.footPoint);
+    		if ('headDiameter' in $$props) $$invalidate(0, headDiameter = $$props.headDiameter);
+    		if ('maxLegLength' in $$props) $$invalidate(15, maxLegLength = $$props.maxLegLength);
+    		if ('limbThickness' in $$props) $$invalidate(1, limbThickness = $$props.limbThickness);
+    		if ('skinTone' in $$props) $$invalidate(2, skinTone = $$props.skinTone);
+    		if ('fullName' in $$props) $$invalidate(3, fullName = $$props.fullName);
+    		if ('legType' in $$props) $$invalidate(4, legType = $$props.legType);
+    		if ('displayDots' in $$props) $$invalidate(5, displayDots = $$props.displayDots);
+    	};
+
+    	$$self.$capture_state = () => ({
+    		getPointDist,
+    		getPointDeltaAngle,
+    		valdoApparelColorStore,
+    		hipPoint,
+    		footPoint,
+    		headDiameter,
+    		maxLegLength,
+    		limbThickness,
+    		skinTone,
+    		fullName,
+    		legType,
+    		displayDots,
+    		troubleshooting,
+    		lastName,
+    		kneeDeltas,
+    		footDeltas,
+    		hipFootDist,
+    		hipKneeDist,
+    		angleToHoriz,
+    		kneePoint,
+    		pointList,
+    		pointNames,
+    		kneeFootDeltas,
+    		legPath,
+    		isPant,
+    		pantPath,
+    		pantColor,
+    		$valdoApparelColorStore
+    	});
+
+    	$$self.$inject_state = $$props => {
+    		if ('hipPoint' in $$props) $$invalidate(13, hipPoint = $$props.hipPoint);
+    		if ('footPoint' in $$props) $$invalidate(14, footPoint = $$props.footPoint);
+    		if ('headDiameter' in $$props) $$invalidate(0, headDiameter = $$props.headDiameter);
+    		if ('maxLegLength' in $$props) $$invalidate(15, maxLegLength = $$props.maxLegLength);
+    		if ('limbThickness' in $$props) $$invalidate(1, limbThickness = $$props.limbThickness);
+    		if ('skinTone' in $$props) $$invalidate(2, skinTone = $$props.skinTone);
+    		if ('fullName' in $$props) $$invalidate(3, fullName = $$props.fullName);
+    		if ('legType' in $$props) $$invalidate(4, legType = $$props.legType);
+    		if ('displayDots' in $$props) $$invalidate(5, displayDots = $$props.displayDots);
+    		if ('troubleshooting' in $$props) troubleshooting = $$props.troubleshooting;
+    		if ('lastName' in $$props) lastName = $$props.lastName;
+    		if ('kneeDeltas' in $$props) kneeDeltas = $$props.kneeDeltas;
+    		if ('footDeltas' in $$props) footDeltas = $$props.footDeltas;
+    		if ('hipFootDist' in $$props) hipFootDist = $$props.hipFootDist;
+    		if ('hipKneeDist' in $$props) hipKneeDist = $$props.hipKneeDist;
+    		if ('angleToHoriz' in $$props) angleToHoriz = $$props.angleToHoriz;
+    		if ('kneePoint' in $$props) kneePoint = $$props.kneePoint;
+    		if ('pointList' in $$props) $$invalidate(8, pointList = $$props.pointList);
+    		if ('pointNames' in $$props) $$invalidate(9, pointNames = $$props.pointNames);
+    		if ('kneeFootDeltas' in $$props) kneeFootDeltas = $$props.kneeFootDeltas;
+    		if ('legPath' in $$props) $$invalidate(10, legPath = $$props.legPath);
+    		if ('isPant' in $$props) $$invalidate(11, isPant = $$props.isPant);
+    		if ('pantPath' in $$props) $$invalidate(6, pantPath = $$props.pantPath);
+    		if ('pantColor' in $$props) $$invalidate(12, pantColor = $$props.pantColor);
+    	};
+
+    	if ($$props && "$$inject" in $$props) {
+    		$$self.$inject_state($$props.$$inject);
+    	}
+
+    	return [
+    		headDiameter,
+    		limbThickness,
+    		skinTone,
+    		fullName,
+    		legType,
+    		displayDots,
+    		pantPath,
+    		$valdoApparelColorStore,
+    		pointList,
+    		pointNames,
+    		legPath,
+    		isPant,
+    		pantColor,
+    		hipPoint,
+    		footPoint,
+    		maxLegLength
+    	];
+    }
+
+    class ValdoLeg extends SvelteComponentDev {
+    	constructor(options) {
+    		super(options);
+
+    		init(this, options, instance$7, create_fragment$7, safe_not_equal, {
+    			hipPoint: 13,
+    			footPoint: 14,
+    			headDiameter: 0,
+    			maxLegLength: 15,
+    			limbThickness: 1,
+    			skinTone: 2,
+    			fullName: 3,
+    			legType: 4,
+    			displayDots: 5
+    		});
+
+    		dispatch_dev("SvelteRegisterComponent", {
+    			component: this,
+    			tagName: "ValdoLeg",
+    			options,
+    			id: create_fragment$7.name
+    		});
+    	}
+
+    	get hipPoint() {
+    		throw new Error("<ValdoLeg>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set hipPoint(value) {
+    		throw new Error("<ValdoLeg>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get footPoint() {
+    		throw new Error("<ValdoLeg>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set footPoint(value) {
+    		throw new Error("<ValdoLeg>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get headDiameter() {
+    		throw new Error("<ValdoLeg>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set headDiameter(value) {
+    		throw new Error("<ValdoLeg>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get maxLegLength() {
+    		throw new Error("<ValdoLeg>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set maxLegLength(value) {
+    		throw new Error("<ValdoLeg>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get limbThickness() {
+    		throw new Error("<ValdoLeg>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set limbThickness(value) {
+    		throw new Error("<ValdoLeg>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get skinTone() {
+    		throw new Error("<ValdoLeg>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set skinTone(value) {
+    		throw new Error("<ValdoLeg>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get fullName() {
+    		throw new Error("<ValdoLeg>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set fullName(value) {
+    		throw new Error("<ValdoLeg>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get legType() {
+    		throw new Error("<ValdoLeg>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set legType(value) {
+    		throw new Error("<ValdoLeg>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get displayDots() {
+    		throw new Error("<ValdoLeg>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set displayDots(value) {
+    		throw new Error("<ValdoLeg>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+    }
+
+    /* src\Valdo\ValdoNeck.svelte generated by Svelte v3.53.0 */
+
+    const file$5 = "src\\Valdo\\ValdoNeck.svelte";
+
+    function create_fragment$6(ctx) {
+    	let line;
+    	let line_x__value;
+    	let line_y__value;
+    	let line_x__value_1;
+    	let line_y__value_1;
+
+    	const block = {
+    		c: function create() {
+    			line = svg_element("line");
+    			attr_dev(line, "x1", line_x__value = /*neckPoint*/ ctx[0].x);
+    			attr_dev(line, "y1", line_y__value = /*neckPoint*/ ctx[0].y);
+    			attr_dev(line, "x2", line_x__value_1 = /*shoulderPoint*/ ctx[1].x);
+    			attr_dev(line, "y2", line_y__value_1 = /*shoulderPoint*/ ctx[1].y);
+    			attr_dev(line, "stroke", /*skinTone*/ ctx[3]);
+    			attr_dev(line, "stroke-width", /*limbThickness*/ ctx[2]);
+    			add_location(line, file$5, 7, 0, 154);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, line, anchor);
+    		},
+    		p: function update(ctx, [dirty]) {
+    			if (dirty & /*neckPoint*/ 1 && line_x__value !== (line_x__value = /*neckPoint*/ ctx[0].x)) {
+    				attr_dev(line, "x1", line_x__value);
+    			}
+
+    			if (dirty & /*neckPoint*/ 1 && line_y__value !== (line_y__value = /*neckPoint*/ ctx[0].y)) {
+    				attr_dev(line, "y1", line_y__value);
+    			}
+
+    			if (dirty & /*shoulderPoint*/ 2 && line_x__value_1 !== (line_x__value_1 = /*shoulderPoint*/ ctx[1].x)) {
+    				attr_dev(line, "x2", line_x__value_1);
+    			}
+
+    			if (dirty & /*shoulderPoint*/ 2 && line_y__value_1 !== (line_y__value_1 = /*shoulderPoint*/ ctx[1].y)) {
+    				attr_dev(line, "y2", line_y__value_1);
+    			}
+
+    			if (dirty & /*skinTone*/ 8) {
+    				attr_dev(line, "stroke", /*skinTone*/ ctx[3]);
+    			}
+
+    			if (dirty & /*limbThickness*/ 4) {
+    				attr_dev(line, "stroke-width", /*limbThickness*/ ctx[2]);
+    			}
+    		},
+    		i: noop,
+    		o: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(line);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment$6.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function instance$6($$self, $$props, $$invalidate) {
+    	let { $$slots: slots = {}, $$scope } = $$props;
+    	validate_slots('ValdoNeck', slots, []);
+    	let { neckPoint = {} } = $$props;
+    	let { shoulderPoint = {} } = $$props;
+    	let { limbThickness = 4 } = $$props;
+    	let { skinTone = 'black' } = $$props;
+    	const writable_props = ['neckPoint', 'shoulderPoint', 'limbThickness', 'skinTone'];
+
+    	Object.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== '$$' && key !== 'slot') console.warn(`<ValdoNeck> was created with unknown prop '${key}'`);
+    	});
+
+    	$$self.$$set = $$props => {
+    		if ('neckPoint' in $$props) $$invalidate(0, neckPoint = $$props.neckPoint);
+    		if ('shoulderPoint' in $$props) $$invalidate(1, shoulderPoint = $$props.shoulderPoint);
+    		if ('limbThickness' in $$props) $$invalidate(2, limbThickness = $$props.limbThickness);
+    		if ('skinTone' in $$props) $$invalidate(3, skinTone = $$props.skinTone);
+    	};
+
+    	$$self.$capture_state = () => ({
+    		neckPoint,
+    		shoulderPoint,
+    		limbThickness,
+    		skinTone
+    	});
+
+    	$$self.$inject_state = $$props => {
+    		if ('neckPoint' in $$props) $$invalidate(0, neckPoint = $$props.neckPoint);
+    		if ('shoulderPoint' in $$props) $$invalidate(1, shoulderPoint = $$props.shoulderPoint);
+    		if ('limbThickness' in $$props) $$invalidate(2, limbThickness = $$props.limbThickness);
+    		if ('skinTone' in $$props) $$invalidate(3, skinTone = $$props.skinTone);
+    	};
+
+    	if ($$props && "$$inject" in $$props) {
+    		$$self.$inject_state($$props.$$inject);
+    	}
+
+    	return [neckPoint, shoulderPoint, limbThickness, skinTone];
+    }
+
+    class ValdoNeck extends SvelteComponentDev {
+    	constructor(options) {
+    		super(options);
+
+    		init(this, options, instance$6, create_fragment$6, safe_not_equal, {
+    			neckPoint: 0,
+    			shoulderPoint: 1,
+    			limbThickness: 2,
+    			skinTone: 3
+    		});
+
+    		dispatch_dev("SvelteRegisterComponent", {
+    			component: this,
+    			tagName: "ValdoNeck",
+    			options,
+    			id: create_fragment$6.name
+    		});
+    	}
+
+    	get neckPoint() {
+    		throw new Error("<ValdoNeck>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set neckPoint(value) {
+    		throw new Error("<ValdoNeck>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get shoulderPoint() {
+    		throw new Error("<ValdoNeck>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set shoulderPoint(value) {
+    		throw new Error("<ValdoNeck>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get limbThickness() {
+    		throw new Error("<ValdoNeck>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set limbThickness(value) {
+    		throw new Error("<ValdoNeck>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get skinTone() {
+    		throw new Error("<ValdoNeck>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set skinTone(value) {
+    		throw new Error("<ValdoNeck>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+    }
+
+    /* src\Valdo\ValdoTorso.svelte generated by Svelte v3.53.0 */
+    const file$4 = "src\\Valdo\\ValdoTorso.svelte";
+
+    function create_fragment$5(ctx) {
+    	let line0;
+    	let line0_x__value;
+    	let line0_y__value;
+    	let line0_x__value_1;
+    	let line0_y__value_1;
+    	let t;
+    	let line1;
+    	let line1_x__value;
+    	let line1_y__value;
+    	let line1_x__value_1;
+    	let line1_y__value_1;
+    	let line1_stroke_value;
+    	let line1_stroke_width_value;
+
+    	const block = {
+    		c: function create() {
+    			line0 = svg_element("line");
+    			t = space();
+    			line1 = svg_element("line");
+    			attr_dev(line0, "x1", line0_x__value = /*shoulderPoint*/ ctx[0].x);
+    			attr_dev(line0, "y1", line0_y__value = /*shoulderPoint*/ ctx[0].y);
+    			attr_dev(line0, "x2", line0_x__value_1 = /*hipPoint*/ ctx[1].x);
+    			attr_dev(line0, "y2", line0_y__value_1 = /*hipPoint*/ ctx[1].y);
+    			attr_dev(line0, "stroke", /*skinTone*/ ctx[3]);
+    			attr_dev(line0, "stroke-width", /*torsoThickness*/ ctx[2]);
+    			add_location(line0, file$4, 12, 0, 320);
+    			attr_dev(line1, "x1", line1_x__value = /*shoulderPoint*/ ctx[0].x);
+    			attr_dev(line1, "y1", line1_y__value = /*shoulderPoint*/ ctx[0].y);
+    			attr_dev(line1, "x2", line1_x__value_1 = /*hipPoint*/ ctx[1].x);
+    			attr_dev(line1, "y2", line1_y__value_1 = /*hipPoint*/ ctx[1].y);
+    			attr_dev(line1, "stroke", line1_stroke_value = /*$valdoApparelColorStore*/ ctx[4].apparelColorList[/*firstName*/ ctx[5][0]]);
+    			attr_dev(line1, "stroke-width", line1_stroke_width_value = /*torsoThickness*/ ctx[2] * /*$valdoApparelColorStore*/ ctx[4].apparelThickness * 2);
+    			add_location(line1, file$4, 20, 0, 471);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, line0, anchor);
+    			insert_dev(target, t, anchor);
+    			insert_dev(target, line1, anchor);
+    		},
+    		p: function update(ctx, [dirty]) {
+    			if (dirty & /*shoulderPoint*/ 1 && line0_x__value !== (line0_x__value = /*shoulderPoint*/ ctx[0].x)) {
+    				attr_dev(line0, "x1", line0_x__value);
+    			}
+
+    			if (dirty & /*shoulderPoint*/ 1 && line0_y__value !== (line0_y__value = /*shoulderPoint*/ ctx[0].y)) {
+    				attr_dev(line0, "y1", line0_y__value);
+    			}
+
+    			if (dirty & /*hipPoint*/ 2 && line0_x__value_1 !== (line0_x__value_1 = /*hipPoint*/ ctx[1].x)) {
+    				attr_dev(line0, "x2", line0_x__value_1);
+    			}
+
+    			if (dirty & /*hipPoint*/ 2 && line0_y__value_1 !== (line0_y__value_1 = /*hipPoint*/ ctx[1].y)) {
+    				attr_dev(line0, "y2", line0_y__value_1);
+    			}
+
+    			if (dirty & /*skinTone*/ 8) {
+    				attr_dev(line0, "stroke", /*skinTone*/ ctx[3]);
+    			}
+
+    			if (dirty & /*torsoThickness*/ 4) {
+    				attr_dev(line0, "stroke-width", /*torsoThickness*/ ctx[2]);
+    			}
+
+    			if (dirty & /*shoulderPoint*/ 1 && line1_x__value !== (line1_x__value = /*shoulderPoint*/ ctx[0].x)) {
+    				attr_dev(line1, "x1", line1_x__value);
+    			}
+
+    			if (dirty & /*shoulderPoint*/ 1 && line1_y__value !== (line1_y__value = /*shoulderPoint*/ ctx[0].y)) {
+    				attr_dev(line1, "y1", line1_y__value);
+    			}
+
+    			if (dirty & /*hipPoint*/ 2 && line1_x__value_1 !== (line1_x__value_1 = /*hipPoint*/ ctx[1].x)) {
+    				attr_dev(line1, "x2", line1_x__value_1);
+    			}
+
+    			if (dirty & /*hipPoint*/ 2 && line1_y__value_1 !== (line1_y__value_1 = /*hipPoint*/ ctx[1].y)) {
+    				attr_dev(line1, "y2", line1_y__value_1);
+    			}
+
+    			if (dirty & /*$valdoApparelColorStore*/ 16 && line1_stroke_value !== (line1_stroke_value = /*$valdoApparelColorStore*/ ctx[4].apparelColorList[/*firstName*/ ctx[5][0]])) {
+    				attr_dev(line1, "stroke", line1_stroke_value);
+    			}
+
+    			if (dirty & /*torsoThickness, $valdoApparelColorStore*/ 20 && line1_stroke_width_value !== (line1_stroke_width_value = /*torsoThickness*/ ctx[2] * /*$valdoApparelColorStore*/ ctx[4].apparelThickness * 2)) {
+    				attr_dev(line1, "stroke-width", line1_stroke_width_value);
+    			}
+    		},
+    		i: noop,
+    		o: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(line0);
+    			if (detaching) detach_dev(t);
+    			if (detaching) detach_dev(line1);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment$5.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function instance$5($$self, $$props, $$invalidate) {
+    	let $valdoApparelColorStore;
+    	validate_store(valdoApparelColorStore, 'valdoApparelColorStore');
+    	component_subscribe($$self, valdoApparelColorStore, $$value => $$invalidate(4, $valdoApparelColorStore = $$value));
+    	let { $$slots: slots = {}, $$scope } = $$props;
+    	validate_slots('ValdoTorso', slots, []);
+    	let { shoulderPoint = {} } = $$props;
+    	let { hipPoint = {} } = $$props;
+    	let { torsoThickness = 4 } = $$props;
+    	let { fullName = 'Jack Gerifor' } = $$props;
+    	let { skinTone = 'black' } = $$props;
+    	let firstName = fullName[0].toLowerCase();
+    	const writable_props = ['shoulderPoint', 'hipPoint', 'torsoThickness', 'fullName', 'skinTone'];
+
+    	Object.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== '$$' && key !== 'slot') console.warn(`<ValdoTorso> was created with unknown prop '${key}'`);
+    	});
+
+    	$$self.$$set = $$props => {
+    		if ('shoulderPoint' in $$props) $$invalidate(0, shoulderPoint = $$props.shoulderPoint);
+    		if ('hipPoint' in $$props) $$invalidate(1, hipPoint = $$props.hipPoint);
+    		if ('torsoThickness' in $$props) $$invalidate(2, torsoThickness = $$props.torsoThickness);
+    		if ('fullName' in $$props) $$invalidate(6, fullName = $$props.fullName);
+    		if ('skinTone' in $$props) $$invalidate(3, skinTone = $$props.skinTone);
+    	};
+
+    	$$self.$capture_state = () => ({
+    		valdoApparelColorStore,
+    		shoulderPoint,
+    		hipPoint,
+    		torsoThickness,
+    		fullName,
+    		skinTone,
+    		firstName,
+    		$valdoApparelColorStore
+    	});
+
+    	$$self.$inject_state = $$props => {
+    		if ('shoulderPoint' in $$props) $$invalidate(0, shoulderPoint = $$props.shoulderPoint);
+    		if ('hipPoint' in $$props) $$invalidate(1, hipPoint = $$props.hipPoint);
+    		if ('torsoThickness' in $$props) $$invalidate(2, torsoThickness = $$props.torsoThickness);
+    		if ('fullName' in $$props) $$invalidate(6, fullName = $$props.fullName);
+    		if ('skinTone' in $$props) $$invalidate(3, skinTone = $$props.skinTone);
+    		if ('firstName' in $$props) $$invalidate(5, firstName = $$props.firstName);
+    	};
+
+    	if ($$props && "$$inject" in $$props) {
+    		$$self.$inject_state($$props.$$inject);
+    	}
+
+    	return [
+    		shoulderPoint,
+    		hipPoint,
+    		torsoThickness,
+    		skinTone,
+    		$valdoApparelColorStore,
+    		firstName,
+    		fullName
+    	];
+    }
+
+    class ValdoTorso extends SvelteComponentDev {
+    	constructor(options) {
+    		super(options);
+
+    		init(this, options, instance$5, create_fragment$5, safe_not_equal, {
+    			shoulderPoint: 0,
+    			hipPoint: 1,
+    			torsoThickness: 2,
+    			fullName: 6,
+    			skinTone: 3
+    		});
+
+    		dispatch_dev("SvelteRegisterComponent", {
+    			component: this,
+    			tagName: "ValdoTorso",
+    			options,
+    			id: create_fragment$5.name
+    		});
+    	}
+
+    	get shoulderPoint() {
+    		throw new Error("<ValdoTorso>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set shoulderPoint(value) {
+    		throw new Error("<ValdoTorso>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get hipPoint() {
+    		throw new Error("<ValdoTorso>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set hipPoint(value) {
+    		throw new Error("<ValdoTorso>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get torsoThickness() {
+    		throw new Error("<ValdoTorso>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set torsoThickness(value) {
+    		throw new Error("<ValdoTorso>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get fullName() {
+    		throw new Error("<ValdoTorso>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set fullName(value) {
+    		throw new Error("<ValdoTorso>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get skinTone() {
+    		throw new Error("<ValdoTorso>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set skinTone(value) {
+    		throw new Error("<ValdoTorso>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+    }
+
+    /* src\Valdo\Valdo.svelte generated by Svelte v3.53.0 */
+    const file$3 = "src\\Valdo\\Valdo.svelte";
+
+    // (119:2) {:else}
+    function create_else_block$1(ctx) {
+    	let h3;
+
+    	const block = {
+    		c: function create() {
+    			h3 = element("h3");
+    			h3.textContent = `${/*fullName*/ ctx[5]}`;
+    			attr_dev(h3, "class", "svelte-1utlztj");
+    			add_location(h3, file$3, 119, 4, 3456);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, h3, anchor);
+    		},
+    		p: noop,
+    		i: noop,
+    		o: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(h3);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_else_block$1.name,
+    		type: "else",
+    		source: "(119:2) {:else}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (63:2) {#if displaySVG}
+    function create_if_block$3(ctx) {
+    	let svg;
+    	let valdohead;
+    	let valdoneck;
+    	let valdotorso;
+    	let valdoarm0;
+    	let valdoarm1;
+    	let valdoleg0;
+    	let valdoleg1;
+    	let t;
+    	let if_block_anchor;
+    	let current;
+
+    	valdohead = new ValdoHead({
+    			props: {
+    				headPoint: /*headPoint*/ ctx[10],
+    				headDiameter: /*headDiameter*/ ctx[9],
+    				strokeWidth: /*strokeWidth*/ ctx[8],
+    				skinTone: /*skinTone*/ ctx[6]
+    			},
+    			$$inline: true
+    		});
+
+    	valdoneck = new ValdoNeck({
+    			props: {
+    				neckPoint: /*neckPoint*/ ctx[11],
+    				shoulderPoint: /*shoulderPoint*/ ctx[12],
+    				limbThickness: /*limbThickness*/ ctx[18],
+    				skinTone: /*skinTone*/ ctx[6]
+    			},
+    			$$inline: true
+    		});
+
+    	valdotorso = new ValdoTorso({
+    			props: {
+    				shoulderPoint: /*shoulderPoint*/ ctx[12],
+    				hipPoint: /*hipPoint*/ ctx[13],
+    				torsoThickness: /*torsoThickness*/ ctx[19],
+    				skinTone: /*skinTone*/ ctx[6],
+    				fullName: /*fullName*/ ctx[5]
+    			},
+    			$$inline: true
+    		});
+
+    	valdoarm0 = new ValdoArm({
+    			props: {
+    				displayDots: /*displayDots*/ ctx[4],
+    				fullName: /*fullName*/ ctx[5],
+    				armType: 'right',
+    				shoulderPoint: /*shoulderPoint*/ ctx[12],
+    				headDiameter: /*headDiameter*/ ctx[9],
+    				handPoint: /*rightHandPoint*/ ctx[14],
+    				limbThickness: /*limbThickness*/ ctx[18],
+    				skinTone: /*skinTone*/ ctx[6]
+    			},
+    			$$inline: true
+    		});
+
+    	valdoarm1 = new ValdoArm({
+    			props: {
+    				displayDots: /*displayDots*/ ctx[4],
+    				fullName: /*fullName*/ ctx[5],
+    				armType: 'left',
+    				shoulderPoint: /*shoulderPoint*/ ctx[12],
+    				headDiameter: /*headDiameter*/ ctx[9],
+    				handPoint: /*leftHandPoint*/ ctx[15],
+    				limbThickness: /*limbThickness*/ ctx[18],
+    				skinTone: /*skinTone*/ ctx[6]
+    			},
+    			$$inline: true
+    		});
+
+    	valdoleg0 = new ValdoLeg({
+    			props: {
+    				displayDots: /*displayDots*/ ctx[4],
+    				fullName: /*fullName*/ ctx[5],
+    				legType: 'right',
+    				hipPoint: /*hipPoint*/ ctx[13],
+    				headDiameter: /*headDiameter*/ ctx[9],
+    				footPoint: /*rightFootPoint*/ ctx[16],
+    				limbThickness: /*limbThickness*/ ctx[18],
+    				skinTone: /*skinTone*/ ctx[6]
+    			},
+    			$$inline: true
+    		});
+
+    	valdoleg1 = new ValdoLeg({
+    			props: {
+    				displayDots: /*displayDots*/ ctx[4],
+    				fullName: /*fullName*/ ctx[5],
+    				legType: 'left',
+    				hipPoint: /*hipPoint*/ ctx[13],
+    				headDiameter: /*headDiameter*/ ctx[9],
+    				footPoint: /*leftFootPoint*/ ctx[17],
+    				limbThickness: /*limbThickness*/ ctx[18],
+    				skinTone: /*skinTone*/ ctx[6]
+    			},
+    			$$inline: true
+    		});
+
+    	let if_block = /*showFullName*/ ctx[3] && create_if_block_1$1(ctx);
+
+    	const block = {
+    		c: function create() {
+    			svg = svg_element("svg");
+    			create_component(valdohead.$$.fragment);
+    			create_component(valdoneck.$$.fragment);
+    			create_component(valdotorso.$$.fragment);
+    			create_component(valdoarm0.$$.fragment);
+    			create_component(valdoarm1.$$.fragment);
+    			create_component(valdoleg0.$$.fragment);
+    			create_component(valdoleg1.$$.fragment);
+    			t = space();
+    			if (if_block) if_block.c();
+    			if_block_anchor = empty();
+    			attr_dev(svg, "width", /*width*/ ctx[7]);
+    			attr_dev(svg, "height", /*totalHeight*/ ctx[1]);
+    			add_location(svg, file$3, 63, 4, 2037);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, svg, anchor);
+    			mount_component(valdohead, svg, null);
+    			mount_component(valdoneck, svg, null);
+    			mount_component(valdotorso, svg, null);
+    			mount_component(valdoarm0, svg, null);
+    			mount_component(valdoarm1, svg, null);
+    			mount_component(valdoleg0, svg, null);
+    			mount_component(valdoleg1, svg, null);
+    			insert_dev(target, t, anchor);
+    			if (if_block) if_block.m(target, anchor);
+    			insert_dev(target, if_block_anchor, anchor);
+    			current = true;
+    		},
+    		p: function update(ctx, dirty) {
+    			const valdoarm0_changes = {};
+    			if (dirty & /*displayDots*/ 16) valdoarm0_changes.displayDots = /*displayDots*/ ctx[4];
+    			valdoarm0.$set(valdoarm0_changes);
+    			const valdoarm1_changes = {};
+    			if (dirty & /*displayDots*/ 16) valdoarm1_changes.displayDots = /*displayDots*/ ctx[4];
+    			valdoarm1.$set(valdoarm1_changes);
+    			const valdoleg0_changes = {};
+    			if (dirty & /*displayDots*/ 16) valdoleg0_changes.displayDots = /*displayDots*/ ctx[4];
+    			valdoleg0.$set(valdoleg0_changes);
+    			const valdoleg1_changes = {};
+    			if (dirty & /*displayDots*/ 16) valdoleg1_changes.displayDots = /*displayDots*/ ctx[4];
+    			valdoleg1.$set(valdoleg1_changes);
+
+    			if (!current || dirty & /*totalHeight*/ 2) {
+    				attr_dev(svg, "height", /*totalHeight*/ ctx[1]);
+    			}
+
+    			if (/*showFullName*/ ctx[3]) {
+    				if (if_block) {
+    					if_block.p(ctx, dirty);
+    				} else {
+    					if_block = create_if_block_1$1(ctx);
+    					if_block.c();
+    					if_block.m(if_block_anchor.parentNode, if_block_anchor);
+    				}
+    			} else if (if_block) {
+    				if_block.d(1);
+    				if_block = null;
+    			}
+    		},
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(valdohead.$$.fragment, local);
+    			transition_in(valdoneck.$$.fragment, local);
+    			transition_in(valdotorso.$$.fragment, local);
+    			transition_in(valdoarm0.$$.fragment, local);
+    			transition_in(valdoarm1.$$.fragment, local);
+    			transition_in(valdoleg0.$$.fragment, local);
+    			transition_in(valdoleg1.$$.fragment, local);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(valdohead.$$.fragment, local);
+    			transition_out(valdoneck.$$.fragment, local);
+    			transition_out(valdotorso.$$.fragment, local);
+    			transition_out(valdoarm0.$$.fragment, local);
+    			transition_out(valdoarm1.$$.fragment, local);
+    			transition_out(valdoleg0.$$.fragment, local);
+    			transition_out(valdoleg1.$$.fragment, local);
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(svg);
+    			destroy_component(valdohead);
+    			destroy_component(valdoneck);
+    			destroy_component(valdotorso);
+    			destroy_component(valdoarm0);
+    			destroy_component(valdoarm1);
+    			destroy_component(valdoleg0);
+    			destroy_component(valdoleg1);
+    			if (detaching) detach_dev(t);
+    			if (if_block) if_block.d(detaching);
+    			if (detaching) detach_dev(if_block_anchor);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block$3.name,
+    		type: "if",
+    		source: "(63:2) {#if displaySVG}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (116:4) {#if showFullName}
+    function create_if_block_1$1(ctx) {
+    	let p;
+
+    	const block = {
+    		c: function create() {
+    			p = element("p");
+    			p.textContent = `${/*fullName*/ ctx[5]}`;
+    			attr_dev(p, "class", "svelte-1utlztj");
+    			add_location(p, file$3, 116, 6, 3411);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, p, anchor);
+    		},
+    		p: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(p);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block_1$1.name,
+    		type: "if",
+    		source: "(116:4) {#if showFullName}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function create_fragment$4(ctx) {
+    	let div;
+    	let current_block_type_index;
+    	let if_block;
+    	let div_transition;
+    	let current;
+    	let mounted;
+    	let dispose;
+    	const if_block_creators = [create_if_block$3, create_else_block$1];
+    	const if_blocks = [];
+
+    	function select_block_type(ctx, dirty) {
+    		if (/*displaySVG*/ ctx[0]) return 0;
+    		return 1;
+    	}
+
+    	current_block_type_index = select_block_type(ctx);
+    	if_block = if_blocks[current_block_type_index] = if_block_creators[current_block_type_index](ctx);
+
+    	const block = {
+    		c: function create() {
+    			div = element("div");
+    			if_block.c();
+    			attr_dev(div, "class", "svelte-1utlztj");
+    			toggle_class(div, "hoverPointer", /*hoverPointer*/ ctx[2]);
+    			add_location(div, file$3, 61, 0, 1948);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div, anchor);
+    			if_blocks[current_block_type_index].m(div, null);
+    			current = true;
+
+    			if (!mounted) {
+    				dispose = listen_dev(div, "click", /*handleclick*/ ctx[20], false, false, false);
+    				mounted = true;
+    			}
+    		},
+    		p: function update(ctx, [dirty]) {
+    			let previous_block_index = current_block_type_index;
+    			current_block_type_index = select_block_type(ctx);
+
+    			if (current_block_type_index === previous_block_index) {
+    				if_blocks[current_block_type_index].p(ctx, dirty);
+    			} else {
+    				group_outros();
+
+    				transition_out(if_blocks[previous_block_index], 1, 1, () => {
+    					if_blocks[previous_block_index] = null;
+    				});
+
+    				check_outros();
+    				if_block = if_blocks[current_block_type_index];
+
+    				if (!if_block) {
+    					if_block = if_blocks[current_block_type_index] = if_block_creators[current_block_type_index](ctx);
+    					if_block.c();
+    				} else {
+    					if_block.p(ctx, dirty);
+    				}
+
+    				transition_in(if_block, 1);
+    				if_block.m(div, null);
+    			}
+
+    			if (!current || dirty & /*hoverPointer*/ 4) {
+    				toggle_class(div, "hoverPointer", /*hoverPointer*/ ctx[2]);
+    			}
+    		},
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(if_block);
+
+    			add_render_callback(() => {
+    				if (!div_transition) div_transition = create_bidirectional_transition(div, fade, {}, true);
+    				div_transition.run(1);
+    			});
+
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(if_block);
+    			if (!div_transition) div_transition = create_bidirectional_transition(div, fade, {}, false);
+    			div_transition.run(0);
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div);
+    			if_blocks[current_block_type_index].d();
+    			if (detaching && div_transition) div_transition.end();
+    			mounted = false;
+    			dispose();
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment$4.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function instance$4($$self, $$props, $$invalidate) {
+    	let { $$slots: slots = {}, $$scope } = $$props;
+    	validate_slots('Valdo', slots, []);
+    	let { valdoData = {} } = $$props;
+    	let { displaySVG = true } = $$props;
+    	let { totalHeight = 100 } = $$props;
+    	let { hoverPointer = true } = $$props;
+    	let { showFullName = false } = $$props;
+    	let { displayDots = true } = $$props;
+
+    	let { firstName = 'Jeshua', lastName = 'Granstand', fullName = `${firstName} ${lastName}`, skinTone = 'black', greeting = 'hello', correctResponse = 'yes', incorrectResponse = 'no', height = totalHeight * 0.95, width = height * 5 / 6, strokeWidth = 2, midPoint = { x: width / 2, y: height / 2 }, headDiameter = height / 7, headPoint = {
+    		x: midPoint.x,
+    		y: strokeWidth + headDiameter / 2
+    	}, neckPoint = { x: midPoint.x, y: 2 + headDiameter }, shoulderPoint = { x: midPoint.x, y: 2 + 1.5 * headDiameter }, hipPoint = { x: midPoint.x, y: 4 * headDiameter }, rightHandPoint = {
+    		x: midPoint.x + 2 * headDiameter,
+    		y: hipPoint.y * 0.75
+    	}, leftHandPoint = {
+    		x: midPoint.x - 2 * headDiameter,
+    		y: headPoint.y
+    	}, rightFootPoint = {
+    		x: midPoint.x + 2 * headDiameter,
+    		y: hipPoint.y * 1.25
+    	}, leftFootPoint = {
+    		x: midPoint.x - 2 * headDiameter,
+    		y: height
+    	}, limbThickness = height / 50, torsoThickness = limbThickness } = valdoData;
+
+    	const dispatch = createEventDispatcher();
+
+    	function handleclick() {
+    		dispatch('tag', {
+    			fullName,
+    			greeting,
+    			correctResponse,
+    			incorrectResponse
+    		});
+    	}
+
+    	const writable_props = [
+    		'valdoData',
+    		'displaySVG',
+    		'totalHeight',
+    		'hoverPointer',
+    		'showFullName',
+    		'displayDots'
+    	];
+
+    	Object.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== '$$' && key !== 'slot') console.warn(`<Valdo> was created with unknown prop '${key}'`);
+    	});
+
+    	$$self.$$set = $$props => {
+    		if ('valdoData' in $$props) $$invalidate(21, valdoData = $$props.valdoData);
+    		if ('displaySVG' in $$props) $$invalidate(0, displaySVG = $$props.displaySVG);
+    		if ('totalHeight' in $$props) $$invalidate(1, totalHeight = $$props.totalHeight);
+    		if ('hoverPointer' in $$props) $$invalidate(2, hoverPointer = $$props.hoverPointer);
+    		if ('showFullName' in $$props) $$invalidate(3, showFullName = $$props.showFullName);
+    		if ('displayDots' in $$props) $$invalidate(4, displayDots = $$props.displayDots);
+    	};
+
+    	$$self.$capture_state = () => ({
+    		createEventDispatcher,
+    		fade,
+    		ValdoArm,
+    		ValdoHead,
+    		ValdoLeg,
+    		ValdoNeck,
+    		ValdoTorso,
+    		valdoData,
+    		displaySVG,
+    		totalHeight,
+    		hoverPointer,
+    		showFullName,
+    		displayDots,
+    		firstName,
+    		lastName,
+    		fullName,
+    		skinTone,
+    		greeting,
+    		correctResponse,
+    		incorrectResponse,
+    		height,
+    		width,
+    		strokeWidth,
+    		midPoint,
+    		headDiameter,
+    		headPoint,
+    		neckPoint,
+    		shoulderPoint,
+    		hipPoint,
+    		rightHandPoint,
+    		leftHandPoint,
+    		rightFootPoint,
+    		leftFootPoint,
+    		limbThickness,
+    		torsoThickness,
+    		dispatch,
+    		handleclick
+    	});
+
+    	$$self.$inject_state = $$props => {
+    		if ('valdoData' in $$props) $$invalidate(21, valdoData = $$props.valdoData);
+    		if ('displaySVG' in $$props) $$invalidate(0, displaySVG = $$props.displaySVG);
+    		if ('totalHeight' in $$props) $$invalidate(1, totalHeight = $$props.totalHeight);
+    		if ('hoverPointer' in $$props) $$invalidate(2, hoverPointer = $$props.hoverPointer);
+    		if ('showFullName' in $$props) $$invalidate(3, showFullName = $$props.showFullName);
+    		if ('displayDots' in $$props) $$invalidate(4, displayDots = $$props.displayDots);
+    		if ('firstName' in $$props) firstName = $$props.firstName;
+    		if ('lastName' in $$props) lastName = $$props.lastName;
+    		if ('fullName' in $$props) $$invalidate(5, fullName = $$props.fullName);
+    		if ('skinTone' in $$props) $$invalidate(6, skinTone = $$props.skinTone);
+    		if ('greeting' in $$props) greeting = $$props.greeting;
+    		if ('correctResponse' in $$props) correctResponse = $$props.correctResponse;
+    		if ('incorrectResponse' in $$props) incorrectResponse = $$props.incorrectResponse;
+    		if ('height' in $$props) height = $$props.height;
+    		if ('width' in $$props) $$invalidate(7, width = $$props.width);
+    		if ('strokeWidth' in $$props) $$invalidate(8, strokeWidth = $$props.strokeWidth);
+    		if ('midPoint' in $$props) midPoint = $$props.midPoint;
+    		if ('headDiameter' in $$props) $$invalidate(9, headDiameter = $$props.headDiameter);
+    		if ('headPoint' in $$props) $$invalidate(10, headPoint = $$props.headPoint);
+    		if ('neckPoint' in $$props) $$invalidate(11, neckPoint = $$props.neckPoint);
+    		if ('shoulderPoint' in $$props) $$invalidate(12, shoulderPoint = $$props.shoulderPoint);
+    		if ('hipPoint' in $$props) $$invalidate(13, hipPoint = $$props.hipPoint);
+    		if ('rightHandPoint' in $$props) $$invalidate(14, rightHandPoint = $$props.rightHandPoint);
+    		if ('leftHandPoint' in $$props) $$invalidate(15, leftHandPoint = $$props.leftHandPoint);
+    		if ('rightFootPoint' in $$props) $$invalidate(16, rightFootPoint = $$props.rightFootPoint);
+    		if ('leftFootPoint' in $$props) $$invalidate(17, leftFootPoint = $$props.leftFootPoint);
+    		if ('limbThickness' in $$props) $$invalidate(18, limbThickness = $$props.limbThickness);
+    		if ('torsoThickness' in $$props) $$invalidate(19, torsoThickness = $$props.torsoThickness);
+    	};
+
+    	if ($$props && "$$inject" in $$props) {
+    		$$self.$inject_state($$props.$$inject);
+    	}
+
+    	return [
+    		displaySVG,
+    		totalHeight,
+    		hoverPointer,
+    		showFullName,
+    		displayDots,
+    		fullName,
+    		skinTone,
+    		width,
+    		strokeWidth,
+    		headDiameter,
+    		headPoint,
+    		neckPoint,
+    		shoulderPoint,
+    		hipPoint,
+    		rightHandPoint,
+    		leftHandPoint,
+    		rightFootPoint,
+    		leftFootPoint,
+    		limbThickness,
+    		torsoThickness,
+    		handleclick,
+    		valdoData
+    	];
+    }
+
+    class Valdo extends SvelteComponentDev {
+    	constructor(options) {
+    		super(options);
+
+    		init(this, options, instance$4, create_fragment$4, safe_not_equal, {
+    			valdoData: 21,
+    			displaySVG: 0,
+    			totalHeight: 1,
+    			hoverPointer: 2,
+    			showFullName: 3,
+    			displayDots: 4
+    		});
+
+    		dispatch_dev("SvelteRegisterComponent", {
+    			component: this,
+    			tagName: "Valdo",
+    			options,
+    			id: create_fragment$4.name
+    		});
+    	}
+
+    	get valdoData() {
+    		throw new Error("<Valdo>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set valdoData(value) {
+    		throw new Error("<Valdo>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get displaySVG() {
+    		throw new Error("<Valdo>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set displaySVG(value) {
+    		throw new Error("<Valdo>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get totalHeight() {
+    		throw new Error("<Valdo>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set totalHeight(value) {
+    		throw new Error("<Valdo>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get hoverPointer() {
+    		throw new Error("<Valdo>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set hoverPointer(value) {
+    		throw new Error("<Valdo>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get showFullName() {
+    		throw new Error("<Valdo>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set showFullName(value) {
+    		throw new Error("<Valdo>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get displayDots() {
+    		throw new Error("<Valdo>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set displayDots(value) {
+    		throw new Error("<Valdo>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+    }
+
+    /* src\Header.svelte generated by Svelte v3.53.0 */
+
+    const { console: console_1 } = globals;
+    const file$2 = "src\\Header.svelte";
+
+    // (57:28) 
+    function create_if_block_3(ctx) {
+    	let button;
+    	let mounted;
+    	let dispose;
+
+    	const block = {
+    		c: function create() {
+    			button = element("button");
+    			button.textContent = "Play Again?";
+    			attr_dev(button, "class", "hoverPointer svelte-3yivzb");
+    			add_location(button, file$2, 57, 6, 1695);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, button, anchor);
+
+    			if (!mounted) {
+    				dispose = listen_dev(button, "click", /*startTimer*/ ctx[4], false, false, false);
+    				mounted = true;
+    			}
+    		},
+    		p: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(button);
+    			mounted = false;
+    			dispose();
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block_3.name,
+    		type: "if",
+    		source: "(57:28) ",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (55:40) 
+    function create_if_block_2(ctx) {
+    	let h2;
+
+    	const block = {
+    		c: function create() {
+    			h2 = element("h2");
+    			h2.textContent = "Current Valdo:";
+    			attr_dev(h2, "class", "svelte-3yivzb");
+    			add_location(h2, file$2, 55, 6, 1634);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, h2, anchor);
+    		},
+    		p: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(h2);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block_2.name,
+    		type: "if",
+    		source: "(55:40) ",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (53:4) {#if !$valdoStore.activatedGame && !completedGame}
+    function create_if_block_1(ctx) {
+    	let button;
+    	let mounted;
+    	let dispose;
+
+    	const block = {
+    		c: function create() {
+    			button = element("button");
+    			button.textContent = "Click to Start";
+    			attr_dev(button, "class", "hoverPointer svelte-3yivzb");
+    			add_location(button, file$2, 53, 6, 1510);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, button, anchor);
+
+    			if (!mounted) {
+    				dispose = listen_dev(button, "click", /*startTimer*/ ctx[4], false, false, false);
+    				mounted = true;
+    			}
+    		},
+    		p: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(button);
+    			mounted = false;
+    			dispose();
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block_1.name,
+    		type: "if",
+    		source: "(53:4) {#if !$valdoStore.activatedGame && !completedGame}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (72:4) {:else}
+    function create_else_block(ctx) {
+    	let h4;
+
+    	const block = {
+    		c: function create() {
+    			h4 = element("h4");
+    			h4.textContent = "New Valdo Pending...";
+    			add_location(h4, file$2, 72, 6, 2125);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, h4, anchor);
+    		},
+    		p: noop,
+    		i: noop,
+    		o: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(h4);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_else_block.name,
+    		type: "else",
+    		source: "(72:4) {:else}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (62:4) {#if $valdoStore.activatedGame}
+    function create_if_block$2(ctx) {
+    	let previous_key = /*$valdoStore*/ ctx[1].activeValdo;
+    	let key_block_anchor;
+    	let current;
+    	let key_block = create_key_block(ctx);
+
+    	const block = {
+    		c: function create() {
+    			key_block.c();
+    			key_block_anchor = empty();
+    		},
+    		m: function mount(target, anchor) {
+    			key_block.m(target, anchor);
+    			insert_dev(target, key_block_anchor, anchor);
+    			current = true;
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*$valdoStore*/ 2 && safe_not_equal(previous_key, previous_key = /*$valdoStore*/ ctx[1].activeValdo)) {
+    				group_outros();
+    				transition_out(key_block, 1, 1, noop);
+    				check_outros();
+    				key_block = create_key_block(ctx);
+    				key_block.c();
+    				transition_in(key_block, 1);
+    				key_block.m(key_block_anchor.parentNode, key_block_anchor);
+    			} else {
+    				key_block.p(ctx, dirty);
+    			}
+    		},
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(key_block);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(key_block);
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(key_block_anchor);
+    			key_block.d(detaching);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block$2.name,
+    		type: "if",
+    		source: "(62:4) {#if $valdoStore.activatedGame}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (63:6) {#key $valdoStore.activeValdo}
+    function create_key_block(ctx) {
+    	let valdo;
+    	let current;
+
+    	valdo = new Valdo({
+    			props: {
+    				displayDots: false,
+    				totalHeight: 100,
+    				valdoData: /*$valdoStore*/ ctx[1].activeValdo,
+    				displaySVG: /*displaySVG*/ ctx[0],
+    				hoverPointer: false
+    			},
+    			$$inline: true
+    		});
+
+    	const block = {
+    		c: function create() {
+    			create_component(valdo.$$.fragment);
+    		},
+    		m: function mount(target, anchor) {
+    			mount_component(valdo, target, anchor);
+    			current = true;
+    		},
+    		p: function update(ctx, dirty) {
+    			const valdo_changes = {};
+    			if (dirty & /*$valdoStore*/ 2) valdo_changes.valdoData = /*$valdoStore*/ ctx[1].activeValdo;
+    			if (dirty & /*displaySVG*/ 1) valdo_changes.displaySVG = /*displaySVG*/ ctx[0];
+    			valdo.$set(valdo_changes);
+    		},
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(valdo.$$.fragment, local);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(valdo.$$.fragment, local);
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			destroy_component(valdo, detaching);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_key_block.name,
+    		type: "key",
+    		source: "(63:6) {#key $valdoStore.activeValdo}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function create_fragment$3(ctx) {
+    	let header;
+    	let div0;
+    	let h30;
+    	let t0;
+    	let t1_value = /*$gameTimer*/ ctx[3].score + "";
+    	let t1;
+    	let t2;
+    	let h31;
+    	let t3;
+    	let t4_value = /*$gameTimer*/ ctx[3].highScore + "";
+    	let t4;
+    	let t5;
+    	let h32;
+    	let t6;
+    	let t7_value = /*$gameTimer*/ ctx[3].remainingTime + "";
+    	let t7;
+    	let t8;
+    	let t9;
+    	let div1;
+    	let t10;
+    	let div2;
+    	let current_block_type_index;
+    	let if_block1;
+    	let t11;
+    	let timerbar;
+    	let current;
+
+    	function select_block_type(ctx, dirty) {
+    		if (!/*$valdoStore*/ ctx[1].activatedGame && !/*completedGame*/ ctx[2]) return create_if_block_1;
+    		if (/*$valdoStore*/ ctx[1].activatedGame) return create_if_block_2;
+    		if (/*completedGame*/ ctx[2]) return create_if_block_3;
+    	}
+
+    	let current_block_type = select_block_type(ctx);
+    	let if_block0 = current_block_type && current_block_type(ctx);
+    	const if_block_creators = [create_if_block$2, create_else_block];
+    	const if_blocks = [];
+
+    	function select_block_type_1(ctx, dirty) {
+    		if (/*$valdoStore*/ ctx[1].activatedGame) return 0;
+    		return 1;
+    	}
+
+    	current_block_type_index = select_block_type_1(ctx);
+    	if_block1 = if_blocks[current_block_type_index] = if_block_creators[current_block_type_index](ctx);
+    	timerbar = new TimerBar({ $$inline: true });
+
+    	const block = {
+    		c: function create() {
+    			header = element("header");
+    			div0 = element("div");
+    			h30 = element("h3");
+    			t0 = text("Current Score: ");
+    			t1 = text(t1_value);
+    			t2 = space();
+    			h31 = element("h3");
+    			t3 = text("High Score: ");
+    			t4 = text(t4_value);
+    			t5 = space();
+    			h32 = element("h3");
+    			t6 = text("Remaining Time: ");
+    			t7 = text(t7_value);
+    			t8 = text("s");
+    			t9 = space();
+    			div1 = element("div");
+    			if (if_block0) if_block0.c();
+    			t10 = space();
+    			div2 = element("div");
+    			if_block1.c();
+    			t11 = space();
+    			create_component(timerbar.$$.fragment);
+    			attr_dev(h30, "class", "svelte-3yivzb");
+    			add_location(h30, file$2, 45, 4, 1264);
+    			attr_dev(h31, "class", "svelte-3yivzb");
+    			add_location(h31, file$2, 46, 4, 1312);
+    			attr_dev(h32, "class", "svelte-3yivzb");
+    			add_location(h32, file$2, 47, 4, 1361);
+    			attr_dev(div0, "class", "gameInfoWrapper svelte-3yivzb");
+    			add_location(div0, file$2, 44, 2, 1229);
+    			attr_dev(div1, "class", "svelte-3yivzb");
+    			add_location(div1, file$2, 51, 2, 1441);
+    			attr_dev(div2, "class", "currentValdoWrapper svelte-3yivzb");
+    			add_location(div2, file$2, 60, 2, 1791);
+    			attr_dev(header, "class", "svelte-3yivzb");
+    			add_location(header, file$2, 43, 0, 1217);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, header, anchor);
+    			append_dev(header, div0);
+    			append_dev(div0, h30);
+    			append_dev(h30, t0);
+    			append_dev(h30, t1);
+    			append_dev(div0, t2);
+    			append_dev(div0, h31);
+    			append_dev(h31, t3);
+    			append_dev(h31, t4);
+    			append_dev(div0, t5);
+    			append_dev(div0, h32);
+    			append_dev(h32, t6);
+    			append_dev(h32, t7);
+    			append_dev(h32, t8);
+    			append_dev(header, t9);
+    			append_dev(header, div1);
+    			if (if_block0) if_block0.m(div1, null);
+    			append_dev(header, t10);
+    			append_dev(header, div2);
+    			if_blocks[current_block_type_index].m(div2, null);
+    			insert_dev(target, t11, anchor);
+    			mount_component(timerbar, target, anchor);
+    			current = true;
+    		},
+    		p: function update(ctx, [dirty]) {
+    			if ((!current || dirty & /*$gameTimer*/ 8) && t1_value !== (t1_value = /*$gameTimer*/ ctx[3].score + "")) set_data_dev(t1, t1_value);
+    			if ((!current || dirty & /*$gameTimer*/ 8) && t4_value !== (t4_value = /*$gameTimer*/ ctx[3].highScore + "")) set_data_dev(t4, t4_value);
+    			if ((!current || dirty & /*$gameTimer*/ 8) && t7_value !== (t7_value = /*$gameTimer*/ ctx[3].remainingTime + "")) set_data_dev(t7, t7_value);
+
+    			if (current_block_type === (current_block_type = select_block_type(ctx)) && if_block0) {
+    				if_block0.p(ctx, dirty);
+    			} else {
+    				if (if_block0) if_block0.d(1);
+    				if_block0 = current_block_type && current_block_type(ctx);
+
+    				if (if_block0) {
+    					if_block0.c();
+    					if_block0.m(div1, null);
+    				}
+    			}
+
+    			let previous_block_index = current_block_type_index;
+    			current_block_type_index = select_block_type_1(ctx);
+
+    			if (current_block_type_index === previous_block_index) {
+    				if_blocks[current_block_type_index].p(ctx, dirty);
+    			} else {
+    				group_outros();
+
+    				transition_out(if_blocks[previous_block_index], 1, 1, () => {
+    					if_blocks[previous_block_index] = null;
+    				});
+
+    				check_outros();
+    				if_block1 = if_blocks[current_block_type_index];
+
+    				if (!if_block1) {
+    					if_block1 = if_blocks[current_block_type_index] = if_block_creators[current_block_type_index](ctx);
+    					if_block1.c();
+    				} else {
+    					if_block1.p(ctx, dirty);
+    				}
+
+    				transition_in(if_block1, 1);
+    				if_block1.m(div2, null);
+    			}
+    		},
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(if_block1);
+    			transition_in(timerbar.$$.fragment, local);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(if_block1);
+    			transition_out(timerbar.$$.fragment, local);
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(header);
+
+    			if (if_block0) {
+    				if_block0.d();
+    			}
+
+    			if_blocks[current_block_type_index].d();
+    			if (detaching) detach_dev(t11);
+    			destroy_component(timerbar, detaching);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment$3.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function instance$3($$self, $$props, $$invalidate) {
+    	let $valdoStore;
+    	let $gameTimer;
+    	validate_store(valdoStore, 'valdoStore');
+    	component_subscribe($$self, valdoStore, $$value => $$invalidate(1, $valdoStore = $$value));
+    	validate_store(gameTimer, 'gameTimer');
+    	component_subscribe($$self, gameTimer, $$value => $$invalidate(3, $gameTimer = $$value));
+    	let { $$slots: slots = {}, $$scope } = $$props;
+    	validate_slots('Header', slots, []);
+    	let { displaySVG = true } = $$props;
+    	let timerId;
+    	let completedGame = false;
+
+    	function startTimer() {
+    		if (!$valdoStore.activatedGame) {
+    			valdoStore.startNewGame();
+    		}
+
+    		gameTimer.setTimerActive();
+    		timerId = setInterval(() => checkTimer(timerId), 1000);
+    		console.log($gameTimer);
+    	}
+
+    	function checkTimer(id) {
+    		if ($gameTimer.remainingTime > 0) {
+    			gameTimer.decrementTime(1);
+    		} else if ($gameTimer.remainingTime <= 0) {
+    			console.log('finished game:', completedGame, $valdoStore, $gameTimer);
+    			stopTimer(id);
+    		}
+    	}
+
+    	function stopTimer(id) {
+    		clearInterval(id);
+    		gameTimer.setTimerInactive();
+
+    		if ($gameTimer.score > $gameTimer.highScore) {
+    			gameTimer.setHighscore($gameTimer.score);
+    		}
+
+    		$$invalidate(2, completedGame = true);
+    		gameTimer.resetGame();
+    		valdoStore.finishGame();
+    		console.log('finished game:', completedGame, $valdoStore, $gameTimer);
+    	}
+
+    	const writable_props = ['displaySVG'];
+
+    	Object.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== '$$' && key !== 'slot') console_1.warn(`<Header> was created with unknown prop '${key}'`);
+    	});
+
+    	$$self.$$set = $$props => {
+    		if ('displaySVG' in $$props) $$invalidate(0, displaySVG = $$props.displaySVG);
+    	};
+
+    	$$self.$capture_state = () => ({
+    		TimerBar,
+    		gameTimer,
+    		valdoStore,
+    		Valdo,
+    		displaySVG,
+    		timerId,
+    		completedGame,
+    		startTimer,
+    		checkTimer,
+    		stopTimer,
+    		$valdoStore,
+    		$gameTimer
+    	});
+
+    	$$self.$inject_state = $$props => {
+    		if ('displaySVG' in $$props) $$invalidate(0, displaySVG = $$props.displaySVG);
+    		if ('timerId' in $$props) timerId = $$props.timerId;
+    		if ('completedGame' in $$props) $$invalidate(2, completedGame = $$props.completedGame);
+    	};
+
+    	if ($$props && "$$inject" in $$props) {
+    		$$self.$inject_state($$props.$$inject);
+    	}
+
+    	$$self.$$.update = () => {
+    		if ($$self.$$.dirty & /*$valdoStore*/ 2) {
+    			console.log($valdoStore.activeValdo);
+    		}
+    	};
+
+    	return [displaySVG, $valdoStore, completedGame, $gameTimer, startTimer];
+    }
+
+    class Header extends SvelteComponentDev {
+    	constructor(options) {
+    		super(options);
+    		init(this, options, instance$3, create_fragment$3, safe_not_equal, { displaySVG: 0 });
+
+    		dispatch_dev("SvelteRegisterComponent", {
+    			component: this,
+    			tagName: "Header",
+    			options,
+    			id: create_fragment$3.name
+    		});
+    	}
+
+    	get displaySVG() {
+    		throw new Error("<Header>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set displaySVG(value) {
+    		throw new Error("<Header>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+    }
+
+    /* src\ValdoDisplay.svelte generated by Svelte v3.53.0 */
+
+    const file$1 = "src\\ValdoDisplay.svelte";
+
+    function create_fragment$2(ctx) {
+    	let div;
+    	let current;
+    	const default_slot_template = /*#slots*/ ctx[1].default;
+    	const default_slot = create_slot(default_slot_template, ctx, /*$$scope*/ ctx[0], null);
+
+    	const block = {
+    		c: function create() {
+    			div = element("div");
+    			if (default_slot) default_slot.c();
+    			attr_dev(div, "class", "svelte-w77ngl");
+    			add_location(div, file$1, 0, 0, 0);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div, anchor);
+
+    			if (default_slot) {
+    				default_slot.m(div, null);
+    			}
+
+    			current = true;
+    		},
+    		p: function update(ctx, [dirty]) {
+    			if (default_slot) {
+    				if (default_slot.p && (!current || dirty & /*$$scope*/ 1)) {
+    					update_slot_base(
+    						default_slot,
+    						default_slot_template,
+    						ctx,
+    						/*$$scope*/ ctx[0],
+    						!current
+    						? get_all_dirty_from_scope(/*$$scope*/ ctx[0])
+    						: get_slot_changes(default_slot_template, /*$$scope*/ ctx[0], dirty, null),
+    						null
+    					);
+    				}
+    			}
+    		},
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(default_slot, local);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(default_slot, local);
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div);
+    			if (default_slot) default_slot.d(detaching);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment$2.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function instance$2($$self, $$props, $$invalidate) {
+    	let { $$slots: slots = {}, $$scope } = $$props;
+    	validate_slots('ValdoDisplay', slots, ['default']);
+    	const writable_props = [];
+
+    	Object.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== '$$' && key !== 'slot') console.warn(`<ValdoDisplay> was created with unknown prop '${key}'`);
+    	});
+
+    	$$self.$$set = $$props => {
+    		if ('$$scope' in $$props) $$invalidate(0, $$scope = $$props.$$scope);
+    	};
+
+    	return [$$scope, slots];
+    }
+
+    class ValdoDisplay extends SvelteComponentDev {
+    	constructor(options) {
+    		super(options);
+    		init(this, options, instance$2, create_fragment$2, safe_not_equal, {});
+
+    		dispatch_dev("SvelteRegisterComponent", {
+    			component: this,
+    			tagName: "ValdoDisplay",
+    			options,
+    			id: create_fragment$2.name
+    		});
+    	}
+    }
+
+    /* src\Modal.svelte generated by Svelte v3.53.0 */
+    const file = "src\\Modal.svelte";
+
+    // (11:0) {#if isModalOpen}
+    function create_if_block$1(ctx) {
+    	let div0;
+    	let button;
+    	let t1;
+    	let div0_transition;
+    	let t2;
+    	let div1;
+    	let div1_transition;
+    	let current;
+    	let mounted;
+    	let dispose;
+    	const default_slot_template = /*#slots*/ ctx[3].default;
+    	const default_slot = create_slot(default_slot_template, ctx, /*$$scope*/ ctx[2], null);
+
+    	const block = {
+    		c: function create() {
+    			div0 = element("div");
+    			button = element("button");
+    			button.textContent = "Close";
+    			t1 = space();
+    			if (default_slot) default_slot.c();
+    			t2 = space();
+    			div1 = element("div");
+    			attr_dev(button, "aria-label", "Close Modal Box");
+    			add_location(button, file, 12, 4, 264);
+    			attr_dev(div0, "class", "modal-wrapper svelte-1a13z2p");
+    			add_location(div0, file, 11, 2, 191);
+    			attr_dev(div1, "class", "background svelte-1a13z2p");
+    			add_location(div1, file, 16, 2, 425);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div0, anchor);
+    			append_dev(div0, button);
+    			append_dev(div0, t1);
+
+    			if (default_slot) {
+    				default_slot.m(div0, null);
+    			}
+
+    			insert_dev(target, t2, anchor);
+    			insert_dev(target, div1, anchor);
+    			current = true;
+
+    			if (!mounted) {
+    				dispose = [
+    					listen_dev(button, "click", /*closeModal*/ ctx[1], false, false, false),
+    					listen_dev(div1, "click", /*closeModal*/ ctx[1], false, false, false)
+    				];
+
+    				mounted = true;
+    			}
+    		},
+    		p: function update(ctx, dirty) {
+    			if (default_slot) {
+    				if (default_slot.p && (!current || dirty & /*$$scope*/ 4)) {
+    					update_slot_base(
+    						default_slot,
+    						default_slot_template,
+    						ctx,
+    						/*$$scope*/ ctx[2],
+    						!current
+    						? get_all_dirty_from_scope(/*$$scope*/ ctx[2])
+    						: get_slot_changes(default_slot_template, /*$$scope*/ ctx[2], dirty, null),
+    						null
+    					);
+    				}
+    			}
+    		},
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(default_slot, local);
+
+    			add_render_callback(() => {
+    				if (!div0_transition) div0_transition = create_bidirectional_transition(div0, fly, { opacity: 0, y: 100 }, true);
+    				div0_transition.run(1);
+    			});
+
+    			add_render_callback(() => {
+    				if (!div1_transition) div1_transition = create_bidirectional_transition(div1, fade, {}, true);
+    				div1_transition.run(1);
+    			});
+
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(default_slot, local);
+    			if (!div0_transition) div0_transition = create_bidirectional_transition(div0, fly, { opacity: 0, y: 100 }, false);
+    			div0_transition.run(0);
+    			if (!div1_transition) div1_transition = create_bidirectional_transition(div1, fade, {}, false);
+    			div1_transition.run(0);
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div0);
+    			if (default_slot) default_slot.d(detaching);
+    			if (detaching && div0_transition) div0_transition.end();
+    			if (detaching) detach_dev(t2);
+    			if (detaching) detach_dev(div1);
+    			if (detaching && div1_transition) div1_transition.end();
+    			mounted = false;
+    			run_all(dispose);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block$1.name,
+    		type: "if",
+    		source: "(11:0) {#if isModalOpen}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function create_fragment$1(ctx) {
+    	let if_block_anchor;
+    	let current;
+    	let if_block = /*isModalOpen*/ ctx[0] && create_if_block$1(ctx);
+
+    	const block = {
+    		c: function create() {
+    			if (if_block) if_block.c();
+    			if_block_anchor = empty();
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			if (if_block) if_block.m(target, anchor);
+    			insert_dev(target, if_block_anchor, anchor);
+    			current = true;
+    		},
+    		p: function update(ctx, [dirty]) {
+    			if (/*isModalOpen*/ ctx[0]) {
+    				if (if_block) {
+    					if_block.p(ctx, dirty);
+
+    					if (dirty & /*isModalOpen*/ 1) {
+    						transition_in(if_block, 1);
+    					}
+    				} else {
+    					if_block = create_if_block$1(ctx);
+    					if_block.c();
+    					transition_in(if_block, 1);
+    					if_block.m(if_block_anchor.parentNode, if_block_anchor);
+    				}
+    			} else if (if_block) {
+    				group_outros();
+
+    				transition_out(if_block, 1, 1, () => {
+    					if_block = null;
+    				});
+
+    				check_outros();
+    			}
+    		},
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(if_block);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(if_block);
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			if (if_block) if_block.d(detaching);
+    			if (detaching) detach_dev(if_block_anchor);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment$1.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function instance$1($$self, $$props, $$invalidate) {
+    	let { $$slots: slots = {}, $$scope } = $$props;
+    	validate_slots('Modal', slots, ['default']);
+    	let { isModalOpen = false } = $$props;
+
+    	function closeModal() {
+    		$$invalidate(0, isModalOpen = false);
+    	}
+
+    	const writable_props = ['isModalOpen'];
+
+    	Object.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== '$$' && key !== 'slot') console.warn(`<Modal> was created with unknown prop '${key}'`);
+    	});
+
+    	$$self.$$set = $$props => {
+    		if ('isModalOpen' in $$props) $$invalidate(0, isModalOpen = $$props.isModalOpen);
+    		if ('$$scope' in $$props) $$invalidate(2, $$scope = $$props.$$scope);
+    	};
+
+    	$$self.$capture_state = () => ({ fly, fade, isModalOpen, closeModal });
+
+    	$$self.$inject_state = $$props => {
+    		if ('isModalOpen' in $$props) $$invalidate(0, isModalOpen = $$props.isModalOpen);
+    	};
+
+    	if ($$props && "$$inject" in $$props) {
+    		$$self.$inject_state($$props.$$inject);
+    	}
+
+    	return [isModalOpen, closeModal, $$scope, slots];
+    }
+
+    class Modal extends SvelteComponentDev {
+    	constructor(options) {
+    		super(options);
+    		init(this, options, instance$1, create_fragment$1, safe_not_equal, { isModalOpen: 0 });
+
+    		dispatch_dev("SvelteRegisterComponent", {
+    			component: this,
+    			tagName: "Modal",
+    			options,
+    			id: create_fragment$1.name
+    		});
+    	}
+
+    	get isModalOpen() {
+    		throw new Error("<Modal>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set isModalOpen(value) {
+    		throw new Error("<Modal>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+    }
+
+    /* src\App.svelte generated by Svelte v3.53.0 */
+
+    function get_each_context(ctx, list, i) {
+    	const child_ctx = ctx.slice();
+    	child_ctx[10] = list[i];
+    	return child_ctx;
+    }
+
+    // (43:2) {#if $valdoStore.activatedGame}
+    function create_if_block(ctx) {
+    	let each_blocks = [];
+    	let each_1_lookup = new Map();
+    	let each_1_anchor;
+    	let current;
+    	let each_value = /*$valdoStore*/ ctx[0].displayedValdos;
+    	validate_each_argument(each_value);
+    	const get_key = ctx => /*valdoData*/ ctx[10].firstName;
+    	validate_each_keys(ctx, each_value, get_each_context, get_key);
+
+    	for (let i = 0; i < each_value.length; i += 1) {
+    		let child_ctx = get_each_context(ctx, each_value, i);
+    		let key = get_key(child_ctx);
+    		each_1_lookup.set(key, each_blocks[i] = create_each_block(key, child_ctx));
+    	}
+
+    	const block = {
+    		c: function create() {
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].c();
+    			}
+
+    			each_1_anchor = empty();
+    		},
+    		m: function mount(target, anchor) {
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].m(target, anchor);
+    			}
+
+    			insert_dev(target, each_1_anchor, anchor);
+    			current = true;
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*$valdoStore, displaySVG, showFullName, displayDots, handleTag*/ 15) {
+    				each_value = /*$valdoStore*/ ctx[0].displayedValdos;
+    				validate_each_argument(each_value);
+    				group_outros();
+    				validate_each_keys(ctx, each_value, get_each_context, get_key);
+    				each_blocks = update_keyed_each(each_blocks, dirty, get_key, 1, ctx, each_value, each_1_lookup, each_1_anchor.parentNode, outro_and_destroy_block, create_each_block, each_1_anchor, get_each_context);
+    				check_outros();
+    			}
+    		},
+    		i: function intro(local) {
+    			if (current) return;
+
+    			for (let i = 0; i < each_value.length; i += 1) {
+    				transition_in(each_blocks[i]);
+    			}
+
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				transition_out(each_blocks[i]);
+    			}
+
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].d(detaching);
+    			}
+
+    			if (detaching) detach_dev(each_1_anchor);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block.name,
+    		type: "if",
+    		source: "(43:2) {#if $valdoStore.activatedGame}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (44:4) {#each $valdoStore.displayedValdos as valdoData (valdoData.firstName)}
+    function create_each_block(key_1, ctx) {
+    	let first;
+    	let valdo;
+    	let current;
+
+    	valdo = new Valdo({
+    			props: {
+    				valdoData: /*valdoData*/ ctx[10],
+    				displaySVG,
+    				showFullName: /*showFullName*/ ctx[1],
+    				displayDots: /*displayDots*/ ctx[2]
+    			},
+    			$$inline: true
+    		});
+
+    	valdo.$on("tag", /*handleTag*/ ctx[3]);
+
+    	const block = {
+    		key: key_1,
+    		first: null,
+    		c: function create() {
+    			first = empty();
+    			create_component(valdo.$$.fragment);
+    			this.first = first;
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, first, anchor);
+    			mount_component(valdo, target, anchor);
+    			current = true;
+    		},
+    		p: function update(new_ctx, dirty) {
+    			ctx = new_ctx;
+    			const valdo_changes = {};
+    			if (dirty & /*$valdoStore*/ 1) valdo_changes.valdoData = /*valdoData*/ ctx[10];
+    			valdo.$set(valdo_changes);
+    		},
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(valdo.$$.fragment, local);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(valdo.$$.fragment, local);
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(first);
+    			destroy_component(valdo, detaching);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_each_block.name,
+    		type: "each",
+    		source: "(44:4) {#each $valdoStore.displayedValdos as valdoData (valdoData.firstName)}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (42:0) <ValdoDisplay>
+    function create_default_slot(ctx) {
+    	let if_block_anchor;
+    	let current;
+    	let if_block = /*$valdoStore*/ ctx[0].activatedGame && create_if_block(ctx);
+
+    	const block = {
+    		c: function create() {
+    			if (if_block) if_block.c();
+    			if_block_anchor = empty();
+    		},
+    		m: function mount(target, anchor) {
+    			if (if_block) if_block.m(target, anchor);
+    			insert_dev(target, if_block_anchor, anchor);
+    			current = true;
+    		},
+    		p: function update(ctx, dirty) {
+    			if (/*$valdoStore*/ ctx[0].activatedGame) {
+    				if (if_block) {
+    					if_block.p(ctx, dirty);
+
+    					if (dirty & /*$valdoStore*/ 1) {
+    						transition_in(if_block, 1);
+    					}
+    				} else {
+    					if_block = create_if_block(ctx);
+    					if_block.c();
+    					transition_in(if_block, 1);
+    					if_block.m(if_block_anchor.parentNode, if_block_anchor);
+    				}
+    			} else if (if_block) {
+    				group_outros();
+
+    				transition_out(if_block, 1, 1, () => {
+    					if_block = null;
+    				});
+
+    				check_outros();
+    			}
+    		},
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(if_block);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(if_block);
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			if (if_block) if_block.d(detaching);
+    			if (detaching) detach_dev(if_block_anchor);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_default_slot.name,
+    		type: "slot",
+    		source: "(42:0) <ValdoDisplay>",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function create_fragment(ctx) {
+    	let header;
+    	let t;
+    	let valdodisplay;
+    	let current;
+    	header = new Header({ $$inline: true });
+
+    	valdodisplay = new ValdoDisplay({
+    			props: {
+    				$$slots: { default: [create_default_slot] },
+    				$$scope: { ctx }
+    			},
+    			$$inline: true
+    		});
+
+    	const block = {
+    		c: function create() {
+    			create_component(header.$$.fragment);
+    			t = space();
+    			create_component(valdodisplay.$$.fragment);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			mount_component(header, target, anchor);
+    			insert_dev(target, t, anchor);
+    			mount_component(valdodisplay, target, anchor);
+    			current = true;
+    		},
+    		p: function update(ctx, [dirty]) {
+    			const valdodisplay_changes = {};
+
+    			if (dirty & /*$$scope, $valdoStore*/ 8193) {
+    				valdodisplay_changes.$$scope = { dirty, ctx };
+    			}
+
+    			valdodisplay.$set(valdodisplay_changes);
+    		},
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(header.$$.fragment, local);
+    			transition_in(valdodisplay.$$.fragment, local);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(header.$$.fragment, local);
+    			transition_out(valdodisplay.$$.fragment, local);
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			destroy_component(header, detaching);
+    			if (detaching) detach_dev(t);
+    			destroy_component(valdodisplay, detaching);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    const displaySVG = true;
+
+    function instance($$self, $$props, $$invalidate) {
+    	let $valdoStore;
+    	let $gameTimer;
+    	validate_store(valdoStore, 'valdoStore');
+    	component_subscribe($$self, valdoStore, $$value => $$invalidate(0, $valdoStore = $$value));
+    	validate_store(gameTimer, 'gameTimer');
+    	component_subscribe($$self, gameTimer, $$value => $$invalidate(4, $gameTimer = $$value));
+    	let { $$slots: slots = {}, $$scope } = $$props;
+    	validate_slots('App', slots, []);
+    	let correctTagReward = 2;
+    	let incorrectTagPenalty = 5;
+    	let valdoTagBonus = 5;
+    	let tagPointReward = 1;
+    	let isModalOpen = true;
+    	let showFullName = false;
+    	let displayDots = false;
+
+    	function handleTag(event) {
+    		if ($gameTimer.timerActive) {
+    			if (event.detail.fullName === $valdoStore.activeValdo.fullName) {
+    				gameTimer.increaseScore(tagPointReward);
+
+    				if ((/valdo/i).test(event.detail.fullName)) {
+    					//give extra time for valdos with 'Valdo' as a first or last name
+    					gameTimer.incrementTime(valdoTagBonus);
+    				} else {
+    					gameTimer.incrementTime(correctTagReward);
+    				}
+
+    				valdoStore.startNewRound();
+    			} else {
+    				gameTimer.decrementTime(incorrectTagPenalty);
+    			}
+    		}
+    	}
+
+    	const writable_props = [];
+
+    	Object.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== '$$' && key !== 'slot') console.warn(`<App> was created with unknown prop '${key}'`);
+    	});
+
+    	$$self.$capture_state = () => ({
+    		Header,
+    		Valdo,
+    		ValdoDisplay,
+    		valdoStore,
+    		gameTimer,
+    		Modal,
+    		displaySVG,
+    		correctTagReward,
+    		incorrectTagPenalty,
+    		valdoTagBonus,
+    		tagPointReward,
+    		isModalOpen,
+    		showFullName,
+    		displayDots,
+    		handleTag,
+    		$valdoStore,
+    		$gameTimer
+    	});
+
+    	$$self.$inject_state = $$props => {
+    		if ('correctTagReward' in $$props) correctTagReward = $$props.correctTagReward;
+    		if ('incorrectTagPenalty' in $$props) incorrectTagPenalty = $$props.incorrectTagPenalty;
+    		if ('valdoTagBonus' in $$props) valdoTagBonus = $$props.valdoTagBonus;
+    		if ('tagPointReward' in $$props) tagPointReward = $$props.tagPointReward;
+    		if ('isModalOpen' in $$props) isModalOpen = $$props.isModalOpen;
+    		if ('showFullName' in $$props) $$invalidate(1, showFullName = $$props.showFullName);
+    		if ('displayDots' in $$props) $$invalidate(2, displayDots = $$props.displayDots);
+    	};
+
+    	if ($$props && "$$inject" in $$props) {
+    		$$self.$inject_state($$props.$$inject);
+    	}
+
+    	return [$valdoStore, showFullName, displayDots, handleTag];
+    }
+
+    class App extends SvelteComponentDev {
+    	constructor(options) {
+    		super(options);
+    		init(this, options, instance, create_fragment, safe_not_equal, {});
+
+    		dispatch_dev("SvelteRegisterComponent", {
+    			component: this,
+    			tagName: "App",
+    			options,
+    			id: create_fragment.name
+    		});
+    	}
+    }
+
+    const app = new App({
+    	target: document.body,
+    });
+
+    return app;
+
+})();
 //# sourceMappingURL=bundle.js.map
