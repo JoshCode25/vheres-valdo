@@ -1,5 +1,6 @@
 <script>
   import { getPointDist, getPointDeltaAngle } from './mathUtilities.js';
+  import {valdoApparelColorStore} from '../Stores/valdoApparelStore.js'
 
   export let shoulderPoint = { x: 10, y: 10 };
   export let handPoint = { x: 15, y: 15 };
@@ -12,9 +13,11 @@
   export let displayDots = true;
 
   let troubleshooting = false;
+  let firstName = fullName.split(' ')[0];
   let elbowDeltas = {};
   let handDeltas = {};
 
+//determine elbow and hand locations
   let shoulderHandDist = getPointDist(shoulderPoint, handPoint);
   let shoulderElbowDist = maxArmLength / 2;
   let { angleToHoriz } = getPointDeltaAngle(shoulderPoint, handPoint);
@@ -70,6 +73,39 @@
         elbowHand: x${elbowHandDeltas.x} y${elbowHandDeltas.y} `
     );
   }
+
+//determine sleeve length and color
+  let isSleeve = firstName.length > $valdoApparelColorStore.apparelLengths[0] ? true : false;
+  let sleevePath = '';
+  //determine sleeve color based on first letter of first name
+  let sleeveColor = $valdoApparelColorStore.apparelColorList[firstName[0].toLowerCase()];
+
+  //if there is a sleeve, determine if it's short or long based on first name length
+  if (isSleeve) {
+    let sleeveLength = firstName.length > $valdoApparelColorStore.apparelLengths[1] ? 'long' : 'short';
+    let sleeveElbowDeltas;
+    let sleeveHandDeltas;
+
+    if (sleeveLength === 'long') {
+      sleeveElbowDeltas = elbowDeltas;
+      sleeveHandDeltas = {
+        x: elbowHandDeltas.x * $valdoApparelColorStore.sleevePantLength,
+        y: elbowHandDeltas.y * $valdoApparelColorStore.sleevePantLength
+      }
+      sleevePath = `M ${shoulderPoint.x} ${shoulderPoint.y} 
+        l ${sleeveElbowDeltas.x} ${sleeveElbowDeltas.y} 
+        l ${sleeveHandDeltas.x} ${sleeveHandDeltas.y}`;
+
+    } else if (sleeveLength === 'short') {
+      sleeveElbowDeltas = {
+        x: elbowDeltas.x * $valdoApparelColorStore.sleevePantLength,
+        y: elbowDeltas.y * $valdoApparelColorStore.sleevePantLength
+      }
+      sleevePath = `M ${shoulderPoint.x} ${shoulderPoint.y} 
+        l ${sleeveElbowDeltas.x} ${sleeveElbowDeltas.y}`; 
+    }
+  }
+
 </script>
 
 <path
@@ -78,6 +114,14 @@
   stroke={skinTone}
   stroke-width={limbThickness}
 />
+{#if isSleeve}
+  <path 
+    id={`${fullName}${armType}sleeve`}
+    d={sleevePath}
+    stroke={sleeveColor}
+    stroke-width={$valdoApparelColorStore.apparelThickness*limbThickness}
+  />
+{/if}
 {#if displayDots}
   {#each pointList as point, i (point.x)}
     <circle

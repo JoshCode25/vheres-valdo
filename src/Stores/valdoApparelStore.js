@@ -1,3 +1,4 @@
+import { subscribe } from 'svelte/internal';
 import { readable } from 'svelte/store';
 
 let colorList = [
@@ -138,5 +139,18 @@ function createValdoApparelColorList(colorList) {
 }
 
 let valdoApparelColorList = createValdoApparelColorList(colorList);
+console.log(valdoApparelColorList);
 
-export const valdoApparelColorStore = readable(valdoApparelColorList);
+export const valdoApparelColorStore = readable(
+  {
+    apparelColorList: valdoApparelColorList,
+    apparelLengths: [3, 10],
+    sleevePantLength: 0.85,
+    apparelThickness: 4,
+  },
+  (set) => {
+    return () => {};
+  }
+);
+
+console.log(valdoApparelColorStore);
