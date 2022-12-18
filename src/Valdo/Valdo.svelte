@@ -10,7 +10,7 @@
 
   export let valdoData = {};
   export let displaySVG = true;
-  export let totalHeight = 150;
+  export let totalHeight = 100;
   export let hoverPointer = true;
   export let showFullName = false;
   export let displayDots = true;
