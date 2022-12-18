@@ -1,5 +1,6 @@
 <script>
   import { getPointDist, getPointDeltaAngle } from './mathUtilities.js';
+  import {valdoApparelColorStore} from '../Stores/valdoApparelStore.js'
 
   export let hipPoint = { x: 10, y: 10 };
   export let footPoint = { x: 15, y: 15 };
@@ -12,6 +13,7 @@
   export let displayDots = true;
 
   let troubleshooting = false;
+  let lastName = fullName.split(' ')[1];
   let kneeDeltas = {};
   let footDeltas = {};
 
@@ -68,6 +70,38 @@
     kneefoot: x${kneeFootDeltas.x} y${kneeFootDeltas.y} `
     );
   }
+
+  //determine sleeve length and color
+  let isPant = lastName.length > $valdoApparelColorStore.apparelLengths[0] ? true : false;
+  let pantPath = '';
+  //determine sleeve color based on first letter of first name
+  let pantColor = $valdoApparelColorStore.apparelColorList[lastName[0].toLowerCase()];
+
+  //if there is a sleeve, determine if it's short or long based on first name length
+  if (isPant) {
+    let pantLength = lastName.length > $valdoApparelColorStore.apparelLengths[1] ? 'long' : 'short';
+    let pantKneeDeltas;
+    let pantFootDeltas;
+
+    if (pantLength === 'long') {
+      pantKneeDeltas = kneeDeltas;
+      pantFootDeltas = {
+        x: kneeFootDeltas.x * $valdoApparelColorStore.sleevePantLength,
+        y: kneeFootDeltas.y * $valdoApparelColorStore.sleevePantLength
+      }
+      pantPath = `M ${hipPoint.x} ${hipPoint.y} 
+        l ${pantKneeDeltas.x} ${pantKneeDeltas.y} 
+        l ${pantFootDeltas.x} ${pantFootDeltas.y}`;
+
+    } else if (pantLength === 'short') {
+      pantKneeDeltas = {
+        x: kneeDeltas.x * $valdoApparelColorStore.sleevePantLength,
+        y: kneeDeltas.y * $valdoApparelColorStore.sleevePantLength
+      }
+      pantPath = `M ${hipPoint.x} ${hipPoint.y} 
+        l ${pantKneeDeltas.x} ${pantKneeDeltas.y}`; 
+    }
+  }
 </script>
 
 <path
@@ -76,6 +110,14 @@
   stroke={skinTone}
   stroke-width={limbThickness}
 />
+{#if isPant}
+  <path 
+    id={`${fullName}${legType}pant`}
+    d={pantPath}
+    stroke={pantColor}
+    stroke-width={$valdoApparelColorStore.apparelThickness*limbThickness}
+  />
+{/if}
 {#if displayDots}
   {#each pointList as point, i (point.x)}
     <circle
