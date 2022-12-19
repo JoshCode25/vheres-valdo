@@ -13,7 +13,6 @@
   export let displayDots = true;
   export let gender = 'none';
 
-  let troubleshooting = false;
   let lastName = fullName.split(' ')[1];
 
 //establish left and right deltas
@@ -96,58 +95,175 @@
     l ${rightKneeDeltas.x} ${rightKneeDeltas.y} 
     l ${rightKneeFootDeltas.x} ${rightKneeFootDeltas.y}`;
 
-//define pant path if male
-  let pantPath = '';
-  if (gender === 'male') {
+//define pant path if male or dress path if female
+  let leftPantPath = '';
+  let rightPantPath = '';
+  let dressPath = '';
 
-  }
-  //determine sleeve length and color
-  let isPant = lastName.length > $valdoApparelColorStore.apparelLengths[0] ? true : false;
-
-  //determine sleeve color based on first letter of first name
+  //determine pant color based on first letter of last name
   let pantColor = $valdoApparelColorStore.apparelColorList[lastName[0].toLowerCase()];
+  let pantLength = '';
 
-  //if there is a sleeve, determine if it's short or long based on first name length
-  if (isPant) {
-    let pantLength = lastName.length > $valdoApparelColorStore.apparelLengths[1] ? 'long' : 'short';
-    let pantleftKneeDeltas;
-    let pantleftFootDeltas;
+  //determine pant length based on length of last name
+  if (lastName.length <= $valdoApparelColorStore.apparelLengths[0]) {
+    pantLength = 'short';
+  } else if (lastName.length >= $valdoApparelColorStore.apparelLengths[1]) {
+    pantLength = 'long';
+  } else {
+    pantLength = 'medium';
+  }
+
+  if (gender === 'male') {
+    let pantLeftKneeDeltas;
+    let pantLeftFootDeltas;
+    let pantRightKneeDeltas;
+    let pantRightFootDeltas;
 
     if (pantLength === 'long') {
-      pantleftKneeDeltas = leftKneeDeltas;
-      pantleftFootDeltas = {
-        x: leftKneeFootDeltas.x * $valdoApparelColorStore.sleevePantLength,
-        y: leftKneeFootDeltas.y * $valdoApparelColorStore.sleevePantLength
+      pantLeftKneeDeltas = leftKneeDeltas;
+      pantLeftFootDeltas = {
+        x: leftKneeFootDeltas.x * $valdoApparelColorStore.longLength,
+        y: leftKneeFootDeltas.y * $valdoApparelColorStore.longLength
       }
-      pantPath = `M ${hipPoint.x} ${hipPoint.y} 
-        l ${pantleftKneeDeltas.x} ${pantleftKneeDeltas.y} 
-        l ${pantleftFootDeltas.x} ${pantleftFootDeltas.y}`;
-
+      leftPantPath = `M ${hipPoint.x} ${hipPoint.y} 
+        l ${pantLeftKneeDeltas.x} ${pantLeftKneeDeltas.y} 
+        l ${pantLeftFootDeltas.x} ${pantLeftFootDeltas.y}`;
+      
+      pantRightKneeDeltas = rightKneeDeltas;
+      pantRightFootDeltas = {
+        x: rightKneeFootDeltas.x * $valdoApparelColorStore.longLength,
+        y: rightKneeFootDeltas.y * $valdoApparelColorStore.longLength
+      }
+      rightPantPath = `M ${hipPoint.x} ${hipPoint.y} 
+        l ${pantRightKneeDeltas.x} ${pantRightKneeDeltas.y} 
+        l ${pantRightFootDeltas.x} ${pantRightFootDeltas.y}`;
+      
     } else if (pantLength === 'short') {
-      pantleftKneeDeltas = {
-        x: leftKneeDeltas.x * $valdoApparelColorStore.sleevePantLength,
-        y: leftKneeDeltas.y * $valdoApparelColorStore.sleevePantLength
+      pantLeftKneeDeltas = {
+        x: leftKneeDeltas.x * $valdoApparelColorStore.shortLength,
+        y: leftKneeDeltas.y * $valdoApparelColorStore.shortLength
       }
-      pantPath = `M ${hipPoint.x} ${hipPoint.y} 
-        l ${pantleftKneeDeltas.x} ${pantleftKneeDeltas.y}`; 
+      leftPantPath = `M ${hipPoint.x} ${hipPoint.y} 
+        l ${pantLeftKneeDeltas.x} ${pantLeftKneeDeltas.y}`; 
+
+      pantRightKneeDeltas = {
+        x: rightKneeDeltas.x * $valdoApparelColorStore.shortLength,
+        y: rightKneeDeltas.y * $valdoApparelColorStore.shortLength
+      }
+      rightPantPath = `M ${hipPoint.x} ${hipPoint.y} 
+        l ${pantRightKneeDeltas.x} ${pantRightKneeDeltas.y}`; 
+
+    } else if (pantLength === 'medium') {
+      pantLeftKneeDeltas = leftKneeDeltas
+      leftPantPath = `M ${hipPoint.x} ${hipPoint.y} 
+        l ${pantLeftKneeDeltas.x} ${pantLeftKneeDeltas.y}`; 
+
+      pantRightKneeDeltas = rightKneeDeltas
+      rightPantPath = `M ${hipPoint.x} ${hipPoint.y} 
+        l ${pantRightKneeDeltas.x} ${pantRightKneeDeltas.y}`; 
     }
+  console.log('male', rightFootDeltas, leftFootDeltas);
+  
+  } else if (gender === 'female') {
+    let dressLeftKneePoint;
+    let dressLeftFootPoint;
+    let dressRightKneePoint;
+    let dressRightFootPoint;
+
+    if (pantLength === 'long') {
+      dressLeftKneePoint = leftKneePoint;
+      dressLeftFootPoint = {
+        x: dressLeftKneePoint.x + leftFootDeltas.x * $valdoApparelColorStore.longLength,
+        y: dressLeftKneePoint.y + leftFootDeltas.y * $valdoApparelColorStore.longLength
+      }
+      dressRightKneePoint = rightKneePoint;
+      dressRightFootPoint = {
+        x: dressRightKneePoint.x + rightFootDeltas.x * $valdoApparelColorStore.longLength,
+        y: dressRightKneePoint.y + rightFootDeltas.y * $valdoApparelColorStore.longLength
+      }
+
+      dressPath = `M ${hipPoint.x} ${hipPoint.y} 
+        L ${dressLeftKneePoint.x} ${dressLeftKneePoint.y}
+        L ${dressLeftFootPoint.x} ${dressLeftFootPoint.y}
+        L ${dressRightFootPoint.x} ${dressRightFootPoint.y}
+        L ${dressRightKneePoint.x} ${dressRightKneePoint.y}
+        z`;
+      
+    } else if (pantLength === 'short') {
+      dressLeftKneePoint = {
+        x: hipPoint.x + leftKneeDeltas.x * $valdoApparelColorStore.shortLength,
+        y: hipPoint.y + leftKneeDeltas.y * $valdoApparelColorStore.shortLength
+      }
+
+      dressRightKneePoint = {
+        x: hipPoint.x + rightKneeDeltas.x * $valdoApparelColorStore.shortLength,
+        y: hipPoint.y + rightKneeDeltas.y * $valdoApparelColorStore.shortLength
+      }
+
+      dressPath = `M ${hipPoint.x} ${hipPoint.y} 
+        L ${dressLeftKneePoint.x} ${dressLeftKneePoint.y}
+        L ${dressRightKneePoint.x} ${dressRightKneePoint.y}
+        z`;
+
+    } else if (pantLength === 'meduim') {
+      dressLeftKneePoint = leftKneePoint;
+
+      dressRightKneePoint = rightKneePoint
+
+      dressPath = `M ${hipPoint.x} ${hipPoint.y} 
+        L ${dressLeftKneePoint.x} ${dressLeftKneePoint.y}
+        L ${dressRightKneePoint.x} ${dressRightKneePoint.y}
+        z`;
+    }
+  console.log(fullName, pantLength, dressPath);
+  console.log('female', rightFootDeltas, leftFootDeltas);
   }
+  
 </script>
 
+<!-- leg paths -->
 <path
-  id={`${fullName}${legType}arm`}
-  d={legPath}
+  class={'line'}
+  id={`${fullName}leftleg`}
+  d={leftLegPath}
   stroke={skinTone}
   stroke-width={limbThickness}
 />
-{#if isPant}
-  <path 
-    id={`${fullName}${legType}pant`}
-    d={pantPath}
+<path
+  class={'line'}
+  id={`${fullName}rightleg`}
+  d={rightLegPath}
+  stroke={skinTone}
+  stroke-width={limbThickness}
+/>
+
+<!-- pant paths if male -->
+{#if gender === 'male'}
+  <path
+    class={'line'}
+    id={`${fullName}leftpant`}
+    d={leftPantPath}
+    stroke={pantColor}
+    stroke-width={$valdoApparelColorStore.apparelThickness*limbThickness}
+  />
+  <path
+    class={'line'}
+    id={`${fullName}rightpant`}
+    d={rightPantPath}
     stroke={pantColor}
     stroke-width={$valdoApparelColorStore.apparelThickness*limbThickness}
   />
 {/if}
+
+<!-- dress path if female -->
+  <path 
+    id={`${fullName}dress`}
+    d={dressPath}
+    stroke={pantColor}
+    fill={pantColor}
+    stroke-width={$valdoApparelColorStore.apparelThickness*limbThickness}
+  />
+
 {#if displayDots}
   {#each pointList as point, i (point.x)}
     <circle
@@ -160,7 +276,7 @@
 {/if}
 
 <style>
-  path {
+  path.line {
     fill: none;
   }
 </style>

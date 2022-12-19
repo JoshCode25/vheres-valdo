@@ -6,15 +6,15 @@ export function getPointDist(point1, point2) {
 
 //receives two points and returns the distances between them broken into x-y components
 export function getPointDeltaAngle(startPoint, endPoint) {
-  let {x:startX, y:startY} = startPoint;
-  let {x:endX, y:endY} = endPoint;
+  let { x: startX, y: startY } = startPoint;
+  let { x: endX, y: endY } = endPoint;
   let deltaX = endX - startX;
   let deltaY = endY - startY;
-  let angleToHoriz = Math.atan(deltaY / deltaX)
+  let angleToHoriz = Math.atan(deltaY / deltaX);
   let pointDeltas = {
     x: endX - startX,
     y: endY - startY,
-    angleToHoriz: angleToHoriz
-  }
+    angleToHoriz: angleToHoriz,
+  };
   return pointDeltas;
 }

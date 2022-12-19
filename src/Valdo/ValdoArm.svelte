@@ -89,8 +89,8 @@
     if (sleeveLength === 'long') {
       sleeveElbowDeltas = elbowDeltas;
       sleeveHandDeltas = {
-        x: elbowHandDeltas.x * $valdoApparelColorStore.sleevePantLength,
-        y: elbowHandDeltas.y * $valdoApparelColorStore.sleevePantLength
+        x: elbowHandDeltas.x * $valdoApparelColorStore.longLength,
+        y: elbowHandDeltas.y * $valdoApparelColorStore.longLength
       }
       sleevePath = `M ${shoulderPoint.x} ${shoulderPoint.y} 
         l ${sleeveElbowDeltas.x} ${sleeveElbowDeltas.y} 
@@ -98,8 +98,8 @@
 
     } else if (sleeveLength === 'short') {
       sleeveElbowDeltas = {
-        x: elbowDeltas.x * $valdoApparelColorStore.sleevePantLength,
-        y: elbowDeltas.y * $valdoApparelColorStore.sleevePantLength
+        x: elbowDeltas.x * $valdoApparelColorStore.longLength,
+        y: elbowDeltas.y * $valdoApparelColorStore.longLength
       }
       sleevePath = `M ${shoulderPoint.x} ${shoulderPoint.y} 
         l ${sleeveElbowDeltas.x} ${sleeveElbowDeltas.y}`; 
