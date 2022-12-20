@@ -15,11 +15,13 @@
 
   let lastName = fullName.split(' ')[1];
 
-//establish left and right deltas
+//establish left and right delta placeholders
   let leftKneeDeltas = {};
-  let leftFootDeltas = {};
+  let leftKneePoint = {};
+  let leftFootDeltas = getPointDeltaAngle(hipPoint, leftFootPoint);
   let rightKneeDeltas = {};
-  let rightFootDeltas = {};
+  let rightKneePoint = {};
+  let rightFootDeltas = getPointDeltaAngle(hipPoint, rightFootPoint);
 
 //establish left and right hip and foot distances
   let leftHipFootDist = getPointDist(hipPoint, leftFootPoint);
@@ -68,14 +70,15 @@
       x: rightHipKneeDist * Math.cos(rightIsoscelesAngleToHoriz),
       y: rightHipKneeDist * Math.sin(rightIsoscelesAngleToHoriz),
     };
+
   }
 
 //establish adjusted left and right knee points
-  let leftKneePoint = {
+  leftKneePoint = {
     x: hipPoint.x + leftKneeDeltas.x,
     y: hipPoint.y + leftKneeDeltas.y,
   };
-  let rightKneePoint = {
+  rightKneePoint = {
     x: hipPoint.x + rightKneeDeltas.x,
     y: hipPoint.y + rightKneeDeltas.y,
   };
@@ -112,6 +115,7 @@
   } else {
     pantLength = 'medium';
   }
+  console.log(pantLength)
 
   if (gender === 'male') {
     let pantLeftKneeDeltas;
@@ -162,7 +166,6 @@
       rightPantPath = `M ${hipPoint.x} ${hipPoint.y} 
         l ${pantRightKneeDeltas.x} ${pantRightKneeDeltas.y}`; 
     }
-  console.log('male', rightFootDeltas, leftFootDeltas);
   
   } else if (gender === 'female') {
     let dressLeftKneePoint;
@@ -173,13 +176,13 @@
     if (pantLength === 'long') {
       dressLeftKneePoint = leftKneePoint;
       dressLeftFootPoint = {
-        x: dressLeftKneePoint.x + leftFootDeltas.x * $valdoApparelColorStore.longLength,
-        y: dressLeftKneePoint.y + leftFootDeltas.y * $valdoApparelColorStore.longLength
+        x: dressLeftKneePoint.x + leftKneeFootDeltas.x * $valdoApparelColorStore.longLength,
+        y: dressLeftKneePoint.y + leftKneeFootDeltas.y * $valdoApparelColorStore.longLength
       }
       dressRightKneePoint = rightKneePoint;
       dressRightFootPoint = {
-        x: dressRightKneePoint.x + rightFootDeltas.x * $valdoApparelColorStore.longLength,
-        y: dressRightKneePoint.y + rightFootDeltas.y * $valdoApparelColorStore.longLength
+        x: dressRightKneePoint.x + rightKneeFootDeltas.x * $valdoApparelColorStore.longLength,
+        y: dressRightKneePoint.y + rightKneeFootDeltas.y * $valdoApparelColorStore.longLength
       }
 
       dressPath = `M ${hipPoint.x} ${hipPoint.y} 
@@ -214,9 +217,14 @@
         L ${dressLeftKneePoint.x} ${dressLeftKneePoint.y}
         L ${dressRightKneePoint.x} ${dressRightKneePoint.y}
         z`;
+      let dressPointArray = [
+        dressLeftKneePoint, dressLeftFootPoint,
+        dressRightKneePoint, dressRightFootPoint
+      ]
+      console.log(fullName, pantLength, dressPath);
+      console.log(leftPointList, rightPointList);
+      console.log(dressPointArray);
     }
-  console.log(fullName, pantLength, dressPath);
-  console.log('female', rightFootDeltas, leftFootDeltas);
   }
   
 </script>
@@ -264,11 +272,19 @@
   />
 {/if}
 
-
+<!-- dots identifying the input points -->
 {#if displayDots}
-  {#each pointList as point, i (point.x)}
+  {#each leftPointList as point, i (point.x)}
     <circle
-      id={pointNames[i] + legType}
+      id={pointNames[i] + 'left'}
+      cx={point.x}
+      cy={point.y}
+      r={headDiameter / 4}
+    />
+  {/each}
+    {#each rightPointList as point, i (point.x)}
+    <circle
+      id={pointNames[i] + 'right'}
       cx={point.x}
       cy={point.y}
       r={headDiameter / 4}

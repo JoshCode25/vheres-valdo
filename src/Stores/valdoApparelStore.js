@@ -153,5 +153,3 @@ export const valdoApparelColorStore = readable(
     return () => {};
   }
 );
-
-console.log(valdoApparelColorStore);

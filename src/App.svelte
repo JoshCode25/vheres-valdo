@@ -16,6 +16,15 @@
   let showFullName = false;
   let displayDots = false;
 
+  let valdoTestData = {
+    firstName: 'Teshua',
+    lastName: 'Granstandoroniphil',
+    fullName: 'Teshua Grandtandoroniphil',
+    skinTone: 'black',
+    greeting: 'hello',
+    gender: 'female',
+  }
+
   function handleTag(event) {
     if ($gameTimer.timerActive) {
       if (event.detail.fullName === $valdoStore.activeValdo.fullName) {
@@ -34,9 +43,9 @@
   }
 </script>
 
-<!-- <Modal {isModalOpen}>
-  <Valdo valdoData={$valdoStore.displayedValdos[1]} {displaySVG} />
-</Modal> -->
+<Modal {isModalOpen}>
+  <Valdo valdoData={valdoTestData} totalHeight={250} {displaySVG} />
+</Modal>
 
 <Header />
 <ValdoDisplay>
