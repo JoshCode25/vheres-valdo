@@ -253,8 +253,7 @@
     stroke={pantColor}
     stroke-width={$valdoApparelColorStore.apparelThickness*limbThickness}
   />
-{/if}
-
+{:else if gender === 'female'}
 <!-- dress path if female -->
   <path 
     id={`${fullName}dress`}
@@ -263,6 +262,8 @@
     fill={pantColor}
     stroke-width={$valdoApparelColorStore.apparelThickness*limbThickness}
   />
+{/if}
+
 
 {#if displayDots}
   {#each pointList as point, i (point.x)}

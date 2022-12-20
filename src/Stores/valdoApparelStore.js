@@ -145,7 +145,7 @@ export const valdoApparelColorStore = readable(
   {
     apparelColorList: valdoApparelColorList,
     apparelLengths: [3, 10],
-    shortLength: 0.5,
+    shortLength: 0.65,
     longLength: 0.85,
     apparelThickness: 4,
   },
