@@ -139,7 +139,6 @@ function createValdoApparelColorList(colorList) {
 }
 
 let valdoApparelColorList = createValdoApparelColorList(colorList);
-console.log(valdoApparelColorList);
 
 export const valdoApparelColorStore = readable(
   {

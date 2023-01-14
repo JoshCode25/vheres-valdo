@@ -18,8 +18,8 @@
 
   let valdoTestData = {
     firstName: 'Teshua',
-    lastName: 'Granstandoroniphil',
-    fullName: 'Teshua Grandtandoroniphil',
+    lastName: 'Grans',
+    fullName: 'Teshua Grans',
     skinTone: 'black',
     greeting: 'hello',
     gender: 'female',

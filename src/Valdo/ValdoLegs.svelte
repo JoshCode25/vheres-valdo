@@ -208,7 +208,7 @@
         L ${dressRightKneePoint.x} ${dressRightKneePoint.y}
         z`;
 
-    } else if (pantLength === 'meduim') {
+    } else if (pantLength === 'medium') {
       dressLeftKneePoint = leftKneePoint;
 
       dressRightKneePoint = rightKneePoint
