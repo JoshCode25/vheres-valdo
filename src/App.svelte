@@ -43,9 +43,9 @@
   }
 </script>
 
-<Modal {isModalOpen}>
+<!-- <Modal {isModalOpen}>
   <Valdo valdoData={valdoTestData} totalHeight={250} {displaySVG} />
-</Modal>
+</Modal> -->
 
 <Header />
 <ValdoDisplay>
