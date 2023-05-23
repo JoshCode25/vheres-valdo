@@ -1,4 +1,6 @@
-# How to Play Vhere's Valdo
+# Vhere's Valdo
+
+## How to Play
 
 You start with 30 seconds to click/tap the stick figure (or Valdo) that matches the one shown above the timer bar.
 
@@ -6,7 +8,7 @@ You get 1 point and 2 additional seconds for each correct guess. You lose 5 seco
 
 Each correct guess adds 2 more Valdos to the collection below.
 
-# Behind the Scenes
+## Behind the Scenes
 
 Each Valdo is a programmatically defined SVG based on a given first and last name.
 
